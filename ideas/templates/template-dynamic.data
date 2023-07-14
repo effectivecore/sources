@@ -1,0 +1,24 @@
+templates
+- dynamic
+    name: dynamic
+    type: node
+    pointers
+    - condition: check/condition
+    - on_success_text: check/on_success/container_1/children/content/text
+    - on_failure_text: check/on_success/container_2/children/content/text
+    data|node
+      children
+      - check|template_check
+          condition: 
+          on_success
+          - container_1|markup
+              tag_name: x-contaner
+              children
+              - content|text
+                  text: case "on_success"
+          on_failure
+          - container_2|markup
+              tag_name: x-contaner
+              children
+              - content|text
+                  text: case "on_failure"

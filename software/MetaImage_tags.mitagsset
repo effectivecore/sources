@@ -1,0 +1,68 @@
+{
+  "PDF" : [
+    {
+      "type" : "key",
+      "value" : "Author"
+    },
+    {
+      "type" : "key",
+      "value" : "Creator"
+    },
+    {
+      "type" : "key",
+      "value" : "Producer"
+    },
+    {
+      "type" : "key",
+      "value" : "Subject"
+    }
+  ],
+  "XMP" : [
+    {
+      "type" : "key",
+      "value" : "XMPToolkit"
+    },
+    {
+      "type" : "key",
+      "value" : "InstanceID"
+    },
+    {
+      "type" : "key",
+      "value" : "DocumentID"
+    },
+    {
+      "type" : "key",
+      "value" : "DerivedFromInstanceID"
+    },
+    {
+      "type" : "key",
+      "value" : "DerivedFromDocumentID"
+    },
+    {
+      "type" : "key",
+      "value" : "CreatorTool"
+    },
+    {
+      "type" : "key",
+      "value" : "Rights"
+    },
+    {
+      "type" : "key",
+      "value" : "Creator"
+    },
+    {
+      "type" : "key",
+      "value" : "Marked"
+    },
+    {
+      "type" : "sec",
+      "value" : "General"
+    }
+  ],
+  "PNG" : [
+    {
+      "type" : "key",
+      "value" : "Software"
+    }
+  ]
+}

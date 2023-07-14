@@ -1,0 +1,10 @@
+
+[role='tree'][data-style~='dropdown'] li       ul {clip-path: polygon(0 0, 0 0, 0 0, 0 0); transition: clip-path .3s cubic-bezier(0, 1, .5, 1)}
+[role='tree'][data-style~='dropdown'] li:hover ul {clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%)}
+
+[role='tree'][data-style~='dropdown'] li       ul {transform: scaleY(0); transform-origin: 50% 0; transition: transform .3s cubic-bezier(0, 1, .5, 1)}
+[role='tree'][data-style~='dropdown'] li:hover ul {transform: scaleY(1)}
+
+[role='tree'][data-style~='dropdown'][data-id='system']       li    a {padding: 5px 10px 5px 32px; background-size: 32px; transition: .3s cubic-bezier(0, 1, .5, 1); transition-property: padding}
+[role='tree'][data-style~='dropdown'][data-id='system']:hover li    a {padding-top: 21px; padding-bottom: 21px}
+[role='tree'][data-style~='dropdown'][data-id='system']       li li a {padding: 0 !important}

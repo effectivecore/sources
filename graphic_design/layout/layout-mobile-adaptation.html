@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=300, initial-scale=1">
+    <title>Adaptation for a mobile view | HTML5, CSS3, W3C Valid, IE9+</title>
+    <style>
+
+      body {
+        margin: 0;
+        padding: 20px;
+        font-family: 'Arial';
+        font-size: 16px;
+        line-height: 1.5em;
+        background: lavender}
+
+      x-content {
+        display: block;
+        max-width: 800px;
+        box-sizing: border-box;
+        margin: 0 auto}
+
+      x-content[data-region-id='main'] {
+        padding: 20px;
+        background: white}
+
+      x-block {display: block}
+      x-block[data-id='1'] {background-color: lightcyan}
+      x-block[data-id='2'] {background-color: lightyellow}
+      x-block[data-id='3'] {background-color: honeydew}
+      x-block[data-id='4'] {background-color: ghostwhite}
+      x-block[data-id='5'] {background-color: azure}
+
+      [data-style-name^='column-'  ] x-block {display: inline-block; vertical-align: top}
+      [data-style-name ='column-x2'] x-block:nth-child(2n + 1) /* column 1 */ {width: calc(   50% -  5px); margin-right: 10px}
+      [data-style-name ='column-x2'] x-block:nth-child(2n + 2) /* column 2 */ {width: calc(   50% -  5px)}
+      [data-style-name ='column-x3'] x-block:nth-child(3n + 1) /* column 1 */ {width: calc(33.33% -  6px); margin-right: 9px}
+      [data-style-name ='column-x3'] x-block:nth-child(3n + 2) /* column 2 */ {width: calc(33.33% -  6px); margin-right: 9px}
+      [data-style-name ='column-x3'] x-block:nth-child(3n + 3) /* column 3 */ {width: calc(33.33% -  6px)}
+
+    @media screen and (max-width: 600px) {
+      [data-style-name^='column-'] x-block {display: block; width: 100% !important}
+    }
+
+    </style>
+</head>
+<body>
+
+    <x-content data-region-id="main" data-style-name="column-x2">
+
+        <x-block data-id="1">
+            Some content in block 1. Some content in block 1. Some content in block 1.
+            Some content in block 1. Some content in block 1. Some content in block 1.
+            Some content in block 1. Some content in block 1. Some content in block 1.
+            Some content in block 1. Some content in block 1. Some content in block 1.
+            Some content in block 1. Some content in block 1. Some content in block 1.
+        </x-block><!--
+
+     --><x-block data-id="2">
+            Some content in block 2. Some content in block 2. Some content in block 2.
+            Some content in block 2. Some content in block 2. Some content in block 2.
+            Some content in block 2. Some content in block 2. Some content in block 2.
+        </x-block><!--
+
+     --><x-block data-id="3">
+            Some content in block 3. Some content in block 3. Some content in block 3.
+            Some content in block 3. Some content in block 3. Some content in block 3.
+            Some content in block 3. Some content in block 3. Some content in block 3.
+            Some content in block 3. Some content in block 3. Some content in block 3.
+        </x-block><!--
+
+     --><x-block data-id="4">
+            Some content in block 4. Some content in block 4. Some content in block 4.
+            Some content in block 4. Some content in block 4. Some content in block 4.
+            Some content in block 4. Some content in block 4. Some content in block 4.
+            Some content in block 4. Some content in block 4. Some content in block 4.
+            Some content in block 4. Some content in block 4. Some content in block 4.
+        </x-block><!--
+
+     --><x-block data-id="5">
+            Some content in block 5. Some content in block 5. Some content in block 5.
+            Some content in block 5. Some content in block 5. Some content in block 5.
+            Some content in block 5. Some content in block 5. Some content in block 5.
+            Some content in block 5. Some content in block 5. Some content in block 5.
+        </x-block>
+
+    </x-content>
+
+</body>
+</html>

@@ -1,0 +1,30 @@
+not_required_minlength
+  field_element_attributes
+  - required: false
+  field_element_attributes
+  - required: false
+  - minlength: 0
+  field_element_attributes
+  - required: false
+  - minlength: 1
+  field_element_attributes
+  - required: false
+  - minlength: 2
+  field_element_attributes
+  - required: false
+  - minlength: false
+required_minlength
+  field_element_attributes
+  - required: true
+  field_element_attributes
+  - required: true
+  - minlength: 0
+  field_element_attributes
+  - required: true
+  - minlength: 1
+  field_element_attributes
+  - required: true
+  - minlength: 2
+  field_element_attributes
+  - required: true
+  - minlength: false

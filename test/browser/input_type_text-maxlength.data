@@ -1,0 +1,30 @@
+not_required_maxlength
+  field_element_attributes
+  - required: false
+  field_element_attributes
+  - required: false
+  - maxlength: 0
+  field_element_attributes
+  - required: false
+  - maxlength: 1
+  field_element_attributes
+  - required: false
+  - maxlength: 2
+  field_element_attributes
+  - required: false
+  - maxlength: false
+required_maxlength
+  field_element_attributes
+  - required: true
+  field_element_attributes
+  - required: true
+  - maxlength: 0
+  field_element_attributes
+  - required: true
+  - maxlength: 1
+  field_element_attributes
+  - required: true
+  - maxlength: 2
+  field_element_attributes
+  - required: true
+  - maxlength: false

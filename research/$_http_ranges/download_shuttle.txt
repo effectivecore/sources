@@ -1,0 +1,37 @@
+GET /test.file HTTP/1.1
+Host: example.com
+User-Agent: %%_USER_AGENT
+Range: bytes=0-
+Accept: */*
+Accept-Encoding: gzip;q=0
+Connection: keep-alive
+
+HTTP/1.1 206 Partial Content
+Server: %%_SERVER_NAME
+Date: Wed, 01 Jan 2020 00:00:00 GMT
+Content-Type: application/octet-stream
+Content-Length: 1953349632
+Last-Modified: Wed, 01 Jan 2020 00:00:00 GMT
+ETag: "ffffffff-ffffffff"
+Content-Range: bytes 0-1953349631/1953349632
+Proxy-Connection: keep-alive
+
+---
+
+GET /test.file HTTP/1.1
+Host: example.com
+User-Agent: %%_USER_AGENT
+Range: bytes=1173217280-1562679706
+Accept: */*
+Accept-Encoding: gzip, deflate
+Connection: keep-alive
+
+HTTP/1.1 206 Partial Content
+Server: %%_SERVER_NAME
+Date: Wed, 01 Jan 2020 00:00:00 GMT
+Content-Type: application/octet-stream
+Content-Length: 389462427
+Last-Modified: Wed, 01 Jan 2020 00:00:00 GMT
+ETag: "ffffffff-ffffffff"
+Content-Range: bytes 1173217280-1562679706/1953349632
+Proxy-Connection: keep-alive

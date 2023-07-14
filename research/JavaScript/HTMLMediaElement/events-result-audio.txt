@@ -1,0 +1,178 @@
+
+
+
+##########################
+### preload="metadata" ###
+##########################
+
+# ─────────────────────────────────────────────────────────────────────
+# after page load
+# ─────────────────────────────────────────────────────────────────────
+
+- loadstart (may not to be)
+- progress
+- suspend
+- durationchange
+- loadedmetadata
+
+# ─────────────────────────────────────────────────────────────────────
+# after page load + throttlong
+# ─────────────────────────────────────────────────────────────────────
+
+- loadstart (may not to be)
+- stalled   (may not to be)
+- progress
+- suspend
+- durationchange
+- loadedmetadata
+
+# ─────────────────────────────────────────────────────────────────────
+# after click 'play' + 'pause'
+# ─────────────────────────────────────────────────────────────────────
+
+- play
+- waiting
+- loadeddata
+- canplay
+- playing
+- progress
+- progress
+- progress
+- progress
+- suspend
+- canplaythrough
+- timeupdate
+- timeupdate
+- timeupdate
+- timeupdate
+- timeupdate
+- timeupdate
+- timeupdate
+- pause
+
+# ─────────────────────────────────────────────────────────────────────
+# after click 'play' + 'pause' + throttlong
+# ─────────────────────────────────────────────────────────────────────
+
+- play
+- waiting
+- progress
+- stalled
+- loadeddata
+- canplay
+- playing
+- progress
+- progress
+- progress
+- progress
+- progress
+- progress
+- suspend
+- canplaythrough
+- timeupdate
+- timeupdate
+- timeupdate
+- timeupdate
+- timeupdate
+- pause
+
+# ─────────────────────────────────────────────────────────────────────
+# after click 'play' and wait the end
+# ─────────────────────────────────────────────────────────────────────
+
+- timeupdate
+- timeupdate
+- timeupdate
+- timeupdate
+- timeupdate
+- timeupdate
+- stalled
+- timeupdate
+- timeupdate
+- timeupdate
+- timeupdate
+- timeupdate
+- timeupdate
+- pause
+- ended
+
+
+
+######################
+### preload="auto" ###
+######################
+
+# ─────────────────────────────────────────────────────────────────────
+# after page load
+# ─────────────────────────────────────────────────────────────────────
+
+- loadstart
+- progress
+- suspend
+- durationchange
+- loadedmetadata
+
+# ─────────────────────────────────────────────────────────────────────
+# after click 'play' + 'pause'
+# ─────────────────────────────────────────────────────────────────────
+
+- play
+- waiting
+- loadeddata
+- canplay
+- playing
+- progress
+- progress
+- progress
+- progress
+- suspend
+- canplaythrough
+- timeupdate
+- timeupdate
+- timeupdate
+- timeupdate
+- timeupdate
+- timeupdate
+- timeupdate
+- pause
+
+
+
+######################
+### preload="none" ###
+######################
+
+# ─────────────────────────────────────────────────────────────────────
+# after page load
+# ─────────────────────────────────────────────────────────────────────
+
+- loadstart
+- progress
+- suspend
+
+# ─────────────────────────────────────────────────────────────────────
+# after click 'play' + 'pause'
+# ─────────────────────────────────────────────────────────────────────
+
+- play
+- waiting
+- durationchange
+- loadedmetadata
+- loadeddata
+- canplay
+- playing
+- progress
+- progress
+- progress
+- suspend
+- canplaythrough
+- timeupdate
+- timeupdate
+- timeupdate
+- timeupdate
+- timeupdate
+- timeupdate
+- timeupdate
+- pause
+
+

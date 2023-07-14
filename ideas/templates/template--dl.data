@@ -1,0 +1,21 @@
+templates
+- dl
+    type: node
+    pointers
+    - title: dl/children/dt/children/title
+    - value: dl/children/dd/children/value
+    data|node
+      children
+      - dl|markup
+          tag_name: dl
+          children
+          - dt|markup
+              tag_name: dt
+              children
+              - title|text
+                  text: title
+          - dd|markup
+              tag_name: dd
+              children
+              - value|text
+                  text: value

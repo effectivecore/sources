@@ -1,0 +1,34 @@
+GET /test.file HTTP/1.1
+Host: example.com
+v.1  Range: bytes=0-
+v.2  Range: bytes=0-500
+v.3  Range: bytes=0-999
+v.4  Range: bytes=500-
+v.5  Range: bytes=500-700
+v.6  Range: bytes=500-999
+If-Range: "ffffffff-ffffffff"
+Accept: */*
+Accept-Encoding: gzip, deflate
+Cache-Control: no-cache
+Pragma: no-cache
+Connection: close
+
+HTTP/1.1 206 Partial Content
+Server: %%_SERVER_NAME
+Date: Wed, 01 Jan 2020 00:00:00 GMT
+Content-Type: application/octet-stream
+v.1  Content-Length: 1000
+v.1  Content-Range: bytes 0-999/1000
+v.2  Content-Length: 501
+v.2  Content-Range: bytes 0-500/1000
+v.3  Content-Length: 1000
+v.3  Content-Range: bytes 0-999/1000
+v.4  Content-Length: 500
+v.4  Content-Range: bytes 500-999/1000
+v.5  Content-Length: 201
+v.5  Content-Range: bytes 500-700/1000
+v.6  Content-Length: 500
+v.6  Content-Range: bytes 500-999/1000
+Last-Modified: Wed, 01 Jan 2020 00:00:00 GMT
+ETag: "ffffffff-ffffffff"
+Connection: close

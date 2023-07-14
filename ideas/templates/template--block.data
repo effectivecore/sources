@@ -1,0 +1,24 @@
+templates
+- block
+    name: block
+    type: node
+    pointers
+    - title: wrapper/children/title
+    - title_text: wrapper/children/title/children/content
+    - content: wrapper/children/content
+    - content_elements: wrapper/children/content/children
+    data|node
+      children
+      - wrapper|markup
+          tag_name: x-block
+          attributes|_empty_array
+          children
+          - title|markup
+              tag_name: x-block-title
+              children
+              - content|text
+                  is_apply_tokens: true
+                  text: 
+          - content|markup
+              tag_name: x-block-content
+              children|_empty_array

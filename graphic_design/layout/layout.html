@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Layout</title>
+    <style>
+        body {padding: 50px; font-family: 'Arial'}
+        x-area {
+          display: block;
+          margin-top: 5px;
+          padding: 5px;
+          border: 3px solid brown}
+        x-area[data-type='table']  {display: table;      border: 3px solid royalblue}
+        x-area[data-type='column'] {display: table-cell; border: 3px solid #30c432}
+        x-area[data-type='row']    {display: table-row;  border: 3px solid #fc5740}
+    </style>
+</head>
+<body>
+
+  <!-- ┌────────────────────────────────────────────────────────────────┐
+       │                             header                             │
+       ├─────────┬────────────────────────────────────────────┬─────────┤
+       │         │                                            │         │
+       │         │                   center                   │         │
+       │         │                                            │         │
+       │         ├──────────────────────┬─────────────────────┤         │
+       │         │                      ┆                     │         │
+       │         │     center 2x1-1     ┆    center 2x1-2     │         │
+       │         │                      ┆                     │         │
+       │         ├──────────────┬───────┴──────┬──────────────┤         │
+       │         │              ┆              ┆              │         │
+       │  left   │ center 3x1-1 ┆ center 3x1-2 ┆ center 3x1-3 │  right  │
+       │         │              ┆              ┆              │         │
+       │         ├──────────────┴───────┬──────┴──────────────┤         │
+       │         │                      ┆                     │         │
+       │         │     center 2x2-1     ┆     center 2x2-2    │         │
+       │         │                      ┆                     │         │
+       │         ├┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┼┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┤         │
+       │         │                      ┆                     │         │
+       │         │     center 2x2-3     ┆     center 2x2-4    │         │
+       │         │                      ┆                     │         │
+       ├─────────┴──────────────────────┴─────────────────────┴─────────┤
+       │                              footer                            │
+       └────────────────────────────────────────────────────────────────┘ -->
+
+    <x-area>
+        header header header header header header header header header
+        header header header header header header header header header
+        header header header header header header header header header
+        header header header header header header header header header
+        header header header header header header header header header
+    </x-area>
+
+    <x-area data-type="table">
+        <x-area data-type="column" style="width: 200px">
+            left left left left left left left left left left left left left left
+            left left left left left left left left left left left left left left
+            left left left left left left left left left left left left left left
+        </x-area>
+        <x-area data-type="column">
+
+            <x-area>
+                center center center center center center center center center
+                center center center center center center center center center
+                center center center center center center center center center
+            </x-area>
+
+            <x-area data-type="table">
+                <x-area data-type="column">
+                    center 2x1-1 center 2x1-1 center 2x1-1 center 2x1-1 center 2x1-1
+                    center 2x1-1 center 2x1-1 center 2x1-1 center 2x1-1 center 2x1-1
+                    center 2x1-1 center 2x1-1 center 2x1-1 center 2x1-1 center 2x1-1
+                </x-area>
+                <x-area data-type="column">
+                    center 2x1-2 center 2x1-2 center 2x1-2 center 2x1-2 center 2x1-2
+                    center 2x1-2 center 2x1-2 center 2x1-2 center 2x1-2 center 2x1-2
+                    center 2x1-2 center 2x1-2 center 2x1-2 center 2x1-2 center 2x1-2
+                </x-area>
+            </x-area>
+
+            <x-area data-type="table">
+                <x-area data-type="column">
+                    center 3x1-1 center 3x1-1 center 3x1-1 center 3x1-1 center 3x1-1
+                    center 3x1-1 center 3x1-1 center 3x1-1 center 3x1-1 center 3x1-1
+                    center 3x1-1 center 3x1-1 center 3x1-1 center 3x1-1 center 3x1-1
+                </x-area>
+                <x-area data-type="column">
+                    center 3x1-2 center 3x1-2 center 3x1-2 center 3x1-2 center 3x1-2
+                    center 3x1-2 center 3x1-2 center 3x1-2 center 3x1-2 center 3x1-2
+                    center 3x1-2 center 3x1-2 center 3x1-2 center 3x1-2 center 3x1-2
+                </x-area>
+                <x-area data-type="column">
+                    center 3x1-3 center 3x1-3 center 3x1-3 center 3x1-3 center 3x1-3
+                    center 3x1-3 center 3x1-3 center 3x1-3 center 3x1-3 center 3x1-3
+                    center 3x1-3 center 3x1-3 center 3x1-3 center 3x1-3 center 3x1-3
+                </x-area>
+            </x-area>
+
+            <x-area data-type="table">
+                <x-area data-type="row">
+                    <x-area data-type="column">
+                        center 2x2-1 center 2x2-1 center 2x2-1 center 2x2-1 center 2x2-1
+                        center 2x2-1 center 2x2-1 center 2x2-1 center 2x2-1 center 2x2-1
+                        center 2x2-1 center 2x2-1 center 2x2-1 center 2x2-1 center 2x2-1
+                    </x-area>
+                    <x-area data-type="column">
+                        center 2x2-2 center 2x2-2 center 2x2-2 center 2x2-2 center 2x2-2
+                        center 2x2-2 center 2x2-2 center 2x2-2 center 2x2-2 center 2x2-2
+                        center 2x2-2 center 2x2-2 center 2x2-2 center 2x2-2 center 2x2-2
+                    </x-area>
+                </x-area>
+                <x-area data-type="row">
+                    <x-area data-type="column">
+                        center 2x2-3 center 2x2-3 center 2x2-3 center 2x2-3 center 2x2-3
+                        center 2x2-3 center 2x2-3 center 2x2-3 center 2x2-3 center 2x2-3
+                        center 2x2-3 center 2x2-3 center 2x2-3 center 2x2-3 center 2x2-3
+                    </x-area>
+                    <x-area data-type="column">
+                        center 2x2-4 center 2x2-4 center 2x2-4 center 2x2-4 center 2x2-4
+                        center 2x2-4 center 2x2-4 center 2x2-4 center 2x2-4 center 2x2-4
+                        center 2x2-4 center 2x2-4 center 2x2-4 center 2x2-4 center 2x2-4
+                    </x-area>
+                </x-area>
+            </x-area>
+
+        </x-area>
+        <x-area data-type="column" style="width: 200px">
+            right right right right right right right right right right right right
+            right right right right right right right right right right right right
+            right right right right right right right right right right right right
+        </x-area>
+    </x-area>
+
+    <x-area>
+        footer footer footer footer footer footer footer footer footer
+        footer footer footer footer footer footer footer footer footer
+        footer footer footer footer footer footer footer footer footer
+        footer footer footer footer footer footer footer footer footer
+        footer footer footer footer footer footer footer footer footer
+    </x-area>
+
+</body>
+</html>

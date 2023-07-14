@@ -1,0 +1,29 @@
+templates
+- tree_item
+    name: tree_item
+    type: node
+    pointers
+    - attributes: wrapper/attributes
+    - self: wrapper/children/self
+    - children: wrapper/children/children
+    data|node
+      children
+      - wrapper|markup
+          tag_name: li
+          attributes|_empty_array
+          children
+          - self|node
+          - children|node
+- tree_item_children
+    name: tree_item_children
+    type: node
+    pointers
+    - attributes: wrapper/attributes
+    - children: wrapper/children/children
+    data|node
+      children
+      - wrapper|markup
+          tag_name: ul
+          attributes|_empty_array
+          children
+          - children|node

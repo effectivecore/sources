@@ -3,20 +3,20 @@
 // parseUrlQuery() test
 // ─────────────────────────────────────────────────────────────────────
 
-var queries = {
-    ''                              : {},
-    '='                             : {},
-    '=value_1'                      : {},
-    'key_1'                         : {'key_1' : ''},
-    'key_1='                        : {'key_1' : ''},
-    'key_1=value_1'                 : {'key_1' : 'value_1'},
-    'key_1=value_1=still_value_1'   : {'key_1' : 'value_1=still_value_1'},
-    'key_1=value_1%3Dstill_value_1' : {'key_1' : 'value_1=still_value_1'},
-    '&'                             : {},
-    '&&&key_2'                      : {'key_2' : ''},
-    '&key_2'                        : {'key_2' : ''},
-    'key_1&'                        : {'key_1' : ''},
-    'key_1&key_2'                   : {'key_1' : '', 'key_2' : ''},
+let queries = {
+    ''                                                        : {},
+    '='                                                       : {},
+    '=value_1'                                                : {},
+    'key_1'                                                   : {'key_1' : ''},
+    'key_1='                                                  : {'key_1' : ''},
+    'key_1=value_1'                                           : {'key_1' : 'value_1'},
+    'key_1=value_1=still_value_1'                             : {'key_1' : 'value_1=still_value_1'},
+    'key_1=value_1%3Dstill_value_1'                           : {'key_1' : 'value_1=still_value_1'},
+    '&'                                                       : {},
+    '&&&key_2'                                                : {'key_2' : ''},
+    '&key_2'                                                  : {'key_2' : ''},
+    'key_1&'                                                  : {'key_1' : ''},
+    'key_1&key_2'                                             : {'key_1' : '', 'key_2' : ''},
     'key_1=value_1&key_arr[]=value_2&key_arr[]=value_3'       : {'key_1' : 'value_1', 'key_arr' : {    0 : 'value_2',     1 : 'value_3'}},
     'key_1=value_1&key_arr[0]=value_2&key_arr[1]=value_3'     : {'key_1' : 'value_1', 'key_arr' : {    0 : 'value_2',     1 : 'value_3'}},
     'key_1=value_1&key_arr[2]=value_2&key_arr[3]=value_3'     : {'key_1' : 'value_1', 'key_arr' : {    2 : 'value_2',     3 : 'value_3'}},
@@ -35,9 +35,9 @@ var queries = {
 };
 
 for (c_value in queries) {
-    var c_expected = queries[c_value];
-    var c_info = EffURL.prototype.parseUrlQuery(c_value);
-    var c_result = JSON.stringify(c_info) === JSON.stringify(c_expected);
+    let c_expected = queries[c_value];
+    let c_info = EffURL.prototype.parseUrlQuery(c_value);
+    let c_result = JSON.stringify(c_info) === JSON.stringify(c_expected);
     if (c_result)
          console.log('true "'  + c_value + '"');
     else console.log('FALSE "' + c_value + '"');

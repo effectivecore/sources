@@ -3,7 +3,7 @@
 // buildUrlQuery() test
 // ─────────────────────────────────────────────────────────────────────
 
-var queries = {
+let queries = {
     ''                                                        : {},
     'key_1='                                                  : {'key_1' : ''},
     'key_1=value_1'                                           : {'key_1' : 'value_1'},
@@ -18,9 +18,9 @@ var queries = {
 
 
 for (c_expected in queries) {
-    var c_value = queries[c_expected];
-    var c_info = EffURL.prototype.buildUrlQuery(c_value);
-    var c_result = JSON.stringify(c_info) === JSON.stringify(c_expected);
+    let c_value = queries[c_expected];
+    let c_info = EffURL.prototype.buildUrlQuery(c_value);
+    let c_result = JSON.stringify(c_info) === JSON.stringify(c_expected);
     if (c_result)
          console.log('true "'  + c_expected + '"');
     else console.log('FALSE "' + c_expected + '"');

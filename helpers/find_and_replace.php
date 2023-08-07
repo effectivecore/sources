@@ -8,7 +8,6 @@ if (file_exists('core')) {
         if (strpos($c_path, '/.idea') !== false) continue;
         if (strpos($c_path, '/.nova') !== false) continue;
         if (strpos($c_path, 'core/dynamic/cache') !== false) continue;
-        if (strpos($c_path, 'core/modules/vendors/packages/tinymce') !== false) continue;
         if ($c_spl_file_info->isFile()) {
             $c_content = file_get_contents($c_path);
             preg_replace_callback('%some code%S', function ($c_match) use ($c_path) {

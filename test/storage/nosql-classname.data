@@ -1,7 +1,0 @@
-test_classname
-- object_1
-- object_2|\stdClass
-- object_3|text
-- object_4|\effcore\text
-- object_5|unknown_classname
-- object_6|\unknown_namespace\unknown_classname

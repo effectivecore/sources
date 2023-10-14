@@ -15,8 +15,8 @@ $path_container              = 'container://'.__DIR__.'/result/complex.picture';
 $path_container_fwrite_log_1 = 'container://'.__DIR__.'/result/complex-fwrite-log_1.txt';
 $path_container_fwrite_log_2 = 'container://'.__DIR__.'/result/complex-fwrite-log_2.txt';
 $path_container_fwrite_log_3 = 'container://'.__DIR__.'/result/complex-fwrite-log_3.txt';
-$path_internal_1                 = 'container://'.__DIR__.'/result/complex.picture:file_1';
-$path_internal_2                 = 'container://'.__DIR__.'/result/complex.picture:file_2';
+$path_internal_1             = 'container://'.__DIR__.'/result/complex.picture:file_1';
+$path_internal_2             = 'container://'.__DIR__.'/result/complex.picture:file_2';
 
 @unlink($path_container);
 @unlink($path_container_fwrite_log_1);
@@ -119,13 +119,3 @@ $path_internal_2    = 'container://'.__DIR__.'/result/complex-add_from_string.pi
 var_dump( File_container::add_from_string('abcdefghijklmnopqrstuvwxyz', $path_internal_1) === 26 );
 var_dump( File_container::add_from_string(                       'xyz', $path_internal_2) ===  3 );
 
-print '<br>';
-
-
-####################################
-### standard: fseek, fread, feof ###
-####################################
-
-print '<br><br>### simple ###<br><br>';
-
-$path_internal = __DIR__.'/result/simple.txt';

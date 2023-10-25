@@ -1,0 +1,9 @@
+http://effcore
+http://effcore/manage/data/content/page
+http://effcore/manage/data/content/text
+http://effcore/manage/data/content/picture
+http://effcore/manage/data/content/audio
+http://effcore/manage/data/content/video
+http://effcore/manage/data/content/gallery
+http://effcore/manage/data/content/selection
+http://effcore/manage/data/content/poll

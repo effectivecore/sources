@@ -31,7 +31,7 @@ touch $path_result_log_registered
 
 wget --recursive \
      --level=0 \
-     --max-redirect \
+     --max-redirect=20 \
      --no-cache \
      --show-progress \
      --directory-prefix=$path_result_site_anonymous \
@@ -45,7 +45,7 @@ wget --recursive \
 
 wget --recursive \
      --level=0 \
-     --max-redirect \
+     --max-redirect=20 \
      --no-cache \
      --show-progress \
      --directory-prefix=$path_result_site_registered \

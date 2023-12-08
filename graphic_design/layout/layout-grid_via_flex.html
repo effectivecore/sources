@@ -24,11 +24,15 @@
 
         [data-area][data-group-id='body'] {
           padding: 20px;
+          display: flex;
+          flex-wrap: wrap;
           background: white;
         }
 
         [data-block] {
           display: block;
+          flex: 200px;
+          overflow: scroll;
         }
 
         [data-block]:nth-child(5n + 1) {background-color: lightcyan}
@@ -36,9 +40,6 @@
         [data-block]:nth-child(5n + 3) {background-color: honeydew}
         [data-block]:nth-child(5n + 4) {background-color: ghostwhite}
         [data-block]:nth-child(5n + 5) {background-color: azure}
-
-        @media screen and (max-width: 600px) {
-        }
 
         pre {
           overflow: scroll;

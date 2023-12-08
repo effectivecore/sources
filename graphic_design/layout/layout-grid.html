@@ -14,7 +14,7 @@
           background: lavender;
         }
 
-        x-part {
+        [data-area] {
           display: block;
           min-width: 200px;
           max-width: 800px;
@@ -22,7 +22,7 @@
           margin: 0 auto;
         }
 
-        x-part[data-group-id='body'] {
+        [data-area][data-group-id='body'] {
           padding: 20px;
           display: grid;
           grid-template-columns: 1fr 1.5fr 200px;
@@ -38,7 +38,7 @@
         [data-block]:nth-child(5n + 5) {background-color: azure}
 
         @media screen and (max-width: 600px) {
-          x-part[data-group-id='body'] {
+          [data-area][data-group-id='body'] {
             display: block;
           }
         }

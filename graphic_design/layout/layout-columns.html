@@ -14,7 +14,7 @@
           background: lavender;
         }
 
-        x-part {
+        [data-area] {
           display: block;
           min-width: 200px;
           max-width: 800px;
@@ -22,7 +22,7 @@
           margin: 0 auto;
         }
 
-        x-part[data-group-id='body'] {
+        [data-area][data-group-id='body'] {
           padding: 20px;
           column-count: 3;
           column-gap: 7px;
@@ -36,9 +36,9 @@
         [data-block]:nth-child(5n + 4) {background-color: ghostwhite}
         [data-block]:nth-child(5n + 5) {background-color: azure}
 
-        @media screen and (min-width:   0  ) and (max-width: 500px) { x-part[data-group-id='body'] {column-count: 1} }
-        @media screen and (min-width: 500px) and (max-width: 700px) { x-part[data-group-id='body'] {column-count: 2} }
-        @media screen and (min-width: 700px) and (max-width: 900px) { x-part[data-group-id='body'] {column-count: 3} }
+        @media screen and (min-width:   0  ) and (max-width: 500px) { [data-area][data-group-id='body'] {column-count: 1} }
+        @media screen and (min-width: 500px) and (max-width: 700px) { [data-area][data-group-id='body'] {column-count: 2} }
+        @media screen and (min-width: 700px) and (max-width: 900px) { [data-area][data-group-id='body'] {column-count: 3} }
 
         pre {
           overflow: scroll;

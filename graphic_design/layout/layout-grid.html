@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Layout</title>
+    <style>
+        body {
+          margin: 0;
+          padding: 20px;
+          font-family: 'Arial';
+          font-size: 16px;
+          line-height: 1.5em;
+          background: lavender;
+        }
+
+        x-part {
+          display: block;
+          max-width: 800px;
+          box-sizing: border-box;
+          margin: 0 auto;
+        }
+
+        x-part[data-group-id='body'] {
+          padding: 20px;
+          display: grid;
+          grid-template-columns: 1fr 1.5fr 200px;
+          background: white;
+        }
+
+        x-block {display: block; overflow: scroll}
+        x-block[data-id='1'] {background-color: lightcyan}
+        x-block[data-id='2'] {background-color: lightyellow}
+        x-block[data-id='3'] {background-color: honeydew}
+        x-block[data-id='4'] {background-color: ghostwhite}
+        x-block[data-id='5'] {background-color: azure}
+
+        @media screen and (max-width: 600px) {
+          x-part[data-group-id='body'] {
+            display: block;
+          }
+        }
+
+        pre {
+          overflow: scroll;
+          background: powderblue;
+        }
+    </style>
+</head>
+<body>
+
+    <x-part data-area data-group-id="body">
+
+        <x-block data-id="1">
+            Some content in block 1. Some content in block 1. Some content in block 1.
+            Some content in block 1. Some content in block 1. Some content in block 1.
+            Some content in block 1. Some content in block 1. Some content in block 1.
+            Some content in block 1. Some content in block 1. Some content in block 1.
+            Some content in block 1. Some content in block 1. Some content in block 1.
+        </x-block><!--
+
+     --><x-block data-id="2">
+            Some content in block 2. Some content in block 2. Some content in block 2.
+            Some content in block 2. Some content in block 2. Some content in block 2.
+            Some content in block 2. Some content in block 2. Some content in block 2.
+            <pre>overflow overflow overflow overflow overflow overflow overflow
+<!--          -->overflow overflow overflow overflow overflow overflow overflow
+<!--          -->overflow overflow overflow overflow overflow overflow overflow</pre>
+        </x-block><!--
+
+     --><x-block data-id="3">
+            Some content in block 3. Some content in block 3. Some content in block 3.
+            Some content in block 3. Some content in block 3. Some content in block 3.
+            Some content in block 3. Some content in block 3. Some content in block 3.
+            Some content in block 3. Some content in block 3. Some content in block 3.
+        </x-block><!--
+
+     --><x-block data-id="4">
+            Some content in block 4. Some content in block 4. Some content in block 4.
+            Some content in block 4. Some content in block 4. Some content in block 4.
+            Some content in block 4. Some content in block 4. Some content in block 4.
+            Some content in block 4. Some content in block 4. Some content in block 4.
+            Some content in block 4. Some content in block 4. Some content in block 4.
+        </x-block><!--
+
+     --><x-block data-id="5">
+            Some content in block 5. Some content in block 5. Some content in block 5.
+            Some content in block 5. Some content in block 5. Some content in block 5.
+            Some content in block 5. Some content in block 5. Some content in block 5.
+            Some content in block 5. Some content in block 5. Some content in block 5.
+        </x-block>
+
+    </x-part>
+
+</body>
+</html>

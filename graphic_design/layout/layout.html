@@ -3,179 +3,169 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Layout</title>
+    <title>Layout "Universal"</title>
     <style>
         body {
-          margin: 0;
+          display: block;
+          margin: 0 auto;
           padding: 20px;
+          box-sizing: border-box;
+          min-width: 200px;
+          max-width: 990px;
           font-family: 'Arial';
           font-size: 16px;
           line-height: 1.5em;
           background: lavender;
         }
 
-        x-part {
+        [data-area] {
           display: block;
-          max-width: 900px;
-          box-sizing: border-box;
-          margin: 0 auto;
-        }
-
-        x-part[data-group-id='head'],
-        x-part[data-group-id='body'],
-        x-part[data-group-id='foot'] {
-          padding: 20px;
+          border: 1px solid black;
           background: white;
         }
 
-        x-area {
-          display: block;
-          margin-bottom: 5px;
-          padding: 5px;
-          border: 3px solid darkorchid;
+        [data-area][data-type='grid-x3'] {
+          display: grid;
+          grid-template-columns: 200px 1fr 200px;
         }
 
-        x-area[data-type='table']  {display: table;      border: 3px solid palevioletred; border-spacing: 1px}
-        x-area[data-type='column'] {display: table-cell; border: 3px solid steelblue}
-        x-area[data-type='row']    {display: table-row;  border: 3px solid powderblue}
+        [data-area][data-type='grid-x2'] {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+        }
+
+        [data-block] {
+          display: block;
+          padding: 10px;
+          overflow: scroll;
+          background: honeydew;
+        }
 
         @media screen and (max-width: 600px) {
-          x-area {
-            display: block !important;
-            width: auto !important;
+          [data-area][data-type^='grid-'] {
+            display: block
           }
         }
     </style>
 </head>
-<body>
+<body data-layout-id="universal">
 
-  <!-- ┌────────────────────────────────────────────────────────────────┐
-       │                             header                             │
-       ├─────────┬────────────────────────────────────────────┬─────────┤
-       │         │                                            │         │
-       │         │                   center                   │         │
-       │         │                                            │         │
-       │         ├──────────────────────┬─────────────────────┤         │
-       │         │                      ┆                     │         │
-       │         │      grid_2x1-1      ┆     grid_2x1-2      │         │
-       │         │                      ┆                     │         │
-       │         ├──────────────┬───────┴──────┬──────────────┤         │
-       │         │              ┆              ┆              │         │
-       │  left   │  grid_3x1-1  ┆  grid_3x1-2  ┆  grid_3x1-3  │  right  │
-       │         │              ┆              ┆              │         │
-       │         ├──────────────┴───────┬──────┴──────────────┤         │
-       │         │                      ┆                     │         │
-       │         │      grid_2x2-1      ┆      grid_2x2-2     │         │
-       │         │                      ┆                     │         │
-       │         ├┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┼┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┤         │
-       │         │                      ┆                     │         │
-       │         │      grid_2x2-3      ┆      grid_2x2-4     │         │
-       │         │                      ┆                     │         │
-       ├─────────┴──────────────────────┴─────────────────────┴─────────┤
-       │                              footer                            │
-       └────────────────────────────────────────────────────────────────┘ -->
-
-    <x-part data-area data-group-id="head">
-        <x-area>
-            header header header header header header header header header
-            header header header header header header header header header
-            header header header header header header header header header
-            header header header header header header header header header
-            header header header header header header header header header
-        </x-area>
-    </x-part>
-
-    <x-part data-area data-group-id="body">
-        <x-area data-type="table">
-            <x-area data-type="column" style="width: 200px">
-                left left left left left left left left left left left left left left
-                left left left left left left left left left left left left left left
-                left left left left left left left left left left left left left left
+    <x-area data-area data-id="system">
+        <x-block data-block>
+            system area system area system area system area system area system area system area 
+            system area system area system area system area system area system area system area 
+            system area system area system area system area system area system area system area 
+        </x-block>
+    </x-area>
+    
+    <header data-area data-id="header">
+        <x-block data-block>
+            header area header area header area header area header area header area header area 
+            header area header area header area header area header area header area header area 
+            header area header area header area header area header area header area header area 
+        </x-block>
+    </header>
+    
+    <x-area data-area data-id="menu">
+        <x-block data-block>
+            menu area menu area menu area menu area menu area menu area menu area menu area 
+            menu area menu area menu area menu area menu area menu area menu area menu area 
+            menu area menu area menu area menu area menu area menu area menu area menu area 
+        </x-block>
+    </x-area>
+    
+    <x-area data-area data-type="grid-x3">
+        <aside data-area data-id="left">
+            <x-block data-block>
+                left area left area left area left area left area left area left area 
+                left area left area left area left area left area left area left area 
+                left area left area left area left area left area left area left area 
+            </x-block>
+        </aside>
+    
+        <x-area data-area data-group-id="center">
+            <x-area data-area data-id="breadcrumbs">
+                <x-block data-block>
+                    breadcrumbs area breadcrumbs area breadcrumbs area 
+                    breadcrumbs area breadcrumbs area breadcrumbs area 
+                    breadcrumbs area breadcrumbs area breadcrumbs area 
+                </x-block>
             </x-area>
-            <x-area data-type="column">
     
-                <x-area>
-                    center center center center center center center center center
-                    center center center center center center center center center
-                    center center center center center center center center center
-                </x-area>
-    
-                <x-area data-type="table">
-                    <x-area data-type="column">
-                        grid_2x1-1 grid_2x1-1 grid_2x1-1 grid_2x1-1 grid_2x1-1 
-                        grid_2x1-1 grid_2x1-1 grid_2x1-1 grid_2x1-1 grid_2x1-1 
-                        grid_2x1-1 grid_2x1-1 grid_2x1-1 grid_2x1-1 grid_2x1-1 
-                    </x-area>
-                    <x-area data-type="column">
-                        grid_2x1-2 grid_2x1-2 grid_2x1-2 grid_2x1-2 grid_2x1-2 
-                        grid_2x1-2 grid_2x1-2 grid_2x1-2 grid_2x1-2 grid_2x1-2 
-                        grid_2x1-2 grid_2x1-2 grid_2x1-2 grid_2x1-2 grid_2x1-2 
-                    </x-area>
-                </x-area>
-    
-                <x-area data-type="table">
-                    <x-area data-type="column">
-                        grid_3x1-1 grid_3x1-1 grid_3x1-1 grid_3x1-1 grid_3x1-1 
-                        grid_3x1-1 grid_3x1-1 grid_3x1-1 grid_3x1-1 grid_3x1-1 
-                        grid_3x1-1 grid_3x1-1 grid_3x1-1 grid_3x1-1 grid_3x1-1 
-                    </x-area>
-                    <x-area data-type="column">
-                        grid_3x1-2 grid_3x1-2 grid_3x1-2 grid_3x1-2 grid_3x1-2 
-                        grid_3x1-2 grid_3x1-2 grid_3x1-2 grid_3x1-2 grid_3x1-2 
-                        grid_3x1-2 grid_3x1-2 grid_3x1-2 grid_3x1-2 grid_3x1-2 
-                    </x-area>
-                    <x-area data-type="column">
-                        grid_3x1-3 grid_3x1-3 grid_3x1-3 grid_3x1-3 grid_3x1-3 
-                        grid_3x1-3 grid_3x1-3 grid_3x1-3 grid_3x1-3 grid_3x1-3 
-                        grid_3x1-3 grid_3x1-3 grid_3x1-3 grid_3x1-3 grid_3x1-3 
-                    </x-area>
-                </x-area>
-    
-                <x-area data-type="table">
-                    <x-area data-type="row">
-                        <x-area data-type="column">
-                            grid_2x2-1 grid_2x2-1 grid_2x2-1 grid_2x2-1 grid_2x2-1 
-                            grid_2x2-1 grid_2x2-1 grid_2x2-1 grid_2x2-1 grid_2x2-1 
-                            grid_2x2-1 grid_2x2-1 grid_2x2-1 grid_2x2-1 grid_2x2-1 
-                        </x-area>
-                        <x-area data-type="column">
-                            grid_2x2-2 grid_2x2-2 grid_2x2-2 grid_2x2-2 grid_2x2-2 
-                            grid_2x2-2 grid_2x2-2 grid_2x2-2 grid_2x2-2 grid_2x2-2 
-                            grid_2x2-2 grid_2x2-2 grid_2x2-2 grid_2x2-2 grid_2x2-2 
-                        </x-area>
-                    </x-area>
-                    <x-area data-type="row">
-                        <x-area data-type="column">
-                            grid_2x2-3 grid_2x2-3 grid_2x2-3 grid_2x2-3 grid_2x2-3 
-                            grid_2x2-3 grid_2x2-3 grid_2x2-3 grid_2x2-3 grid_2x2-3 
-                            grid_2x2-3 grid_2x2-3 grid_2x2-3 grid_2x2-3 grid_2x2-3 
-                        </x-area>
-                        <x-area data-type="column">
-                            grid_2x2-4 grid_2x2-4 grid_2x2-4 grid_2x2-4 grid_2x2-4 
-                            grid_2x2-4 grid_2x2-4 grid_2x2-4 grid_2x2-4 grid_2x2-4 
-                            grid_2x2-4 grid_2x2-4 grid_2x2-4 grid_2x2-4 grid_2x2-4 
-                        </x-area>
-                    </x-area>
-                </x-area>
-    
+            <x-area data-area data-id="messages">
+                <x-block data-block>
+                    messages area messages area messages area messages area 
+                    messages area messages area messages area messages area 
+                    messages area messages area messages area messages area 
+                </x-block>
             </x-area>
-            <x-area data-type="column" style="width: 200px">
-                right right right right right right right right right right right right
-                right right right right right right right right right right right right
-                right right right right right right right right right right right right
+    
+            <x-area data-area data-id="title">
+                <x-block data-block>
+                    title area title area title area title area title area 
+                    title area title area title area title area title area 
+                    title area title area title area title area title area 
+                </x-block>
+            </x-area>
+    
+            <x-area data-area data-id="tabs">
+                <x-block data-block>
+                    tabs area tabs area tabs area tabs area tabs area tabs area 
+                    tabs area tabs area tabs area tabs area tabs area tabs area 
+                    tabs area tabs area tabs area tabs area tabs area tabs area 
+                </x-block>
+            </x-area>
+    
+            <x-area data-area data-id="content">
+                <x-block data-block>
+                    content area content area content area content area content area 
+                    content area content area content area content area content area 
+                    content area content area content area content area content area 
+                    content area content area content area content area content area 
+                    content area content area content area content area content area 
+                </x-block>
+            </x-area>
+    
+            <x-area data-area data-group-id="grid_2x2" data-type="grid-x2">
+                <x-block data-block>
+                    cell_1_1 area cell_1_1 area cell_1_1 area 
+                    cell_1_1 area cell_1_1 area cell_1_1 area 
+                    cell_1_1 area cell_1_1 area cell_1_1 area 
+                </x-block>
+                <x-block data-block>
+                    cell_1_2 area cell_1_2 area cell_1_2 area 
+                    cell_1_2 area cell_1_2 area cell_1_2 area 
+                    cell_1_2 area cell_1_2 area cell_1_2 area 
+                </x-block>
+                <x-block data-block>
+                    cell_2_1 area cell_2_1 area cell_2_1 area 
+                    cell_2_1 area cell_2_1 area cell_2_1 area 
+                    cell_2_1 area cell_2_1 area cell_2_1 area 
+                </x-block>
+                <x-block data-block>
+                    cell_2_2 area cell_2_2 area cell_2_2 area 
+                    cell_2_2 area cell_2_2 area cell_2_2 area 
+                    cell_2_2 area cell_2_2 area cell_2_2 area 
+                </x-block>
             </x-area>
         </x-area>
-    </x-part>
-
-    <x-part data-area data-group-id="foot">
-        <x-area>
-            footer footer footer footer footer footer footer footer footer
-            footer footer footer footer footer footer footer footer footer
-            footer footer footer footer footer footer footer footer footer
-            footer footer footer footer footer footer footer footer footer
-            footer footer footer footer footer footer footer footer footer
-        </x-area>
-    </x-part>
+    
+        <aside data-area data-id="right">
+            <x-block data-block>
+                right area right area right area right area right area right area 
+                right area right area right area right area right area right area 
+                right area right area right area right area right area right area 
+            </x-block>
+        </aside>
+    </x-area>
+    
+    <footer data-area data-id="footer">
+        <x-block data-block>
+            footer area footer area footer area footer area footer area footer area footer area 
+            footer area footer area footer area footer area footer area footer area footer area 
+            footer area footer area footer area footer area footer area footer area footer area 
+        </x-block>
+    </footer>
 
 </body>
 </html>

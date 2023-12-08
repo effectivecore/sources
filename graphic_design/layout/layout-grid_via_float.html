@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Layout via "display: inline-block"</title>
+    <title>Layout via "float: left"</title>
     <style>
         body {
           margin: 0;
@@ -26,9 +26,16 @@
           padding: 20px;
           background: white;
         }
+        [data-area]::after {
+          content: '';
+          clear: both;
+          display: block;
+        }
 
         [data-block] {
-          display: block;
+            float: left;
+            display: block;
+            width: 50%;
         }
 
         [data-block]:nth-child(5n + 1) {background-color: lightcyan}
@@ -37,17 +44,15 @@
         [data-block]:nth-child(5n + 4) {background-color: ghostwhite}
         [data-block]:nth-child(5n + 5) {background-color: azure}
 
-        [data-area][data-style-name^='column-'  ] [data-block] {display: inline-block; vertical-align: top}
-        [data-area][data-style-name ='column-x2'] [data-block]:nth-child(2n + 1) /* column 1 */ {width: calc(   50% - 5px); margin-right: 10px}
-        [data-area][data-style-name ='column-x2'] [data-block]:nth-child(2n + 2) /* column 2 */ {width: calc(   50% - 5px)}
-        [data-area][data-style-name ='column-x3'] [data-block]:nth-child(3n + 1) /* column 1 */ {width: calc(33.33% - 6px); margin-right: 9px}
-        [data-area][data-style-name ='column-x3'] [data-block]:nth-child(3n + 2) /* column 2 */ {width: calc(33.33% - 6px); margin-right: 9px}
-        [data-area][data-style-name ='column-x3'] [data-block]:nth-child(3n + 3) /* column 3 */ {width: calc(33.33% - 6px)}
-
         @media screen and (max-width: 600px) {
-          [data-style-name^='column-'] [data-block] {
+          [data-block] {
+            float: none;
+            width: auto;
+          }
+          [data-block]::after {
+            content: '';
+            clear: both;
             display: block;
-            width: 100% !important;
           }
         }
 
@@ -67,15 +72,15 @@
             Some content in block 1. Some content in block 1. Some content in block 1.
             Some content in block 1. Some content in block 1. Some content in block 1.
             Some content in block 1. Some content in block 1. Some content in block 1.
-        </x-block><!--
+        </x-block>
 
-     --><x-block data-block>
+        <x-block data-block>
             Some content in block 2. Some content in block 2. Some content in block 2.
             Some content in block 2. Some content in block 2. Some content in block 2.
             Some content in block 2. Some content in block 2. Some content in block 2.
-        </x-block><!--
+        </x-block>
 
-     --><x-block data-block>
+        <x-block data-block>
             Some content in block 3. Some content in block 3. Some content in block 3.
             Some content in block 3. Some content in block 3. Some content in block 3.
             Some content in block 3. Some content in block 3. Some content in block 3.
@@ -84,17 +89,17 @@
 <!--          -->overflow overflow overflow overflow overflow overflow overflow
 <!--          -->overflow overflow overflow overflow overflow overflow overflow<!--
          --></pre>
-        </x-block><!--
+        </x-block>
 
-     --><x-block data-block>
+        <x-block data-block>
             Some content in block 4. Some content in block 4. Some content in block 4.
             Some content in block 4. Some content in block 4. Some content in block 4.
             Some content in block 4. Some content in block 4. Some content in block 4.
             Some content in block 4. Some content in block 4. Some content in block 4.
             Some content in block 4. Some content in block 4. Some content in block 4.
-        </x-block><!--
+        </x-block>
 
-     --><x-block data-block>
+        <x-block data-block>
             Some content in block 5. Some content in block 5. Some content in block 5.
             Some content in block 5. Some content in block 5. Some content in block 5.
             Some content in block 5. Some content in block 5. Some content in block 5.

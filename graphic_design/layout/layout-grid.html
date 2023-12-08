@@ -30,7 +30,11 @@
           background: white;
         }
 
-        [data-block] {display: block; overflow: scroll}
+        [data-block] {
+          display: block;
+          overflow: scroll;
+        }
+
         [data-block]:nth-child(5n + 1) {background-color: lightcyan}
         [data-block]:nth-child(5n + 2) {background-color: lightyellow}
         [data-block]:nth-child(5n + 3) {background-color: honeydew}
@@ -59,9 +63,9 @@
             Some content in block 1. Some content in block 1. Some content in block 1.
             Some content in block 1. Some content in block 1. Some content in block 1.
             Some content in block 1. Some content in block 1. Some content in block 1.
-        </x-block><!--
+        </x-block>
 
-     --><x-block data-block>
+        <x-block data-block>
             Some content in block 2. Some content in block 2. Some content in block 2.
             Some content in block 2. Some content in block 2. Some content in block 2.
             Some content in block 2. Some content in block 2. Some content in block 2.
@@ -69,24 +73,24 @@
 <!--          -->overflow overflow overflow overflow overflow overflow overflow
 <!--          -->overflow overflow overflow overflow overflow overflow overflow<!--
          --></pre>
-        </x-block><!--
+        </x-block>
 
-     --><x-block data-block>
+        <x-block data-block>
             Some content in block 3. Some content in block 3. Some content in block 3.
             Some content in block 3. Some content in block 3. Some content in block 3.
             Some content in block 3. Some content in block 3. Some content in block 3.
             Some content in block 3. Some content in block 3. Some content in block 3.
-        </x-block><!--
+        </x-block>
 
-     --><x-block data-block>
+        <x-block data-block>
             Some content in block 4. Some content in block 4. Some content in block 4.
             Some content in block 4. Some content in block 4. Some content in block 4.
             Some content in block 4. Some content in block 4. Some content in block 4.
             Some content in block 4. Some content in block 4. Some content in block 4.
             Some content in block 4. Some content in block 4. Some content in block 4.
-        </x-block><!--
+        </x-block>
 
-     --><x-block data-block>
+        <x-block data-block>
             Some content in block 5. Some content in block 5. Some content in block 5.
             Some content in block 5. Some content in block 5. Some content in block 5.
             Some content in block 5. Some content in block 5. Some content in block 5.

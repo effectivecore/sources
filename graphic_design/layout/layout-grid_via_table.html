@@ -27,7 +27,10 @@
           background: white;
         }
 
-        [data-block] {display: table-cell}
+        [data-block] {
+          display: table-cell;
+        }
+
         [data-block][data-id='1'] {background-color: lightcyan}
         [data-block][data-id='2'] {background-color: lightyellow}
         [data-block][data-id='3'] {background-color: honeydew}
@@ -39,9 +42,9 @@
         [data-area][data-type='column'] {display: table-cell}
 
         @media screen and (max-width: 600px) {
-            [data-area][data-type='table' ] {display: block; width: auto}
-            [data-area][data-type='row'   ] {display: block}
-            [data-area][data-type='column'] {display: block}
+          [data-area][data-type='table' ] {display: block; width: auto}
+          [data-area][data-type='row'   ] {display: block}
+          [data-area][data-type='column'] {display: block}
         }
 
         pre {

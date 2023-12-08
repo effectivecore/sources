@@ -23,18 +23,15 @@
           border: 1px solid black;
           background: white;
         }
-        
-        [data-area]:empty {
-            display: none;
-        }
 
-        [data-area][data-type='grid-x3'] {
-          display: grid;
-          grid-template-columns: 200px 1fr 200px;
-        }
+        [data-area][data-type='flex-x3'] {display: flex; flex-wrap: wrap}
+        [data-area][data-type='flex-x3'] > [data-area] {flex: 200px}
+        [data-area][data-type='flex-x3'] > [data-area]:nth-child(2) {flex: 500px}
+        [data-area][data-type='flex-x3'] > [data-area]:empty {flex: 0}
 
         [data-area][data-type='flex-x2'] {display: flex; flex-wrap: wrap}
         [data-area][data-type='flex-x2'] > [data-area] {flex: 200px}
+        [data-area][data-type='flex-x2'] > [data-area]:empty {flex: 0}
 
         [data-block] {
           display: block;
@@ -42,143 +39,137 @@
           overflow: scroll;
           background: honeydew;
         }
-
-        @media screen and (max-width: 600px) {
-          [data-area][data-type^='grid-'] {
-            display: block;
-          }
-        }
     </style>
 </head>
 <body data-layout-id="universal">
 
     <x-area data-area data-id="system">
         <section data-block>
-            system area system area system area system area system area system area system area 
-            system area system area system area system area system area system area system area 
-            system area system area system area system area system area system area system area 
+            system area system area system area system area system area system area system area
+            system area system area system area system area system area system area system area
+            system area system area system area system area system area system area system area
         </section>
     </x-area>
-    
+
     <header data-area data-id="header">
         <section data-block>
-            header area header area header area header area header area header area header area 
-            header area header area header area header area header area header area header area 
-            header area header area header area header area header area header area header area 
+            header area header area header area header area header area header area header area
+            header area header area header area header area header area header area header area
+            header area header area header area header area header area header area header area
         </section>
     </header>
-    
+
     <x-area data-area data-id="menu">
         <section data-block>
-            menu area menu area menu area menu area menu area menu area menu area menu area 
-            menu area menu area menu area menu area menu area menu area menu area menu area 
-            menu area menu area menu area menu area menu area menu area menu area menu area 
+            menu area menu area menu area menu area menu area menu area menu area menu area
+            menu area menu area menu area menu area menu area menu area menu area menu area
+            menu area menu area menu area menu area menu area menu area menu area menu area
         </section>
     </x-area>
-    
-    <x-area data-area data-type="grid-x3">
+
+    <x-area data-area data-type="flex-x3">
         <aside data-area data-id="left">
             <section data-block>
-                left area left area left area left area left area left area left area 
-                left area left area left area left area left area left area left area 
-                left area left area left area left area left area left area left area 
+                left area left area left area left area left area left area left area
+                left area left area left area left area left area left area left area
+                left area left area left area left area left area left area left area
             </section>
         </aside>
-    
+
         <x-area data-area data-group-id="center">
-            <x-area data-area data-group-id="grid_2x2" data-type="flex-x2">                
+            <x-area data-area data-group-id="grid_2x2" data-type="flex-x2">
                 <x-area data-area data-id="cell_1_1">
                     <section data-block>
-                        cell_1_1 area cell_1_1 area cell_1_1 area 
-                        cell_1_1 area cell_1_1 area cell_1_1 area 
-                        cell_1_1 area cell_1_1 area cell_1_1 area 
+                        cell_1_1 area cell_1_1 area cell_1_1 area
+                        cell_1_1 area cell_1_1 area cell_1_1 area
+                        cell_1_1 area cell_1_1 area cell_1_1 area
                     </section>
                 </x-area>
 
                 <x-area data-area data-id="cell_1_2">
                     <section data-block>
-                        cell_1_2 area cell_1_2 area cell_1_2 area 
-                        cell_1_2 area cell_1_2 area cell_1_2 area 
-                        cell_1_2 area cell_1_2 area cell_1_2 area 
-                        cell_1_2 area cell_1_2 area cell_1_2 area 
-                        cell_1_2 area cell_1_2 area cell_1_2 area 
+                        cell_1_2 area cell_1_2 area cell_1_2 area
+                        cell_1_2 area cell_1_2 area cell_1_2 area
+                        cell_1_2 area cell_1_2 area cell_1_2 area
+                        cell_1_2 area cell_1_2 area cell_1_2 area
+                        cell_1_2 area cell_1_2 area cell_1_2 area
                     </section>
                 </x-area>
-                
+
                 <x-area data-area data-id="cell_2_1">
                     <section data-block>
-                        cell_2_1 area cell_2_1 area cell_2_1 area 
-                        cell_2_1 area cell_2_1 area cell_2_1 area 
-                        cell_2_1 area cell_2_1 area cell_2_1 area 
+                        cell_2_1 area cell_2_1 area cell_2_1 area
+                        cell_2_1 area cell_2_1 area cell_2_1 area
+                        cell_2_1 area cell_2_1 area cell_2_1 area
                     </section>
                 </x-area>
-                
+
                 <x-area data-area data-id="cell_2_2">
                     <section data-block>
-                        cell_2_2 area cell_2_2 area cell_2_2 area 
-                        cell_2_2 area cell_2_2 area cell_2_2 area 
-                        cell_2_2 area cell_2_2 area cell_2_2 area 
+                        cell_2_2 area cell_2_2 area cell_2_2 area
+                        cell_2_2 area cell_2_2 area cell_2_2 area
+                        cell_2_2 area cell_2_2 area cell_2_2 area
                     </section>
                 </x-area>
             </x-area>
 
             <x-area data-area data-id="breadcrumbs">
                 <section data-block>
-                    breadcrumbs area breadcrumbs area breadcrumbs area 
-                    breadcrumbs area breadcrumbs area breadcrumbs area 
-                    breadcrumbs area breadcrumbs area breadcrumbs area 
+                    breadcrumbs area breadcrumbs area breadcrumbs area
+                    breadcrumbs area breadcrumbs area breadcrumbs area
+                    breadcrumbs area breadcrumbs area breadcrumbs area
                 </section>
             </x-area>
-    
+
             <x-area data-area data-id="messages">
                 <section data-block>
-                    messages area messages area messages area messages area 
-                    messages area messages area messages area messages area 
-                    messages area messages area messages area messages area 
+                    messages area messages area messages area messages area
+                    messages area messages area messages area messages area
+                    messages area messages area messages area messages area
                 </section>
             </x-area>
-    
+
             <x-area data-area data-id="title">
                 <section data-block>
-                    title area title area title area title area title area 
-                    title area title area title area title area title area 
-                    title area title area title area title area title area 
+                    title area title area title area title area title area
+                    title area title area title area title area title area
+                    title area title area title area title area title area
                 </section>
             </x-area>
-    
+
             <x-area data-area data-id="tabs">
                 <section data-block>
-                    tabs area tabs area tabs area tabs area tabs area tabs area 
-                    tabs area tabs area tabs area tabs area tabs area tabs area 
-                    tabs area tabs area tabs area tabs area tabs area tabs area 
+                    tabs area tabs area tabs area tabs area tabs area tabs area
+                    tabs area tabs area tabs area tabs area tabs area tabs area
+                    tabs area tabs area tabs area tabs area tabs area tabs area
                 </section>
             </x-area>
-    
+
             <x-area data-area data-id="content">
                 <section data-block>
-                    content area content area content area content area content area 
-                    content area content area content area content area content area 
-                    content area content area content area content area content area 
-                    content area content area content area content area content area 
-                    content area content area content area content area content area 
+                    content area content area content area content area content area
+                    content area content area content area content area content area
+                    content area content area content area content area content area
+                    content area content area content area content area content area
+                    content area content area content area content area content area
                 </section>
             </x-area>
         </x-area>
-    
+
         <aside data-area data-id="right">
             <section data-block>
-                right area right area right area right area right area right area 
-                right area right area right area right area right area right area 
-                right area right area right area right area right area right area 
+                right area right area right area right area right area right area
+                right area right area right area right area right area right area
+                right area right area right area right area right area right area
             </section>
         </aside>
     </x-area>
-    
+
     <footer data-area data-id="footer">
         <section data-block>
-            footer area footer area footer area footer area footer area footer area footer area 
-            footer area footer area footer area footer area footer area footer area footer area 
-            footer area footer area footer area footer area footer area footer area footer area 
+            footer area footer area footer area footer area footer area footer area footer area
+            footer area footer area footer area footer area footer area footer area footer area
+            footer area footer area footer area footer area footer area footer area footer area
         </section>
     </footer>
 

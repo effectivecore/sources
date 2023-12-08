@@ -11,7 +11,7 @@
           padding: 20px;
           box-sizing: border-box;
           min-width: 200px;
-          max-width: 990px;
+          max-width: 1200px;
           font-family: 'Arial';
           font-size: 16px;
           line-height: 1.5em;
@@ -23,16 +23,18 @@
           border: 1px solid black;
           background: white;
         }
+        
+        [data-area]:empty {
+            display: none;
+        }
 
         [data-area][data-type='grid-x3'] {
           display: grid;
           grid-template-columns: 200px 1fr 200px;
         }
 
-        [data-area][data-type='grid-x2'] {
-          display: grid;
-          grid-template-columns: 1fr 1fr;
-        }
+        [data-area][data-type='flex-x2'] {display: flex; flex-wrap: wrap}
+        [data-area][data-type='flex-x2'] > [data-area] {flex: 200px}
 
         [data-block] {
           display: block;
@@ -43,7 +45,7 @@
 
         @media screen and (max-width: 600px) {
           [data-area][data-type^='grid-'] {
-            display: block
+            display: block;
           }
         }
     </style>
@@ -51,120 +53,133 @@
 <body data-layout-id="universal">
 
     <x-area data-area data-id="system">
-        <x-block data-block>
+        <section data-block>
             system area system area system area system area system area system area system area 
             system area system area system area system area system area system area system area 
             system area system area system area system area system area system area system area 
-        </x-block>
+        </section>
     </x-area>
     
     <header data-area data-id="header">
-        <x-block data-block>
+        <section data-block>
             header area header area header area header area header area header area header area 
             header area header area header area header area header area header area header area 
             header area header area header area header area header area header area header area 
-        </x-block>
+        </section>
     </header>
     
     <x-area data-area data-id="menu">
-        <x-block data-block>
+        <section data-block>
             menu area menu area menu area menu area menu area menu area menu area menu area 
             menu area menu area menu area menu area menu area menu area menu area menu area 
             menu area menu area menu area menu area menu area menu area menu area menu area 
-        </x-block>
+        </section>
     </x-area>
     
     <x-area data-area data-type="grid-x3">
         <aside data-area data-id="left">
-            <x-block data-block>
+            <section data-block>
                 left area left area left area left area left area left area left area 
                 left area left area left area left area left area left area left area 
                 left area left area left area left area left area left area left area 
-            </x-block>
+            </section>
         </aside>
     
         <x-area data-area data-group-id="center">
+            <x-area data-area data-group-id="grid_2x2" data-type="flex-x2">                
+                <x-area data-area data-id="cell_1_1">
+                    <section data-block>
+                        cell_1_1 area cell_1_1 area cell_1_1 area 
+                        cell_1_1 area cell_1_1 area cell_1_1 area 
+                        cell_1_1 area cell_1_1 area cell_1_1 area 
+                    </section>
+                </x-area>
+
+                <x-area data-area data-id="cell_1_2">
+                    <section data-block>
+                        cell_1_2 area cell_1_2 area cell_1_2 area 
+                        cell_1_2 area cell_1_2 area cell_1_2 area 
+                        cell_1_2 area cell_1_2 area cell_1_2 area 
+                        cell_1_2 area cell_1_2 area cell_1_2 area 
+                        cell_1_2 area cell_1_2 area cell_1_2 area 
+                    </section>
+                </x-area>
+                
+                <x-area data-area data-id="cell_2_1">
+                    <section data-block>
+                        cell_2_1 area cell_2_1 area cell_2_1 area 
+                        cell_2_1 area cell_2_1 area cell_2_1 area 
+                        cell_2_1 area cell_2_1 area cell_2_1 area 
+                    </section>
+                </x-area>
+                
+                <x-area data-area data-id="cell_2_2">
+                    <section data-block>
+                        cell_2_2 area cell_2_2 area cell_2_2 area 
+                        cell_2_2 area cell_2_2 area cell_2_2 area 
+                        cell_2_2 area cell_2_2 area cell_2_2 area 
+                    </section>
+                </x-area>
+            </x-area>
+
             <x-area data-area data-id="breadcrumbs">
-                <x-block data-block>
+                <section data-block>
                     breadcrumbs area breadcrumbs area breadcrumbs area 
                     breadcrumbs area breadcrumbs area breadcrumbs area 
                     breadcrumbs area breadcrumbs area breadcrumbs area 
-                </x-block>
+                </section>
             </x-area>
     
             <x-area data-area data-id="messages">
-                <x-block data-block>
+                <section data-block>
                     messages area messages area messages area messages area 
                     messages area messages area messages area messages area 
                     messages area messages area messages area messages area 
-                </x-block>
+                </section>
             </x-area>
     
             <x-area data-area data-id="title">
-                <x-block data-block>
+                <section data-block>
                     title area title area title area title area title area 
                     title area title area title area title area title area 
                     title area title area title area title area title area 
-                </x-block>
+                </section>
             </x-area>
     
             <x-area data-area data-id="tabs">
-                <x-block data-block>
+                <section data-block>
                     tabs area tabs area tabs area tabs area tabs area tabs area 
                     tabs area tabs area tabs area tabs area tabs area tabs area 
                     tabs area tabs area tabs area tabs area tabs area tabs area 
-                </x-block>
+                </section>
             </x-area>
     
             <x-area data-area data-id="content">
-                <x-block data-block>
+                <section data-block>
                     content area content area content area content area content area 
                     content area content area content area content area content area 
                     content area content area content area content area content area 
                     content area content area content area content area content area 
                     content area content area content area content area content area 
-                </x-block>
-            </x-area>
-    
-            <x-area data-area data-group-id="grid_2x2" data-type="grid-x2">
-                <x-block data-block>
-                    cell_1_1 area cell_1_1 area cell_1_1 area 
-                    cell_1_1 area cell_1_1 area cell_1_1 area 
-                    cell_1_1 area cell_1_1 area cell_1_1 area 
-                </x-block>
-                <x-block data-block>
-                    cell_1_2 area cell_1_2 area cell_1_2 area 
-                    cell_1_2 area cell_1_2 area cell_1_2 area 
-                    cell_1_2 area cell_1_2 area cell_1_2 area 
-                </x-block>
-                <x-block data-block>
-                    cell_2_1 area cell_2_1 area cell_2_1 area 
-                    cell_2_1 area cell_2_1 area cell_2_1 area 
-                    cell_2_1 area cell_2_1 area cell_2_1 area 
-                </x-block>
-                <x-block data-block>
-                    cell_2_2 area cell_2_2 area cell_2_2 area 
-                    cell_2_2 area cell_2_2 area cell_2_2 area 
-                    cell_2_2 area cell_2_2 area cell_2_2 area 
-                </x-block>
+                </section>
             </x-area>
         </x-area>
     
         <aside data-area data-id="right">
-            <x-block data-block>
+            <section data-block>
                 right area right area right area right area right area right area 
                 right area right area right area right area right area right area 
                 right area right area right area right area right area right area 
-            </x-block>
+            </section>
         </aside>
     </x-area>
     
     <footer data-area data-id="footer">
-        <x-block data-block>
+        <section data-block>
             footer area footer area footer area footer area footer area footer area footer area 
             footer area footer area footer area footer area footer area footer area footer area 
             footer area footer area footer area footer area footer area footer area footer area 
-        </x-block>
+        </section>
     </footer>
 
 </body>

@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Layout via "display: grid"</title>
+    <title>Layout via "display: flex"</title>
     <style>
         body {
           margin: 0;
@@ -24,15 +24,11 @@
 
         [data-area][data-group-id='body'] {
           padding: 20px;
-          display: grid;
-          grid-template-columns: 1fr 1.5fr 200px;
-          grid-gap: 10px 10px;
           background: white;
         }
 
         [data-block] {
           display: block;
-          overflow: scroll;
         }
 
         [data-block]:nth-child(5n + 1) {background-color: lightcyan}
@@ -42,9 +38,6 @@
         [data-block]:nth-child(5n + 5) {background-color: azure}
 
         @media screen and (max-width: 600px) {
-          [data-area][data-group-id='body'] {
-            display: block;
-          }
         }
 
         pre {

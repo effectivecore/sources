@@ -34,12 +34,12 @@
         [data-block]:nth-child(5n + 4) {background-color: ghostwhite}
         [data-block]:nth-child(5n + 5) {background-color: azure}
 
-        [data-style-name^='column-'  ] [data-block] {display: inline-block; vertical-align: top}
-        [data-style-name ='column-x2'] [data-block]:nth-child(2n + 1) /* column 1 */ {width: calc(   50% -  5px); margin-right: 10px}
-        [data-style-name ='column-x2'] [data-block]:nth-child(2n + 2) /* column 2 */ {width: calc(   50% -  5px)}
-        [data-style-name ='column-x3'] [data-block]:nth-child(3n + 1) /* column 1 */ {width: calc(33.33% -  6px); margin-right: 9px}
-        [data-style-name ='column-x3'] [data-block]:nth-child(3n + 2) /* column 2 */ {width: calc(33.33% -  6px); margin-right: 9px}
-        [data-style-name ='column-x3'] [data-block]:nth-child(3n + 3) /* column 3 */ {width: calc(33.33% -  6px)}
+        [data-area][data-style-name^='column-'  ] [data-block] {display: inline-block; vertical-align: top}
+        [data-area][data-style-name ='column-x2'] [data-block]:nth-child(2n + 1) /* column 1 */ {width: calc(   50% - 5px); margin-right: 10px}
+        [data-area][data-style-name ='column-x2'] [data-block]:nth-child(2n + 2) /* column 2 */ {width: calc(   50% - 5px)}
+        [data-area][data-style-name ='column-x3'] [data-block]:nth-child(3n + 1) /* column 1 */ {width: calc(33.33% - 6px); margin-right: 9px}
+        [data-area][data-style-name ='column-x3'] [data-block]:nth-child(3n + 2) /* column 2 */ {width: calc(33.33% - 6px); margin-right: 9px}
+        [data-area][data-style-name ='column-x3'] [data-block]:nth-child(3n + 3) /* column 3 */ {width: calc(33.33% - 6px)}
 
         @media screen and (max-width: 600px) {
           [data-style-name^='column-'] [data-block] {
@@ -56,7 +56,7 @@
 </head>
 <body>
 
-    <x-part data-area data-group-id="body" data-style-name ="column-x2">
+    <x-part data-area data-group-id="body" data-style-name="column-x2">
 
         <x-block data-block>
             Some content in block 1. Some content in block 1. Some content in block 1.

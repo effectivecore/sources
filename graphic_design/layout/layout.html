@@ -1,18 +1,50 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" dir="ltr">
 <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Layout</title>
     <style>
-        body {padding: 50px; font-family: 'Arial'}
+        body {
+          margin: 0;
+          padding: 20px;
+          font-family: 'Arial';
+          font-size: 16px;
+          line-height: 1.5em;
+          background: lavender;
+        }
+
+        x-part {
+          display: block;
+          max-width: 900px;
+          box-sizing: border-box;
+          margin: 0 auto;
+        }
+
+        x-part[data-group-id='head'],
+        x-part[data-group-id='body'],
+        x-part[data-group-id='foot'] {
+          padding: 20px;
+          background: white;
+        }
+
         x-area {
           display: block;
-          margin-top: 5px;
+          margin-bottom: 5px;
           padding: 5px;
-          border: 3px solid brown}
-        x-area[data-type='table']  {display: table;      border: 3px solid royalblue}
-        x-area[data-type='column'] {display: table-cell; border: 3px solid #30c432}
-        x-area[data-type='row']    {display: table-row;  border: 3px solid #fc5740}
+          border: 3px solid darkorchid;
+        }
+
+        x-area[data-type='table']  {display: table;      border: 3px solid palevioletred; border-spacing: 1px}
+        x-area[data-type='column'] {display: table-cell; border: 3px solid steelblue}
+        x-area[data-type='row']    {display: table-row;  border: 3px solid powderblue}
+
+        @media screen and (max-width: 600px) {
+          x-area {
+            display: block !important;
+            width: auto !important;
+          }
+        }
     </style>
 </head>
 <body>
@@ -25,119 +57,125 @@
        │         │                                            │         │
        │         ├──────────────────────┬─────────────────────┤         │
        │         │                      ┆                     │         │
-       │         │     center 2x1-1     ┆    center 2x1-2     │         │
+       │         │      grid_2x1-1      ┆     grid_2x1-2      │         │
        │         │                      ┆                     │         │
        │         ├──────────────┬───────┴──────┬──────────────┤         │
        │         │              ┆              ┆              │         │
-       │  left   │ center 3x1-1 ┆ center 3x1-2 ┆ center 3x1-3 │  right  │
+       │  left   │  grid_3x1-1  ┆  grid_3x1-2  ┆  grid_3x1-3  │  right  │
        │         │              ┆              ┆              │         │
        │         ├──────────────┴───────┬──────┴──────────────┤         │
        │         │                      ┆                     │         │
-       │         │     center 2x2-1     ┆     center 2x2-2    │         │
+       │         │      grid_2x2-1      ┆      grid_2x2-2     │         │
        │         │                      ┆                     │         │
        │         ├┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┼┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┤         │
        │         │                      ┆                     │         │
-       │         │     center 2x2-3     ┆     center 2x2-4    │         │
+       │         │      grid_2x2-3      ┆      grid_2x2-4     │         │
        │         │                      ┆                     │         │
        ├─────────┴──────────────────────┴─────────────────────┴─────────┤
        │                              footer                            │
        └────────────────────────────────────────────────────────────────┘ -->
 
-    <x-area>
-        header header header header header header header header header
-        header header header header header header header header header
-        header header header header header header header header header
-        header header header header header header header header header
-        header header header header header header header header header
-    </x-area>
-
-    <x-area data-type="table">
-        <x-area data-type="column" style="width: 200px">
-            left left left left left left left left left left left left left left
-            left left left left left left left left left left left left left left
-            left left left left left left left left left left left left left left
+    <x-part data-area data-group-id="head">
+        <x-area>
+            header header header header header header header header header
+            header header header header header header header header header
+            header header header header header header header header header
+            header header header header header header header header header
+            header header header header header header header header header
         </x-area>
-        <x-area data-type="column">
+    </x-part>
 
-            <x-area>
-                center center center center center center center center center
-                center center center center center center center center center
-                center center center center center center center center center
+    <x-part data-area data-group-id="body">
+        <x-area data-type="table">
+            <x-area data-type="column" style="width: 200px">
+                left left left left left left left left left left left left left left
+                left left left left left left left left left left left left left left
+                left left left left left left left left left left left left left left
             </x-area>
-
-            <x-area data-type="table">
-                <x-area data-type="column">
-                    center 2x1-1 center 2x1-1 center 2x1-1 center 2x1-1 center 2x1-1
-                    center 2x1-1 center 2x1-1 center 2x1-1 center 2x1-1 center 2x1-1
-                    center 2x1-1 center 2x1-1 center 2x1-1 center 2x1-1 center 2x1-1
+            <x-area data-type="column">
+    
+                <x-area>
+                    center center center center center center center center center
+                    center center center center center center center center center
+                    center center center center center center center center center
                 </x-area>
-                <x-area data-type="column">
-                    center 2x1-2 center 2x1-2 center 2x1-2 center 2x1-2 center 2x1-2
-                    center 2x1-2 center 2x1-2 center 2x1-2 center 2x1-2 center 2x1-2
-                    center 2x1-2 center 2x1-2 center 2x1-2 center 2x1-2 center 2x1-2
-                </x-area>
-            </x-area>
-
-            <x-area data-type="table">
-                <x-area data-type="column">
-                    center 3x1-1 center 3x1-1 center 3x1-1 center 3x1-1 center 3x1-1
-                    center 3x1-1 center 3x1-1 center 3x1-1 center 3x1-1 center 3x1-1
-                    center 3x1-1 center 3x1-1 center 3x1-1 center 3x1-1 center 3x1-1
-                </x-area>
-                <x-area data-type="column">
-                    center 3x1-2 center 3x1-2 center 3x1-2 center 3x1-2 center 3x1-2
-                    center 3x1-2 center 3x1-2 center 3x1-2 center 3x1-2 center 3x1-2
-                    center 3x1-2 center 3x1-2 center 3x1-2 center 3x1-2 center 3x1-2
-                </x-area>
-                <x-area data-type="column">
-                    center 3x1-3 center 3x1-3 center 3x1-3 center 3x1-3 center 3x1-3
-                    center 3x1-3 center 3x1-3 center 3x1-3 center 3x1-3 center 3x1-3
-                    center 3x1-3 center 3x1-3 center 3x1-3 center 3x1-3 center 3x1-3
-                </x-area>
-            </x-area>
-
-            <x-area data-type="table">
-                <x-area data-type="row">
+    
+                <x-area data-type="table">
                     <x-area data-type="column">
-                        center 2x2-1 center 2x2-1 center 2x2-1 center 2x2-1 center 2x2-1
-                        center 2x2-1 center 2x2-1 center 2x2-1 center 2x2-1 center 2x2-1
-                        center 2x2-1 center 2x2-1 center 2x2-1 center 2x2-1 center 2x2-1
+                        grid_2x1-1 grid_2x1-1 grid_2x1-1 grid_2x1-1 grid_2x1-1 
+                        grid_2x1-1 grid_2x1-1 grid_2x1-1 grid_2x1-1 grid_2x1-1 
+                        grid_2x1-1 grid_2x1-1 grid_2x1-1 grid_2x1-1 grid_2x1-1 
                     </x-area>
                     <x-area data-type="column">
-                        center 2x2-2 center 2x2-2 center 2x2-2 center 2x2-2 center 2x2-2
-                        center 2x2-2 center 2x2-2 center 2x2-2 center 2x2-2 center 2x2-2
-                        center 2x2-2 center 2x2-2 center 2x2-2 center 2x2-2 center 2x2-2
+                        grid_2x1-2 grid_2x1-2 grid_2x1-2 grid_2x1-2 grid_2x1-2 
+                        grid_2x1-2 grid_2x1-2 grid_2x1-2 grid_2x1-2 grid_2x1-2 
+                        grid_2x1-2 grid_2x1-2 grid_2x1-2 grid_2x1-2 grid_2x1-2 
                     </x-area>
                 </x-area>
-                <x-area data-type="row">
+    
+                <x-area data-type="table">
                     <x-area data-type="column">
-                        center 2x2-3 center 2x2-3 center 2x2-3 center 2x2-3 center 2x2-3
-                        center 2x2-3 center 2x2-3 center 2x2-3 center 2x2-3 center 2x2-3
-                        center 2x2-3 center 2x2-3 center 2x2-3 center 2x2-3 center 2x2-3
+                        grid_3x1-1 grid_3x1-1 grid_3x1-1 grid_3x1-1 grid_3x1-1 
+                        grid_3x1-1 grid_3x1-1 grid_3x1-1 grid_3x1-1 grid_3x1-1 
+                        grid_3x1-1 grid_3x1-1 grid_3x1-1 grid_3x1-1 grid_3x1-1 
                     </x-area>
                     <x-area data-type="column">
-                        center 2x2-4 center 2x2-4 center 2x2-4 center 2x2-4 center 2x2-4
-                        center 2x2-4 center 2x2-4 center 2x2-4 center 2x2-4 center 2x2-4
-                        center 2x2-4 center 2x2-4 center 2x2-4 center 2x2-4 center 2x2-4
+                        grid_3x1-2 grid_3x1-2 grid_3x1-2 grid_3x1-2 grid_3x1-2 
+                        grid_3x1-2 grid_3x1-2 grid_3x1-2 grid_3x1-2 grid_3x1-2 
+                        grid_3x1-2 grid_3x1-2 grid_3x1-2 grid_3x1-2 grid_3x1-2 
+                    </x-area>
+                    <x-area data-type="column">
+                        grid_3x1-3 grid_3x1-3 grid_3x1-3 grid_3x1-3 grid_3x1-3 
+                        grid_3x1-3 grid_3x1-3 grid_3x1-3 grid_3x1-3 grid_3x1-3 
+                        grid_3x1-3 grid_3x1-3 grid_3x1-3 grid_3x1-3 grid_3x1-3 
                     </x-area>
                 </x-area>
+    
+                <x-area data-type="table">
+                    <x-area data-type="row">
+                        <x-area data-type="column">
+                            grid_2x2-1 grid_2x2-1 grid_2x2-1 grid_2x2-1 grid_2x2-1 
+                            grid_2x2-1 grid_2x2-1 grid_2x2-1 grid_2x2-1 grid_2x2-1 
+                            grid_2x2-1 grid_2x2-1 grid_2x2-1 grid_2x2-1 grid_2x2-1 
+                        </x-area>
+                        <x-area data-type="column">
+                            grid_2x2-2 grid_2x2-2 grid_2x2-2 grid_2x2-2 grid_2x2-2 
+                            grid_2x2-2 grid_2x2-2 grid_2x2-2 grid_2x2-2 grid_2x2-2 
+                            grid_2x2-2 grid_2x2-2 grid_2x2-2 grid_2x2-2 grid_2x2-2 
+                        </x-area>
+                    </x-area>
+                    <x-area data-type="row">
+                        <x-area data-type="column">
+                            grid_2x2-3 grid_2x2-3 grid_2x2-3 grid_2x2-3 grid_2x2-3 
+                            grid_2x2-3 grid_2x2-3 grid_2x2-3 grid_2x2-3 grid_2x2-3 
+                            grid_2x2-3 grid_2x2-3 grid_2x2-3 grid_2x2-3 grid_2x2-3 
+                        </x-area>
+                        <x-area data-type="column">
+                            grid_2x2-4 grid_2x2-4 grid_2x2-4 grid_2x2-4 grid_2x2-4 
+                            grid_2x2-4 grid_2x2-4 grid_2x2-4 grid_2x2-4 grid_2x2-4 
+                            grid_2x2-4 grid_2x2-4 grid_2x2-4 grid_2x2-4 grid_2x2-4 
+                        </x-area>
+                    </x-area>
+                </x-area>
+    
             </x-area>
-
+            <x-area data-type="column" style="width: 200px">
+                right right right right right right right right right right right right
+                right right right right right right right right right right right right
+                right right right right right right right right right right right right
+            </x-area>
         </x-area>
-        <x-area data-type="column" style="width: 200px">
-            right right right right right right right right right right right right
-            right right right right right right right right right right right right
-            right right right right right right right right right right right right
-        </x-area>
-    </x-area>
+    </x-part>
 
-    <x-area>
-        footer footer footer footer footer footer footer footer footer
-        footer footer footer footer footer footer footer footer footer
-        footer footer footer footer footer footer footer footer footer
-        footer footer footer footer footer footer footer footer footer
-        footer footer footer footer footer footer footer footer footer
-    </x-area>
+    <x-part data-area data-group-id="foot">
+        <x-area>
+            footer footer footer footer footer footer footer footer footer
+            footer footer footer footer footer footer footer footer footer
+            footer footer footer footer footer footer footer footer footer
+            footer footer footer footer footer footer footer footer footer
+            footer footer footer footer footer footer footer footer footer
+        </x-area>
+    </x-part>
 
 </body>
 </html>

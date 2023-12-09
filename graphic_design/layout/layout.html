@@ -29,9 +29,9 @@
         [data-layout-id='universal'] [data-group-id='main-columns'] > [data-group-id='center'] {flex: 500px}
         [data-layout-id='universal'] [data-group-id='main-columns'] > [data-area]:empty {flex: 0}
 
-        [data-layout-id='universal'] [data-group-id='2-columns'] {display: flex; flex-wrap: wrap}
-        [data-layout-id='universal'] [data-group-id='2-columns'] > [data-area] {flex: 200px}
-        [data-layout-id='universal'] [data-group-id='2-columns'] > [data-area]:empty {flex: 0}
+        [data-layout-id='universal'] [data-group-id='inner-columns'] {display: flex; flex-wrap: wrap}
+        [data-layout-id='universal'] [data-group-id='inner-columns'] > [data-area] {flex: 200px}
+        [data-layout-id='universal'] [data-group-id='inner-columns'] > [data-area]:empty {flex: 0}
 
         [data-block] {
           display: block;
@@ -77,7 +77,7 @@
         </aside>
 
         <x-area data-area data-group-id="center">
-            <x-area data-area data-group-id="2-columns">
+            <x-area data-area data-group-id="inner-columns">
                 <x-area data-area data-id="cell_1_1">
                     <section data-block>
                         cell_1_1 area cell_1_1 area cell_1_1 area

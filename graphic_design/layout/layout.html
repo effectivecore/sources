@@ -24,14 +24,14 @@
           background: white;
         }
 
-        [data-area][data-type='flex-x3'] {display: flex; flex-wrap: wrap}
-        [data-area][data-type='flex-x3'] > [data-area] {flex: 200px}
-        [data-area][data-type='flex-x3'] > [data-area]:nth-child(2) {flex: 500px}
-        [data-area][data-type='flex-x3'] > [data-area]:empty {flex: 0}
+        [data-layout-id='universal'] [data-group-id='main-columns'] {display: flex; flex-wrap: wrap}
+        [data-layout-id='universal'] [data-group-id='main-columns'] > [data-area] {flex: 200px}
+        [data-layout-id='universal'] [data-group-id='main-columns'] > [data-group-id='center'] {flex: 500px}
+        [data-layout-id='universal'] [data-group-id='main-columns'] > [data-area]:empty {flex: 0}
 
-        [data-area][data-type='flex-x2'] {display: flex; flex-wrap: wrap}
-        [data-area][data-type='flex-x2'] > [data-area] {flex: 200px}
-        [data-area][data-type='flex-x2'] > [data-area]:empty {flex: 0}
+        [data-layout-id='universal'] [data-group-id='2-columns'] {display: flex; flex-wrap: wrap}
+        [data-layout-id='universal'] [data-group-id='2-columns'] > [data-area] {flex: 200px}
+        [data-layout-id='universal'] [data-group-id='2-columns'] > [data-area]:empty {flex: 0}
 
         [data-block] {
           display: block;
@@ -67,7 +67,7 @@
         </section>
     </x-area>
 
-    <x-area data-area data-type="flex-x3">
+    <x-area data-area data-group-id="main-columns">
         <aside data-area data-id="left">
             <section data-block>
                 left area left area left area left area left area left area left area
@@ -77,7 +77,7 @@
         </aside>
 
         <x-area data-area data-group-id="center">
-            <x-area data-area data-group-id="grid_2x2" data-type="flex-x2">
+            <x-area data-area data-group-id="2-columns">
                 <x-area data-area data-id="cell_1_1">
                     <section data-block>
                         cell_1_1 area cell_1_1 area cell_1_1 area

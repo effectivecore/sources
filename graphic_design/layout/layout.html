@@ -24,14 +24,23 @@
           background: white;
         }
 
-        [data-layout-id='universal'] [data-group-id='main-columns'] {display: flex; flex-wrap: wrap}
-        [data-layout-id='universal'] [data-group-id='main-columns'] > [data-area] {flex: 200px}
-        [data-layout-id='universal'] [data-group-id='main-columns'] > [data-group-id='center'] {flex: 500px}
-        [data-layout-id='universal'] [data-group-id='main-columns'] > [data-area]:empty {flex: 0}
+        [data-area][data-type^='grid-'] {display: grid}
+        [data-area][data-type='grid-2x'] {grid-template-columns: repeat(2, 1fr)}
+        [data-area][data-type='grid-3x'] {grid-template-columns: repeat(3, 1fr)}
+        [data-area][data-type='grid-4x'] {grid-template-columns: repeat(4, 1fr)}
+        [data-area][data-type='grid-5x'] {grid-template-columns: repeat(5, 1fr)}
 
-        [data-layout-id='universal'] [data-group-id='inner-columns'] {display: flex; flex-wrap: wrap}
-        [data-layout-id='universal'] [data-group-id='inner-columns'] > [data-area] {flex: 200px}
-        [data-layout-id='universal'] [data-group-id='inner-columns'] > [data-area]:empty {flex: 0}
+        @media screen and (max-width: 600px) {
+          [data-area][data-type^='grid-'] {display: block}
+        }
+
+        [data-area][data-type='flex'] {display: flex; flex-wrap: wrap}
+        [data-area][data-type='flex'] > [data-area] {flex: 200px}
+        [data-area][data-type='flex'] > [data-area]:empty {flex: 0}
+
+        [data-layout-id='universal'] [data-group-id='main-columns'] > [data-group-id='center'] {
+          flex: 500px;
+        }
 
         [data-block] {
           display: block;
@@ -39,137 +48,187 @@
           overflow: scroll;
           background: honeydew;
         }
+        
+        [aria-hidden] {
+          display: none;
+        }
     </style>
 </head>
 <body data-layout-id="universal">
 
     <x-area data-area data-id="system">
         <section data-block>
-            system area system area system area system area system area system area system area
-            system area system area system area system area system area system area system area
-            system area system area system area system area system area system area system area
+            <h2 data-block-title aria-hidden="true">Block</h2>
+            <x-section-content data-block-content>
+                system area system area system area system area system area system area system area
+                system area system area system area system area system area system area system area
+                system area system area system area system area system area system area system area
+            </x-section-content>
         </section>
     </x-area>
 
     <header data-area data-id="header">
         <section data-block>
-            header area header area header area header area header area header area header area
-            header area header area header area header area header area header area header area
-            header area header area header area header area header area header area header area
+            <h2 data-block-title aria-hidden="true">Block</h2>
+            <x-section-content data-block-content>
+                header area header area header area header area header area header area header area
+                header area header area header area header area header area header area header area
+                header area header area header area header area header area header area header area
+            </x-section-content>
         </section>
     </header>
 
     <x-area data-area data-id="menu">
         <section data-block>
-            menu area menu area menu area menu area menu area menu area menu area menu area
-            menu area menu area menu area menu area menu area menu area menu area menu area
-            menu area menu area menu area menu area menu area menu area menu area menu area
+            <h2 data-block-title aria-hidden="true">Block</h2>
+            <x-section-content data-block-content>
+                menu area menu area menu area menu area menu area menu area menu area menu area
+                menu area menu area menu area menu area menu area menu area menu area menu area
+                menu area menu area menu area menu area menu area menu area menu area menu area
+            </x-section-content>
         </section>
     </x-area>
 
-    <x-area data-area data-group-id="main-columns">
+    <x-area data-area data-type="flex" data-group-id="main-columns">
         <aside data-area data-id="left">
             <section data-block>
-                left area left area left area left area left area left area left area
-                left area left area left area left area left area left area left area
-                left area left area left area left area left area left area left area
+                <h2 data-block-title aria-hidden="true">Block</h2>
+                <x-section-content data-block-content>
+                    left area left area left area left area left area left area left area
+                    left area left area left area left area left area left area left area
+                    left area left area left area left area left area left area left area
+                </x-section-content>
             </section>
         </aside>
 
         <x-area data-area data-group-id="center">
-            <x-area data-area data-group-id="inner-columns">
-                <x-area data-area data-id="cell_1_1">
+            <x-area data-area data-type="flex" data-group-id="center-tiles">
+                <x-area data-area data-id="tile_1">
                     <section data-block>
-                        cell_1_1 area cell_1_1 area cell_1_1 area
-                        cell_1_1 area cell_1_1 area cell_1_1 area
-                        cell_1_1 area cell_1_1 area cell_1_1 area
+                        <h2 data-block-title aria-hidden="true">Block</h2>
+                        <x-section-content data-block-content>
+                            tile_1 area tile_1 area tile_1 area tile_1 area
+                            tile_1 area tile_1 area tile_1 area tile_1 area
+                            tile_1 area tile_1 area tile_1 area tile_1 area
+                        </x-section-content>
                     </section>
                 </x-area>
 
-                <x-area data-area data-id="cell_1_2">
+                <x-area data-area data-id="tile_2">
                     <section data-block>
-                        cell_1_2 area cell_1_2 area cell_1_2 area
-                        cell_1_2 area cell_1_2 area cell_1_2 area
-                        cell_1_2 area cell_1_2 area cell_1_2 area
-                        cell_1_2 area cell_1_2 area cell_1_2 area
-                        cell_1_2 area cell_1_2 area cell_1_2 area
+                        <h2 data-block-title aria-hidden="true">Block</h2>
+                        <x-section-content data-block-content>
+                            tile_2 area tile_2 area tile_2 area tile_2 area
+                            tile_2 area tile_2 area tile_2 area tile_2 area
+                            tile_2 area tile_2 area tile_2 area tile_2 area
+                            tile_2 area tile_2 area tile_2 area tile_2 area
+                            tile_2 area tile_2 area tile_2 area tile_2 area
+                            tile_2 area tile_2 area tile_2 area tile_2 area
+                        </x-section-content>
                     </section>
                 </x-area>
 
-                <x-area data-area data-id="cell_2_1">
+                <x-area data-area data-id="tile_3">
                     <section data-block>
-                        cell_2_1 area cell_2_1 area cell_2_1 area
-                        cell_2_1 area cell_2_1 area cell_2_1 area
-                        cell_2_1 area cell_2_1 area cell_2_1 area
+                        <h2 data-block-title aria-hidden="true">Block</h2>
+                        <x-section-content data-block-content>
+                            tile_3 area tile_3 area tile_3 area tile_3 area
+                            tile_3 area tile_3 area tile_3 area tile_3 area
+                            tile_3 area tile_3 area tile_3 area tile_3 area
+                        </x-section-content>
                     </section>
                 </x-area>
 
-                <x-area data-area data-id="cell_2_2">
+                <x-area data-area data-id="tile_4">
                     <section data-block>
-                        cell_2_2 area cell_2_2 area cell_2_2 area
-                        cell_2_2 area cell_2_2 area cell_2_2 area
-                        cell_2_2 area cell_2_2 area cell_2_2 area
+                        <h2 data-block-title aria-hidden="true">Block</h2>
+                        <x-section-content data-block-content>
+                            tile_4 area tile_4 area tile_4 area tile_4 area
+                            tile_4 area tile_4 area tile_4 area tile_4 area
+                            tile_4 area tile_4 area tile_4 area tile_4 area
+                        </x-section-content>
                     </section>
                 </x-area>
             </x-area>
 
             <x-area data-area data-id="breadcrumbs">
                 <section data-block>
-                    breadcrumbs area breadcrumbs area breadcrumbs area
-                    breadcrumbs area breadcrumbs area breadcrumbs area
-                    breadcrumbs area breadcrumbs area breadcrumbs area
+                    <h2 data-block-title aria-hidden="true">Block</h2>
+                    <x-section-content data-block-content>
+                        breadcrumbs area breadcrumbs area breadcrumbs area
+                        breadcrumbs area breadcrumbs area breadcrumbs area
+                        breadcrumbs area breadcrumbs area breadcrumbs area
+                    </x-section-content>
                 </section>
             </x-area>
 
             <x-area data-area data-id="messages">
                 <section data-block>
-                    messages area messages area messages area messages area
-                    messages area messages area messages area messages area
-                    messages area messages area messages area messages area
+                    <h2 data-block-title aria-hidden="true">Block</h2>
+                    <x-section-content data-block-content>
+                        messages area messages area messages area messages area
+                        messages area messages area messages area messages area
+                        messages area messages area messages area messages area
+                    </x-section-content>
                 </section>
             </x-area>
 
             <x-area data-area data-id="title">
                 <section data-block>
-                    title area title area title area title area title area
-                    title area title area title area title area title area
-                    title area title area title area title area title area
+                    <h2 data-block-title aria-hidden="true">Block</h2>
+                    <x-section-content data-block-content>
+                        title area title area title area title area title area
+                        title area title area title area title area title area
+                        title area title area title area title area title area
+                    </x-section-content>
                 </section>
             </x-area>
 
             <x-area data-area data-id="tabs">
                 <section data-block>
-                    tabs area tabs area tabs area tabs area tabs area tabs area
-                    tabs area tabs area tabs area tabs area tabs area tabs area
-                    tabs area tabs area tabs area tabs area tabs area tabs area
+                    <h2 data-block-title aria-hidden="true">Block</h2>
+                    <x-section-content data-block-content>
+                        tabs area tabs area tabs area tabs area tabs area tabs area
+                        tabs area tabs area tabs area tabs area tabs area tabs area
+                        tabs area tabs area tabs area tabs area tabs area tabs area
+                    </x-section-content>
                 </section>
             </x-area>
 
             <x-area data-area data-id="content">
                 <section data-block>
-                    content area content area content area content area content area
-                    content area content area content area content area content area
-                    content area content area content area content area content area
-                    content area content area content area content area content area
-                    content area content area content area content area content area
+                    <h2 data-block-title aria-hidden="true">Block</h2>
+                    <x-section-content data-block-content>
+                        content area content area content area content area content area
+                        content area content area content area content area content area
+                        content area content area content area content area content area
+                        content area content area content area content area content area
+                        content area content area content area content area content area
+                    </x-section-content>
                 </section>
             </x-area>
         </x-area>
 
         <aside data-area data-id="right">
             <section data-block>
-                right area right area right area right area right area right area
-                right area right area right area right area right area right area
-                right area right area right area right area right area right area
+                <h2 data-block-title aria-hidden="true">Block</h2>
+                <x-section-content data-block-content>
+                    right area right area right area right area right area right area
+                    right area right area right area right area right area right area
+                    right area right area right area right area right area right area
+                </x-section-content>
             </section>
         </aside>
     </x-area>
 
     <footer data-area data-id="footer">
         <section data-block>
-            footer area footer area footer area footer area footer area footer area footer area
-            footer area footer area footer area footer area footer area footer area footer area
-            footer area footer area footer area footer area footer area footer area footer area
+            <h2 data-block-title aria-hidden="true">Block</h2>
+            <x-section-content data-block-content>
+                footer area footer area footer area footer area footer area footer area footer area
+                footer area footer area footer area footer area footer area footer area footer area
+                footer area footer area footer area footer area footer area footer area footer area
+            </x-section-content>
         </section>
     </footer>
 

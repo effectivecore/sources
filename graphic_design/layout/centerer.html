@@ -18,12 +18,24 @@
           background: gray;
         }
 
-        /* example via Grid */
+        /*        example via Grid
+        ┌─────┬───────────────────────┬─────┐
+        │ 1fr │          1fr          │ 1fr │
+        ├─────┼───────────────────────┼─────┤
+        │     │  ▲                    │     │
+        │     │ ◀┼──────────────────▶ │     │
+        │ 1fr │  │ 1px|max-content    │ 1fr │
+        │     │  │                    │     │
+        │     │  ▼                    │     │
+        ├─────┼───────────────────────┼─────┤
+        │ 1fr │          1fr          │ 1fr │
+        └─────┴───────────────────────┴─────┘
+        */
 
         [data-id='example-1'] {
           display: grid;
-          grid-template-columns: 1fr minmax(1%, max-content) 1fr;
-          grid-template-rows   : 1fr minmax(1%, max-content) 1fr;
+          grid-template-columns: 1fr minmax(1px, max-content) 1fr;
+          grid-template-rows   : 1fr minmax(1px, max-content) 1fr;
         }
 
         [data-id='example-1'] img {

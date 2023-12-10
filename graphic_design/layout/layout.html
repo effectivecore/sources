@@ -20,6 +20,7 @@
 
         [data-area] {
           display: block;
+          overflow: auto; /* !!! */
           border: 1px solid black;
           background: white;
         }
@@ -45,12 +46,16 @@
         [data-block] {
           display: block;
           padding: 10px;
-          overflow: scroll;
           background: honeydew;
         }
         
         [aria-hidden] {
           display: none;
+        }
+
+        pre {
+          overflow: auto;
+          background: powderblue;
         }
     </style>
 </head>
@@ -85,6 +90,11 @@
                 menu area menu area menu area menu area menu area menu area menu area menu area
                 menu area menu area menu area menu area menu area menu area menu area menu area
                 menu area menu area menu area menu area menu area menu area menu area menu area
+                <pre><!--
+                  -->overflow overflow overflow overflow overflow overflow overflow
+<!--              -->overflow overflow overflow overflow overflow overflow overflow
+<!--              -->overflow overflow overflow overflow overflow overflow overflow<!--
+             --></pre>
             </x-section-content>
         </section>
     </x-area>
@@ -97,6 +107,11 @@
                     left area left area left area left area left area left area left area
                     left area left area left area left area left area left area left area
                     left area left area left area left area left area left area left area
+                    <pre><!--
+                      -->overflow overflow overflow overflow overflow overflow overflow
+<!--                  -->overflow overflow overflow overflow overflow overflow overflow
+<!--                  -->overflow overflow overflow overflow overflow overflow overflow<!--
+                 --></pre>
                 </x-section-content>
             </section>
         </aside>
@@ -110,6 +125,11 @@
                             tile_1 area tile_1 area tile_1 area tile_1 area
                             tile_1 area tile_1 area tile_1 area tile_1 area
                             tile_1 area tile_1 area tile_1 area tile_1 area
+                            <pre><!--
+                              -->overflow overflow overflow overflow overflow overflow overflow
+<!--                          -->overflow overflow overflow overflow overflow overflow overflow
+<!--                          -->overflow overflow overflow overflow overflow overflow overflow<!--
+                         --></pre>
                         </x-section-content>
                     </section>
                 </x-area>

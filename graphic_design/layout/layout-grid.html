@@ -32,7 +32,7 @@
 
         [data-block] {
           display: block;
-          overflow: scroll;
+          overflow: auto; /* !!! */
         }
 
         [data-block]:nth-child(5n + 1) {background-color: lightcyan}
@@ -48,7 +48,7 @@
         }
 
         pre {
-          overflow: scroll;
+          overflow: auto;
           background: powderblue;
         }
     </style>
@@ -74,9 +74,10 @@
                 Some content in block 2. Some content in block 2. Some content in block 2.
                 Some content in block 2. Some content in block 2. Some content in block 2.
                 Some content in block 2. Some content in block 2. Some content in block 2.
-                <pre>overflow overflow overflow overflow overflow overflow overflow
-<!--             -->overflow overflow overflow overflow overflow overflow overflow
-<!--             -->overflow overflow overflow overflow overflow overflow overflow<!--
+                <pre><!--
+                  -->overflow overflow overflow overflow overflow overflow overflow
+<!--              -->overflow overflow overflow overflow overflow overflow overflow
+<!--              -->overflow overflow overflow overflow overflow overflow overflow<!--
              --></pre>
             </x-section-content>
         </section>

@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Layout "Universal"</title>
+    <style>
+        body {
+          display: block;
+          margin: 0;
+          padding: 0;
+        }
+
+        :root {
+          --thumbnails-height:  80px;
+          --preview-max-width: 400px; /* %%_thumbnail_width_big(null)px */
+        }
+
+        /* gallery */
+
+        x-gallery-player {
+          position: fixed;
+          left: 0;
+          top: 0;
+          width: 100%;
+          height: 100%;
+          z-index: 500;
+          background: rgba(0, 0, 0, .9);
+        }
+
+        [data-is-active-gallery-player] {
+          overflow: hidden; /* disable scroll on body */
+        }
+
+        x-gallery-player * {
+          user-select: none;
+          -webkit-user-select: none;
+          -moz-user-select: none;
+          -ms-user-select: none;
+        }
+
+        /* thumbnails */
+
+        x-gallery-player x-thumbnails {
+          display: block;
+          height: var(--thumbnails-height);
+          margin-right: 50px;
+          padding-left: 3px;
+          overflow: auto;
+          white-space: nowrap;
+          text-align: center;
+        }
+
+        x-gallery-player x-thumbnails x-thumbnail {
+          margin: 5px 1px 0 1px;
+          cursor: pointer;
+          border-radius: 3px;
+        }
+
+        x-gallery-player x-thumbnails x-thumbnail {border: 3px solid transparent}
+        x-gallery-player x-thumbnails x-thumbnail[aria-selected='true'] {border-color: orange}
+
+        x-gallery-player x-thumbnails x-thumbnail {display: inline-block}
+        x-gallery-player x-thumbnails x-thumbnail img {
+          display: block;
+          width: auto;
+          height: calc(var(--thumbnails-height) - 30px);
+          margin: 1px;
+        }
+
+        /* close button */
+
+        x-gallery-player x-button-c {
+          position: fixed;
+          left: calc(100% - 50px);
+          top: 9px;
+          width: 50px;
+          height: 50px;
+          cursor: pointer;
+        }
+
+        x-gallery-player x-button-c {background: url('pictures/icons-gallery_player.svg') no-repeat -290px 100%}
+        x-gallery-player x-button-c:hover {background-position: -290px 0}
+
+        /* viewing area */
+
+        x-gallery-player x-viewing-part {
+          display: grid;
+          grid-template-columns: 1fr 70px minmax(70px, calc(var(--preview-max-width) + 50px)) 70px 1fr;
+          height: calc(100% - var(--thumbnails-height));
+        }
+
+        x-gallery-player x-viewing-part x-button-l {grid-column-start: 2; cursor: pointer; background: url('pictures/icons-gallery_player.svg') no-repeat    0   50%}
+        x-gallery-player x-viewing-part x-button-r {                      cursor: pointer; background: url('pictures/icons-gallery_player.svg') no-repeat -210px 50%}
+        x-gallery-player x-viewing-part x-button-l:hover {background-position:  -70px 50%}
+        x-gallery-player x-viewing-part x-button-r:hover {background-position: -140px 50%}
+        x-gallery-player x-viewing-part x-button-l[data-is-blocked],
+        x-gallery-player x-viewing-part x-button-r[data-is-blocked] {opacity: .1; cursor: not-allowed}
+
+        x-gallery-player x-viewing-part x-viewing-area {
+          display: grid;
+          grid-template-columns: 1fr minmax(1%, max-content) 1fr;
+          grid-template-rows   : 1fr minmax(1%, max-content) 1fr;
+          padding: 20px 0;
+          overflow: auto;
+        }
+
+        x-gallery-player x-viewing-part x-viewing-area > * {grid-column-start: 2; grid-row-start: 2}
+        x-gallery-player x-viewing-part x-viewing-area img {max-width: var(--preview-max-width)}
+        x-gallery-player x-viewing-part x-viewing-area x-audio-player {width: 90%}
+        x-gallery-player x-viewing-part x-viewing-area video {display: inline-block; width: 90%}
+    </style>
+</head>
+<body>
+
+    <x-gallery-player>
+
+        <x-thumbnails><!--
+         --><x-thumbnail data-type="picture" data-num= "0"><img src="pictures/thumbnail-01.png"></x-thumbnail><!--
+         --><x-thumbnail data-type="picture" data-num= "1"><img src="pictures/thumbnail-02.png"></x-thumbnail><!--
+         --><x-thumbnail data-type="picture" data-num= "2"><img src="pictures/thumbnail-03.png"></x-thumbnail><!--
+         --><x-thumbnail data-type="picture" data-num= "3"><img src="pictures/thumbnail-04.png"></x-thumbnail><!--
+         --><x-thumbnail data-type="picture" data-num= "4"><img src="pictures/thumbnail-05.png"></x-thumbnail><!--
+         --><x-thumbnail data-type="picture" data-num= "5"><img src="pictures/thumbnail-06.png"></x-thumbnail><!--
+         --><x-thumbnail data-type="picture" data-num= "6"><img src="pictures/thumbnail-07.png"></x-thumbnail><!--
+         --><x-thumbnail data-type="picture" data-num= "7"><img src="pictures/thumbnail-08.png"></x-thumbnail><!--
+         --><x-thumbnail data-type="picture" data-num= "8"><img src="pictures/thumbnail-09.png"></x-thumbnail><!--
+         --><x-thumbnail data-type="picture" data-num= "9" aria-selected="true"><img src="pictures/thumbnail-10.png"></x-thumbnail><!--
+         --><x-thumbnail data-type="picture" data-num="10"><img src="pictures/thumbnail-11.png"></x-thumbnail><!--
+         --><x-thumbnail data-type="picture" data-num="11"><img src="pictures/thumbnail-12.png"></x-thumbnail><!--
+         --><x-thumbnail data-type="picture" data-num="12"><img src="pictures/thumbnail-13.png"></x-thumbnail><!--
+         --><x-thumbnail data-type="picture" data-num="13"><img src="pictures/thumbnail-14.png"></x-thumbnail><!--
+         --><x-thumbnail data-type="picture" data-num="14"><img src="pictures/thumbnail-15.png"></x-thumbnail><!--
+         --><x-thumbnail data-type="picture" data-num="15"><img src="pictures/thumbnail-16.png"></x-thumbnail><!--
+         --><x-thumbnail data-type="picture" data-num="16"><img src="pictures/thumbnail-17.png"></x-thumbnail><!--
+         --><x-thumbnail data-type="picture" data-num="17"><img src="pictures/thumbnail-18.png"></x-thumbnail><!--
+         --><x-thumbnail data-type="picture" data-num="18"><img src="pictures/thumbnail-19.png"></x-thumbnail><!--
+         --><x-thumbnail data-type="picture" data-num="19"><img src="pictures/thumbnail-20.png"></x-thumbnail><!--
+     --></x-thumbnails>
+
+        <x-button-c></x-button-c>
+
+        <x-viewing-part>
+            <x-button-l data-is-blocked></x-button-l>
+            <x-viewing-area>
+                <img src="pictures/main.png">
+            </x-viewing-area>
+            <x-button-r></x-button-r>
+        </x-viewing-part>
+    </x-gallery-player>
+
+</body>
+</html>

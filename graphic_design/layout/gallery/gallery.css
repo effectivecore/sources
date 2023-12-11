@@ -20,6 +20,8 @@ x-gallery-player * {
   -webkit-user-select: none;
 }
 
+
+
 /* thumbnails */
 
 x-gallery-player x-thumbnails {
@@ -49,6 +51,8 @@ x-gallery-player x-thumbnails x-thumbnail img {
   margin: 1px;
 }
 
+
+
 /* close button */
 
 x-gallery-player x-button-c {
@@ -62,6 +66,8 @@ x-gallery-player x-button-c {
 
 x-gallery-player x-button-c {background: url('pictures/icons.svg') no-repeat -290px 100%}
 x-gallery-player x-button-c:hover {background-position: -290px 0}
+
+
 
 /* viewing part grid:
    ┌─────────────┬────────────┬────────────────┬────────────┬─────────────┐
@@ -78,12 +84,18 @@ x-gallery-player x-viewing-part {
   height: calc(100% - var(--gallery-thumbnails-height));
 }
 
-x-gallery-player x-viewing-part x-button-l {grid-column-start: 2; cursor: pointer; background: url('pictures/icons.svg') no-repeat    0   50%}
-x-gallery-player x-viewing-part x-button-r {                      cursor: pointer; background: url('pictures/icons.svg') no-repeat -210px 50%}
+x-gallery-player x-viewing-part x-button-l {cursor: pointer; background: url('pictures/icons.svg') no-repeat; grid-column-start: 2}
+x-gallery-player x-viewing-part x-button-r {cursor: pointer; background: url('pictures/icons.svg') no-repeat}
+
+x-gallery-player x-viewing-part x-button-l       {background-position:    0   50%}
+x-gallery-player x-viewing-part x-button-r       {background-position: -210px 50%}
 x-gallery-player x-viewing-part x-button-l:hover {background-position:  -70px 50%}
 x-gallery-player x-viewing-part x-button-r:hover {background-position: -140px 50%}
+
 x-gallery-player x-viewing-part x-button-l[data-is-blocked],
 x-gallery-player x-viewing-part x-button-r[data-is-blocked] {opacity: .1; cursor: not-allowed}
+
+
 
 /* viewing area grid (centerer):
    ┌─────┬───────────────────────┬─────┐
@@ -111,3 +123,34 @@ x-gallery-player x-viewing-part x-viewing-area > * {grid-column-start: 2; grid-r
 x-gallery-player x-viewing-part x-viewing-area img {max-width: var(--thumbnail-width-big)}
 x-gallery-player x-viewing-part x-viewing-area x-audio-player {width: 90%}
 x-gallery-player x-viewing-part x-viewing-area video {display: inline-block; width: 90%}
+
+
+
+/* mobile adaptation */
+
+@media screen and (max-width: 600px /* %%_page_width_mobile(null)px */) {
+
+/* viewing part grid:
+   ┌───────────────────────────────────────┐
+   │            |    area     |            │
+   ├────────────┬─────────────┬────────────┤
+   │ button "<" │ empty space │ button ">" │
+   │    70px    │     1fr     │    70px    │
+   └────────────┴─────────────┴────────────┘
+*/
+
+  x-gallery-player x-viewing-part {
+    grid-template-columns: 70px 1fr 70px;
+    grid-template-rows   : 1fr 80px;
+  }
+
+  x-gallery-player x-viewing-part x-viewing-area {grid-row-start: 1; grid-column-start: 1; grid-column-end: 4}
+  x-gallery-player x-viewing-part x-button-l     {grid-row-start: 2; grid-column-start: 1}
+  x-gallery-player x-viewing-part x-button-r     {grid-row-start: 2; grid-column-start: 3}
+
+  x-gallery-player x-viewing-part x-button-l       {background-position:    0   -10px}
+  x-gallery-player x-viewing-part x-button-r       {background-position: -210px -10px}
+  x-gallery-player x-viewing-part x-button-l:hover {background-position:  -70px -10px}
+  x-gallery-player x-viewing-part x-button-r:hover {background-position: -140px -10px}
+
+}

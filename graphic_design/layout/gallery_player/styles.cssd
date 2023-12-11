@@ -22,7 +22,7 @@ x-gallery-player {
 
 x-gallery-player * {
   user-select: none;
-  -webkit-user-select: none;
+ -webkit-user-select: none;
 }
 
 
@@ -126,8 +126,8 @@ x-gallery-player x-viewing-part x-viewing-area {
 
 x-gallery-player x-viewing-part x-viewing-area > * {grid-column-start: 2; grid-row-start: 2}
 x-gallery-player x-viewing-part x-viewing-area img {max-width: var(--thumbnail-width-big)}
-x-gallery-player x-viewing-part x-viewing-area x-audio-player {width: 90%}
-x-gallery-player x-viewing-part x-viewing-area video {display: inline-block; width: 90%}
+x-gallery-player x-viewing-part x-viewing-area video {max-width: var(--thumbnail-width-big)}
+x-gallery-player x-viewing-part x-viewing-area x-audio-player {width: 300px}
 
 
 

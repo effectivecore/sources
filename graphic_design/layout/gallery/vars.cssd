@@ -1,5 +1,0 @@
-
-:root {
-  --gallery-thumbnails-height:  90px;
-  --thumbnail-width-big: 400px; /* %%_thumbnail_width_big(null)px */
-}

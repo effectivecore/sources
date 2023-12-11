@@ -60,10 +60,17 @@ x-gallery-player x-button-c {
   cursor: pointer;
 }
 
-x-gallery-player x-button-c {background: url('pictures/icons-gallery_player.svg') no-repeat -290px 100%}
+x-gallery-player x-button-c {background: url('pictures/icons.svg') no-repeat -290px 100%}
 x-gallery-player x-button-c:hover {background-position: -290px 0}
 
-/* viewing area */
+/* viewing part:
+   ┌─────────────┬────────────┬────────────────┬────────────┬─────────────┐
+   │             │            │      area      │            │             │
+   │ empty space │ button "<" │ ◀────────────▶ │ button ">" │ empty space │
+   │     1fr     │    70px    │   70px|400px   │    70px    │     1fr     │
+   │             │            │                │            │             │
+   └─────────────┴────────────┴────────────────┴────────────┴─────────────┘
+*/
 
 x-gallery-player x-viewing-part {
   display: grid;
@@ -71,26 +78,26 @@ x-gallery-player x-viewing-part {
   height: calc(100% - var(--gallery-thumbnails-height));
 }
 
-x-gallery-player x-viewing-part x-button-l {grid-column-start: 2; cursor: pointer; background: url('pictures/icons-gallery_player.svg') no-repeat    0   50%}
-x-gallery-player x-viewing-part x-button-r {                      cursor: pointer; background: url('pictures/icons-gallery_player.svg') no-repeat -210px 50%}
+x-gallery-player x-viewing-part x-button-l {grid-column-start: 2; cursor: pointer; background: url('pictures/icons.svg') no-repeat    0   50%}
+x-gallery-player x-viewing-part x-button-r {                      cursor: pointer; background: url('pictures/icons.svg') no-repeat -210px 50%}
 x-gallery-player x-viewing-part x-button-l:hover {background-position:  -70px 50%}
 x-gallery-player x-viewing-part x-button-r:hover {background-position: -140px 50%}
 x-gallery-player x-viewing-part x-button-l[data-is-blocked],
 x-gallery-player x-viewing-part x-button-r[data-is-blocked] {opacity: .1; cursor: not-allowed}
 
-    /*            centerer
-    ┌─────┬───────────────────────┬─────┐
-    │ 1fr │          1fr          │ 1fr │
-    ├─────┼───────────────────────┼─────┤
-    │     │  ▲                    │     │
-    │     │ ◀┼──────────────────▶ │     │
-    │ 1fr │  │ 1px|max-content    │ 1fr │
-    │     │  │                    │     │
-    │     │  ▼                    │     │
-    ├─────┼───────────────────────┼─────┤
-    │ 1fr │          1fr          │ 1fr │
-    └─────┴───────────────────────┴─────┘
-    */
+/* viewing area (centerer):
+   ┌─────┬───────────────────────┬─────┐
+   │ 1fr │          1fr          │ 1fr │
+   ├─────┼───────────────────────┼─────┤
+   │     │  ▲                    │     │
+   │     │ ◀┼──────────────────▶ │     │
+   │ 1fr │  │ 1px|max-content    │ 1fr │
+   │     │  │                    │     │
+   │     │  ▼                    │     │
+   ├─────┼───────────────────────┼─────┤
+   │ 1fr │          1fr          │ 1fr │
+   └─────┴───────────────────────┴─────┘
+*/
 
 x-gallery-player x-viewing-part x-viewing-area {
   display: grid;

@@ -45,7 +45,7 @@ x-gallery-player x-thumbnails x-thumbnail {display: inline-block}
 x-gallery-player x-thumbnails x-thumbnail img {
   display: block;
   width: auto;
-  height: calc(var(--gallery-thumbnails-height) - 30px);
+  height: calc(var(--gallery-thumbnails-height) - 40px);
   margin: 1px;
 }
 
@@ -63,7 +63,7 @@ x-gallery-player x-button-c {
 x-gallery-player x-button-c {background: url('pictures/icons.svg') no-repeat -290px 100%}
 x-gallery-player x-button-c:hover {background-position: -290px 0}
 
-/* viewing part:
+/* viewing part grid:
    ┌─────────────┬────────────┬────────────────┬────────────┬─────────────┐
    │             │            │      area      │            │             │
    │ empty space │ button "<" │ ◀────────────▶ │ button ">" │ empty space │
@@ -85,7 +85,7 @@ x-gallery-player x-viewing-part x-button-r:hover {background-position: -140px 50
 x-gallery-player x-viewing-part x-button-l[data-is-blocked],
 x-gallery-player x-viewing-part x-button-r[data-is-blocked] {opacity: .1; cursor: not-allowed}
 
-/* viewing area (centerer):
+/* viewing area grid (centerer):
    ┌─────┬───────────────────────┬─────┐
    │ 1fr │          1fr          │ 1fr │
    ├─────┼───────────────────────┼─────┤

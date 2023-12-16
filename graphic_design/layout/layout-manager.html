@@ -50,16 +50,16 @@
         /* scaler */
 
         [data-type^='scaler'] {
-          display: inline-block;
-          margin: 0;
+          position: absolute;
+          z-index: 100; 
           appearance: none;
          -webkit-appearance: none;
           cursor: pointer;
           border: 1px solid black;
         }
 
-        [data-type^='scaler-x'] {position: absolute; z-index: 100; width: 11px; height: 10px}
-        [data-type^='scaler-y'] {position: absolute; z-index: 100; width: 10px; height: 11px}
+        [data-type^='scaler-x'] {width: 11px; height: 10px}
+        [data-type^='scaler-y'] {width: 10px; height: 11px}
 
         /* grid fixer */
 

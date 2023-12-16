@@ -87,8 +87,10 @@
         [data-type='scaler-y-grid'][value='4'] {margin-left: -12px; margin-top:  50px}
         [data-type='scaler-y-grid'][value='5'] {margin-left: -12px; margin-top:  60px}
 
-        [data-type='scaler-x-grid']:checked,
-        [data-type='scaler-y-grid']:checked {background: deepskyblue}
+        [data-type='scaler-x-grid'],
+        [data-type='scaler-y-grid'] {background: deepskyblue}
+        [data-type='scaler-x-grid']:checked ~ [data-type='scaler-x-grid'],
+        [data-type='scaler-y-grid']:checked ~ [data-type='scaler-y-grid'] {background: white}
 
         [data-type='scaler-x-grid'][value='1']:checked ~ [data-type='grid-x5'] {grid-template-columns: repeat(1, 1fr)}
         [data-type='scaler-x-grid'][value='2']:checked ~ [data-type='grid-x5'] {grid-template-columns: repeat(2, 1fr)}
@@ -123,8 +125,10 @@
         [data-type='scaler-y-item'][value='4'] {margin-left: 10px; margin-top: 50px}
         [data-type='scaler-y-item'][value='5'] {margin-left: 10px; margin-top: 60px}
 
-        [data-type='scaler-x-item']:checked,
-        [data-type='scaler-y-item']:checked {background: deeppink}
+        [data-type='scaler-x-item'],
+        [data-type='scaler-y-item'] {background: deepskyblue}
+        [data-type='scaler-x-item']:checked ~ [data-type='scaler-x-item'],
+        [data-type='scaler-y-item']:checked ~ [data-type='scaler-y-item'] {background: white}
 
                                                                                            x-grid-item[data-path-x='1'][data-path-y='1'] {z-index: 50}
         [data-type='scaler-x-item'][data-path-x='1'][data-path-y='1'][value='1']:checked ~ x-grid-item[data-path-x='1'][data-path-y='1'] {grid-column-end: 2}

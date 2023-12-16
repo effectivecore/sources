@@ -51,18 +51,21 @@
         /* scaler */
 
         [data-type^='scaler'] {
-          position: relative;
           appearance: none;
          -webkit-appearance: none;
+          display: inline-block;
+          position: relative;
+          width: 10px;
+          height: 10px;
+          margin: 0;
+          padding: 0;
           cursor: pointer;
           border: 1px dotted black;
         }
 
-        [data-type^='scaler-x'] {width: 11px; height: 10px; margin-right: -11px; margin-bottom: -10px}
-        [data-type^='scaler-y'] {width: 10px; height: 11px; margin-right: -10px; margin-bottom: -11px}
-
-        [data-type^='scaler-x']:checked,
-        [data-type^='scaler-y']:checked {background: deepskyblue}
+        [data-type^='scaler']:checked {
+          background: deepskyblue;
+        }
 
         /* grid fixer */
 
@@ -79,16 +82,18 @@
 
         /* scaler for grid */
 
-        [data-type='scaler-x-grid'][value='1'] {left:   0;   top: -16px}
-        [data-type='scaler-x-grid'][value='2'] {left:   0;   top: -16px}
-        [data-type='scaler-x-grid'][value='3'] {left:   0;   top: -16px}
-        [data-type='scaler-x-grid'][value='4'] {left:   0;   top: -16px}
-        [data-type='scaler-x-grid'][value='5'] {left:   0;   top: -16px}
-        [data-type='scaler-y-grid'][value='1'] {left: -10px; top:  20px}
-        [data-type='scaler-y-grid'][value='2'] {left: -17px; top:  30px}
-        [data-type='scaler-y-grid'][value='3'] {left: -23px; top:  40px}
-        [data-type='scaler-y-grid'][value='4'] {left: -28px; top:  50px}
-        [data-type='scaler-y-grid'][value='5'] {left: -34px; top:  60px}
+        [data-type='scaler-x-grid'],
+        [data-type='scaler-y-grid'] {}
+        [data-type='scaler-x-grid'][value='1'] {}
+        [data-type='scaler-x-grid'][value='2'] {}
+        [data-type='scaler-x-grid'][value='3'] {}
+        [data-type='scaler-x-grid'][value='4'] {}
+        [data-type='scaler-x-grid'][value='5'] {}
+        [data-type='scaler-y-grid'][value='1'] {}
+        [data-type='scaler-y-grid'][value='2'] {}
+        [data-type='scaler-y-grid'][value='3'] {}
+        [data-type='scaler-y-grid'][value='4'] {}
+        [data-type='scaler-y-grid'][value='5'] {}
 
         [data-type='scaler-x-grid'][value='1']:checked ~ [data-type='grid-x5'] {grid-template-columns: repeat(1, 1fr)}
         [data-type='scaler-x-grid'][value='2']:checked ~ [data-type='grid-x5'] {grid-template-columns: repeat(2, 1fr)}
@@ -112,11 +117,11 @@
 
         /* scaler for item */
 
-        [data-type='scaler-x-item'][value='1'] {left: 20px; top: 10px}
-        [data-type='scaler-x-item'][value='2'] {left: 30px; top: 10px}
-        [data-type='scaler-x-item'][value='3'] {left: 40px; top: 10px}
-        [data-type='scaler-x-item'][value='4'] {left: 50px; top: 10px}
-        [data-type='scaler-x-item'][value='5'] {left: 60px; top: 10px}
+        [data-type='scaler-x-item'][value='1'] {left: 20px; top: 12px}
+        [data-type='scaler-x-item'][value='2'] {left: 30px; top: 12px}
+        [data-type='scaler-x-item'][value='3'] {left: 40px; top: 12px}
+        [data-type='scaler-x-item'][value='4'] {left: 50px; top: 12px}
+        [data-type='scaler-x-item'][value='5'] {left: 60px; top: 12px}
         [data-type='scaler-y-item'][value='1'] {left: 10px; top: 20px}
         [data-type='scaler-y-item'][value='2'] {left: 10px; top: 30px}
         [data-type='scaler-y-item'][value='3'] {left: 10px; top: 40px}
@@ -149,22 +154,22 @@
         [data-type='scaler-x-item'][data-path-x='12'][data-path-y='1'],
         [data-type='scaler-y-item'][data-path-x='12'][data-path-y='1'] {z-index: 48}
         x-grid-item[data-path-x='12'][data-path-y='1'] {z-index: 47}
-    </style>2
+    </style>
 </head>
 <body>
 
     <x-part data-area data-group-id="body">
 
-        <input data-type="scaler-y-grid" type="radio" name="grid_y" value="1">
-        <input data-type="scaler-y-grid" type="radio" name="grid_y" value="2">
-        <input data-type="scaler-y-grid" type="radio" name="grid_y" value="3">
-        <input data-type="scaler-y-grid" type="radio" name="grid_y" value="4">
-        <input data-type="scaler-y-grid" type="radio" name="grid_y" value="5" checked>
         <input data-type="scaler-x-grid" type="radio" name="grid_x" value="1">
         <input data-type="scaler-x-grid" type="radio" name="grid_x" value="2">
         <input data-type="scaler-x-grid" type="radio" name="grid_x" value="3">
         <input data-type="scaler-x-grid" type="radio" name="grid_x" value="4">
         <input data-type="scaler-x-grid" type="radio" name="grid_x" value="5" checked>
+        <input data-type="scaler-y-grid" type="radio" name="grid_y" value="1">
+        <input data-type="scaler-y-grid" type="radio" name="grid_y" value="2">
+        <input data-type="scaler-y-grid" type="radio" name="grid_y" value="3">
+        <input data-type="scaler-y-grid" type="radio" name="grid_y" value="4">
+        <input data-type="scaler-y-grid" type="radio" name="grid_y" value="5" checked>
         <x-grid-manager data-type="grid-x5">
 
             <input data-type="scaler-x-item" data-path-x="1" data-path-y="1" type="radio" name="item_x[1-1]" value="1" checked>

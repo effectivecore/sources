@@ -30,6 +30,11 @@
           display: grid;
         }
 
+        x-grid-manager * {
+          user-select: none;
+         -webkit-user-select: none;
+        }
+
         x-grid-manager[data-type='grid-x5'] {
           grid-template-columns: repeat(5,   1fr);
           grid-template-rows   : repeat(5, 100px);
@@ -38,6 +43,7 @@
         x-grid-item {
           display: block;
           margin: 5px;
+          padding: 20px;
           background-color: whitesmoke;
         }
 
@@ -46,78 +52,91 @@
         [data-type^='scaler'] {
           display: inline-block;
           margin: 0;
-          padding: 0;
           appearance: none;
-          user-select: none;
          -webkit-appearance: none;
-         -webkit-user-select: none;
           cursor: pointer;
           border: 1px solid black;
         }
 
-        [data-type^='scaler-x'] {width: 20px; height: 10px}
-        [data-type^='scaler-y'] {width: 10px; height: 21px}
+        [data-type^='scaler-x'] {position: absolute; z-index: 100; width: 11px; height: 10px}
+        [data-type^='scaler-y'] {position: absolute; z-index: 100; width: 10px; height: 11px}
 
         /* grid fixer */
 
-        [data-type='grid-x5'] [data-path-x='1'    ] {grid-column-start: 1}
-        [data-type='grid-x5'] [data-path-x='12'   ] {grid-column-start: 2}
-        [data-type='grid-x5'] [data-path-x='123'  ] {grid-column-start: 3}
-        [data-type='grid-x5'] [data-path-x='1234' ] {grid-column-start: 4}
-        [data-type='grid-x5'] [data-path-x='12345'] {grid-column-start: 5}
-        [data-type='grid-x5'] [data-path-y='1'    ] {grid-row-start: 1}
-        [data-type='grid-x5'] [data-path-y='12'   ] {grid-row-start: 2}
-        [data-type='grid-x5'] [data-path-y='123'  ] {grid-row-start: 3}
-        [data-type='grid-x5'] [data-path-y='1234' ] {grid-row-start: 4}
-        [data-type='grid-x5'] [data-path-y='12345'] {grid-row-start: 5}
+        [data-type='grid-x5'] *[data-path-x='1'    ] {grid-column-start: 1}
+        [data-type='grid-x5'] *[data-path-x='12'   ] {grid-column-start: 2}
+        [data-type='grid-x5'] *[data-path-x='123'  ] {grid-column-start: 3}
+        [data-type='grid-x5'] *[data-path-x='1234' ] {grid-column-start: 4}
+        [data-type='grid-x5'] *[data-path-x='12345'] {grid-column-start: 5}
+        [data-type='grid-x5'] *[data-path-y='1'    ] {grid-row-start: 1}
+        [data-type='grid-x5'] *[data-path-y='12'   ] {grid-row-start: 2}
+        [data-type='grid-x5'] *[data-path-y='123'  ] {grid-row-start: 3}
+        [data-type='grid-x5'] *[data-path-y='1234' ] {grid-row-start: 4}
+        [data-type='grid-x5'] *[data-path-y='12345'] {grid-row-start: 5}
 
         /* scaler for grid */
+
+        [data-type='scaler-x-grid'][value='1'] {margin-left:  20px; margin-top: -12px}
+        [data-type='scaler-x-grid'][value='2'] {margin-left:  30px; margin-top: -12px}
+        [data-type='scaler-x-grid'][value='3'] {margin-left:  40px; margin-top: -12px}
+        [data-type='scaler-x-grid'][value='4'] {margin-left:  50px; margin-top: -12px}
+        [data-type='scaler-x-grid'][value='5'] {margin-left:  60px; margin-top: -12px}
+        [data-type='scaler-y-grid'][value='1'] {margin-left: -12px; margin-top:  20px}
+        [data-type='scaler-y-grid'][value='2'] {margin-left: -12px; margin-top:  30px}
+        [data-type='scaler-y-grid'][value='3'] {margin-left: -12px; margin-top:  40px}
+        [data-type='scaler-y-grid'][value='4'] {margin-left: -12px; margin-top:  50px}
+        [data-type='scaler-y-grid'][value='5'] {margin-left: -12px; margin-top:  60px}
 
         [data-type='scaler-x-grid']:checked,
         [data-type='scaler-y-grid']:checked {background: deepskyblue}
 
-        [data-type='scaler-x-grid'] {margin-right: -6px}
-        [data-type='scaler-y-grid'][value='1'] {position: absolute; margin-left: -13px; margin-top:  20px}
-        [data-type='scaler-y-grid'][value='2'] {position: absolute; margin-left: -13px; margin-top:  40px}
-        [data-type='scaler-y-grid'][value='3'] {position: absolute; margin-left: -13px; margin-top:  60px}
-        [data-type='scaler-y-grid'][value='4'] {position: absolute; margin-left: -13px; margin-top:  80px}
-        [data-type='scaler-y-grid'][value='5'] {position: absolute; margin-left: -13px; margin-top: 100px}
+        [data-type='scaler-x-grid'][value='1']:checked ~ [data-type='grid-x5'] {grid-template-columns: repeat(1, 1fr)}
+        [data-type='scaler-x-grid'][value='2']:checked ~ [data-type='grid-x5'] {grid-template-columns: repeat(2, 1fr)}
+        [data-type='scaler-x-grid'][value='3']:checked ~ [data-type='grid-x5'] {grid-template-columns: repeat(3, 1fr)}
+        [data-type='scaler-x-grid'][value='4']:checked ~ [data-type='grid-x5'] {grid-template-columns: repeat(4, 1fr)}
+        [data-type='scaler-x-grid'][value='5']:checked ~ [data-type='grid-x5'] {grid-template-columns: repeat(5, 1fr)}
+        [data-type='scaler-x-grid'][value='1']:checked ~ [data-type='grid-x5'] x-grid-item[data-path-x^='12'   ],
+        [data-type='scaler-x-grid'][value='2']:checked ~ [data-type='grid-x5'] x-grid-item[data-path-x^='123'  ],
+        [data-type='scaler-x-grid'][value='3']:checked ~ [data-type='grid-x5'] x-grid-item[data-path-x^='1234' ],
+        [data-type='scaler-x-grid'][value='4']:checked ~ [data-type='grid-x5'] x-grid-item[data-path-x^='12345'] {display: none}
 
-        [data-type='scaler-x-grid']:checked[value='1'] ~ [data-type='grid-x5'] {grid-template-columns: repeat(1, 1fr)}
-        [data-type='scaler-x-grid']:checked[value='2'] ~ [data-type='grid-x5'] {grid-template-columns: repeat(2, 1fr)}
-        [data-type='scaler-x-grid']:checked[value='3'] ~ [data-type='grid-x5'] {grid-template-columns: repeat(3, 1fr)}
-        [data-type='scaler-x-grid']:checked[value='4'] ~ [data-type='grid-x5'] {grid-template-columns: repeat(4, 1fr)}
-        [data-type='scaler-x-grid']:checked[value='5'] ~ [data-type='grid-x5'] {grid-template-columns: repeat(5, 1fr)}
-        [data-type='scaler-x-grid']:checked[value='1'] ~ [data-type='grid-x5'] x-grid-item[data-path-x^='12'   ],
-        [data-type='scaler-x-grid']:checked[value='2'] ~ [data-type='grid-x5'] x-grid-item[data-path-x^='123'  ],
-        [data-type='scaler-x-grid']:checked[value='3'] ~ [data-type='grid-x5'] x-grid-item[data-path-x^='1234' ],
-        [data-type='scaler-x-grid']:checked[value='4'] ~ [data-type='grid-x5'] x-grid-item[data-path-x^='12345'] {display: none}
-
-        [data-type='scaler-y-grid']:checked[value='1'] ~ [data-type='grid-x5'] {grid-template-rows: repeat(1, 100px)}
-        [data-type='scaler-y-grid']:checked[value='2'] ~ [data-type='grid-x5'] {grid-template-rows: repeat(2, 100px)}
-        [data-type='scaler-y-grid']:checked[value='3'] ~ [data-type='grid-x5'] {grid-template-rows: repeat(3, 100px)}
-        [data-type='scaler-y-grid']:checked[value='4'] ~ [data-type='grid-x5'] {grid-template-rows: repeat(4, 100px)}
-        [data-type='scaler-y-grid']:checked[value='5'] ~ [data-type='grid-x5'] {grid-template-rows: repeat(5, 100px)}
-        [data-type='scaler-y-grid']:checked[value='1'] ~ [data-type='grid-x5'] x-grid-item[data-path-y^='12'   ],
-        [data-type='scaler-y-grid']:checked[value='2'] ~ [data-type='grid-x5'] x-grid-item[data-path-y^='123'  ],
-        [data-type='scaler-y-grid']:checked[value='3'] ~ [data-type='grid-x5'] x-grid-item[data-path-y^='1234' ],
-        [data-type='scaler-y-grid']:checked[value='4'] ~ [data-type='grid-x5'] x-grid-item[data-path-y^='12345'] {display: none}
+        [data-type='scaler-y-grid'][value='1']:checked ~ [data-type='grid-x5'] {grid-template-rows: repeat(1, 100px)}
+        [data-type='scaler-y-grid'][value='2']:checked ~ [data-type='grid-x5'] {grid-template-rows: repeat(2, 100px)}
+        [data-type='scaler-y-grid'][value='3']:checked ~ [data-type='grid-x5'] {grid-template-rows: repeat(3, 100px)}
+        [data-type='scaler-y-grid'][value='4']:checked ~ [data-type='grid-x5'] {grid-template-rows: repeat(4, 100px)}
+        [data-type='scaler-y-grid'][value='5']:checked ~ [data-type='grid-x5'] {grid-template-rows: repeat(5, 100px)}
+        [data-type='scaler-y-grid'][value='1']:checked ~ [data-type='grid-x5'] x-grid-item[data-path-y^='12'   ],
+        [data-type='scaler-y-grid'][value='2']:checked ~ [data-type='grid-x5'] x-grid-item[data-path-y^='123'  ],
+        [data-type='scaler-y-grid'][value='3']:checked ~ [data-type='grid-x5'] x-grid-item[data-path-y^='1234' ],
+        [data-type='scaler-y-grid'][value='4']:checked ~ [data-type='grid-x5'] x-grid-item[data-path-y^='12345'] {display: none}
 
         /* scaler for item */
+
+        [data-type='scaler-x-item'][value='1'] {margin-left: 20px; margin-top: 10px}
+        [data-type='scaler-x-item'][value='2'] {margin-left: 30px; margin-top: 10px}
+        [data-type='scaler-x-item'][value='3'] {margin-left: 40px; margin-top: 10px}
+        [data-type='scaler-x-item'][value='4'] {margin-left: 50px; margin-top: 10px}
+        [data-type='scaler-x-item'][value='5'] {margin-left: 60px; margin-top: 10px}
+        [data-type='scaler-y-item'][value='1'] {margin-left: 10px; margin-top: 20px}
+        [data-type='scaler-y-item'][value='2'] {margin-left: 10px; margin-top: 30px}
+        [data-type='scaler-y-item'][value='3'] {margin-left: 10px; margin-top: 40px}
+        [data-type='scaler-y-item'][value='4'] {margin-left: 10px; margin-top: 50px}
+        [data-type='scaler-y-item'][value='5'] {margin-left: 10px; margin-top: 60px}
 
         [data-type='scaler-x-item']:checked,
         [data-type='scaler-y-item']:checked {background: deeppink}
 
-        [data-type='scaler-x-item'][name='item_x[1-1]']:checked[value='1'] ~ [data-type='grid-x5'] [data-path-x='1'][data-path-y='1'] {grid-column-start: 1; grid-column-end: 2; z-index: 50}
-        [data-type='scaler-x-item'][name='item_x[1-1]']:checked[value='2'] ~ [data-type='grid-x5'] [data-path-x='1'][data-path-y='1'] {grid-column-start: 1; grid-column-end: 3; z-index: 50}
-        [data-type='scaler-x-item'][name='item_x[1-1]']:checked[value='3'] ~ [data-type='grid-x5'] [data-path-x='1'][data-path-y='1'] {grid-column-start: 1; grid-column-end: 4; z-index: 50}
-        [data-type='scaler-x-item'][name='item_x[1-1]']:checked[value='4'] ~ [data-type='grid-x5'] [data-path-x='1'][data-path-y='1'] {grid-column-start: 1; grid-column-end: 5; z-index: 50}
-        [data-type='scaler-x-item'][name='item_x[1-1]']:checked[value='5'] ~ [data-type='grid-x5'] [data-path-x='1'][data-path-y='1'] {grid-column-start: 1; grid-column-end: 6; z-index: 50}
-        [data-type='scaler-y-item'][name='item_y[1-1]']:checked[value='1'] ~ [data-type='grid-x5'] [data-path-x='1'][data-path-y='1'] {grid-row-start: 1; grid-row-end: 2; z-index: 50}
-        [data-type='scaler-y-item'][name='item_y[1-1]']:checked[value='2'] ~ [data-type='grid-x5'] [data-path-x='1'][data-path-y='1'] {grid-row-start: 1; grid-row-end: 3; z-index: 50}
-        [data-type='scaler-y-item'][name='item_y[1-1]']:checked[value='3'] ~ [data-type='grid-x5'] [data-path-x='1'][data-path-y='1'] {grid-row-start: 1; grid-row-end: 4; z-index: 50}
-        [data-type='scaler-y-item'][name='item_y[1-1]']:checked[value='4'] ~ [data-type='grid-x5'] [data-path-x='1'][data-path-y='1'] {grid-row-start: 1; grid-row-end: 5; z-index: 50}
-        [data-type='scaler-y-item'][name='item_y[1-1]']:checked[value='5'] ~ [data-type='grid-x5'] [data-path-x='1'][data-path-y='1'] {grid-row-start: 1; grid-row-end: 6; z-index: 50}
+                                                                                           x-grid-item[data-path-x='1'][data-path-y='1'] {z-index: 50}
+        [data-type='scaler-x-item'][data-path-x='1'][data-path-y='1'][value='1']:checked ~ x-grid-item[data-path-x='1'][data-path-y='1'] {grid-column-end: 2}
+        [data-type='scaler-x-item'][data-path-x='1'][data-path-y='1'][value='2']:checked ~ x-grid-item[data-path-x='1'][data-path-y='1'] {grid-column-end: 3}
+        [data-type='scaler-x-item'][data-path-x='1'][data-path-y='1'][value='3']:checked ~ x-grid-item[data-path-x='1'][data-path-y='1'] {grid-column-end: 4}
+        [data-type='scaler-x-item'][data-path-x='1'][data-path-y='1'][value='4']:checked ~ x-grid-item[data-path-x='1'][data-path-y='1'] {grid-column-end: 5}
+        [data-type='scaler-x-item'][data-path-x='1'][data-path-y='1'][value='5']:checked ~ x-grid-item[data-path-x='1'][data-path-y='1'] {grid-column-end: 6}
+        [data-type='scaler-y-item'][data-path-x='1'][data-path-y='1'][value='1']:checked ~ x-grid-item[data-path-x='1'][data-path-y='1'] {grid-row-end: 2}
+        [data-type='scaler-y-item'][data-path-x='1'][data-path-y='1'][value='2']:checked ~ x-grid-item[data-path-x='1'][data-path-y='1'] {grid-row-end: 3}
+        [data-type='scaler-y-item'][data-path-x='1'][data-path-y='1'][value='3']:checked ~ x-grid-item[data-path-x='1'][data-path-y='1'] {grid-row-end: 4}
+        [data-type='scaler-y-item'][data-path-x='1'][data-path-y='1'][value='4']:checked ~ x-grid-item[data-path-x='1'][data-path-y='1'] {grid-row-end: 5}
+        [data-type='scaler-y-item'][data-path-x='1'][data-path-y='1'][value='5']:checked ~ x-grid-item[data-path-x='1'][data-path-y='1'] {grid-row-end: 6}
     </style>
 </head>
 <body>
@@ -134,20 +153,20 @@
         <input data-type="scaler-x-grid" type="radio" name="grid_x" value="3">
         <input data-type="scaler-x-grid" type="radio" name="grid_x" value="4">
         <input data-type="scaler-x-grid" type="radio" name="grid_x" value="5" checked>
-
-        <input data-type="scaler-y-item" type="radio" name="item_y[1-1]" value="1" checked>
-        <input data-type="scaler-y-item" type="radio" name="item_y[1-1]" value="2">
-        <input data-type="scaler-y-item" type="radio" name="item_y[1-1]" value="3">
-        <input data-type="scaler-y-item" type="radio" name="item_y[1-1]" value="4">
-        <input data-type="scaler-y-item" type="radio" name="item_y[1-1]" value="5">
-        <input data-type="scaler-x-item" type="radio" name="item_x[1-1]" value="1" checked>
-        <input data-type="scaler-x-item" type="radio" name="item_x[1-1]" value="2">
-        <input data-type="scaler-x-item" type="radio" name="item_x[1-1]" value="3">
-        <input data-type="scaler-x-item" type="radio" name="item_x[1-1]" value="4">
-        <input data-type="scaler-x-item" type="radio" name="item_x[1-1]" value="5">
-
         <x-grid-manager data-type="grid-x5">
-            <x-grid-item data-path-x="1"     data-path-y="1"    >1.1</x-grid-item>
+
+            <input data-type="scaler-y-item" data-path-x="1" data-path-y="1" type="radio" name="item_y[1-1]" value="1" checked>
+            <input data-type="scaler-y-item" data-path-x="1" data-path-y="1" type="radio" name="item_y[1-1]" value="2">
+            <input data-type="scaler-y-item" data-path-x="1" data-path-y="1" type="radio" name="item_y[1-1]" value="3">
+            <input data-type="scaler-y-item" data-path-x="1" data-path-y="1" type="radio" name="item_y[1-1]" value="4">
+            <input data-type="scaler-y-item" data-path-x="1" data-path-y="1" type="radio" name="item_y[1-1]" value="5">
+            <input data-type="scaler-x-item" data-path-x="1" data-path-y="1" type="radio" name="item_x[1-1]" value="1" checked>
+            <input data-type="scaler-x-item" data-path-x="1" data-path-y="1" type="radio" name="item_x[1-1]" value="2">
+            <input data-type="scaler-x-item" data-path-x="1" data-path-y="1" type="radio" name="item_x[1-1]" value="3">
+            <input data-type="scaler-x-item" data-path-x="1" data-path-y="1" type="radio" name="item_x[1-1]" value="4">
+            <input data-type="scaler-x-item" data-path-x="1" data-path-y="1" type="radio" name="item_x[1-1]" value="5">
+            <x-grid-item                     data-path-x="1" data-path-y="1">1.1</x-grid-item>
+
             <x-grid-item data-path-x="12"    data-path-y="1"    >1.2</x-grid-item>
             <x-grid-item data-path-x="123"   data-path-y="1"    >1.3</x-grid-item>
             <x-grid-item data-path-x="1234"  data-path-y="1"    >1.4</x-grid-item>

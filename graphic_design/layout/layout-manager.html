@@ -44,7 +44,7 @@
           display: block;
           margin: 5px;
           padding: 20px;
-          border: 1px dashed black;
+          border: 1px solid black;
           background-color: whitesmoke;
         }
 
@@ -60,7 +60,6 @@
           margin: 0;
           padding: 0;
           cursor: pointer;
-          border-radius: 6px;
           border: 1px solid black;
           background: white;
         }
@@ -70,7 +69,6 @@
         }
 
         [data-type^='scaler']:disabled {
-          border-color: darkgray;
           background: silver;
         }
 
@@ -124,16 +122,16 @@
 
         /* scaler for item */
 
-        [data-type='scaler-x-item'][value='1'] {left: 20px; top: 10px}
-        [data-type='scaler-x-item'][value='2'] {left: 35px; top: 10px}
-        [data-type='scaler-x-item'][value='3'] {left: 50px; top: 10px}
-        [data-type='scaler-x-item'][value='4'] {left: 65px; top: 10px}
-        [data-type='scaler-x-item'][value='5'] {left: 80px; top: 10px}
-        [data-type='scaler-y-item'][value='1'] {left: 10px; top: 20px}
-        [data-type='scaler-y-item'][value='2'] {left: 10px; top: 35px}
-        [data-type='scaler-y-item'][value='3'] {left: 10px; top: 50px}
-        [data-type='scaler-y-item'][value='4'] {left: 10px; top: 65px}
-        [data-type='scaler-y-item'][value='5'] {left: 10px; top: 80px}
+        [data-type='scaler-x-item'][value='1'] {left: 20px; top:  5px}
+        [data-type='scaler-x-item'][value='2'] {left: 31px; top:  5px}
+        [data-type='scaler-x-item'][value='3'] {left: 42px; top:  5px}
+        [data-type='scaler-x-item'][value='4'] {left: 53px; top:  5px}
+        [data-type='scaler-x-item'][value='5'] {left: 64px; top:  5px}
+        [data-type='scaler-y-item'][value='1'] {left:  5px; top: 20px}
+        [data-type='scaler-y-item'][value='2'] {left:  5px; top: 31px}
+        [data-type='scaler-y-item'][value='3'] {left:  5px; top: 42px}
+        [data-type='scaler-y-item'][value='4'] {left:  5px; top: 53px}
+        [data-type='scaler-y-item'][value='5'] {left:  5px; top: 64px}
 
         [data-type='scaler-x-item'][data-path-x='1'][data-path-y='1'][value='1']:checked ~ x-grid-item[data-path-x='1'][data-path-y='1'] {grid-column-end: 2}
         [data-type='scaler-x-item'][data-path-x='1'][data-path-y='1'][value='2']:checked ~ x-grid-item[data-path-x='1'][data-path-y='1'] {grid-column-end: 3}

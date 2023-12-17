@@ -64,6 +64,9 @@
           background: white;
         }
 
+        [data-type^='scaler-x-'] {height: 8px}
+        [data-type^='scaler-y-'] {width:  8px}
+
         [data-type^='scaler']:checked {
           background: deepskyblue;
         }
@@ -88,17 +91,17 @@
         /* scaler for grid */
 
         [data-type='scaler-x-grid'],
-        [data-type='scaler-y-grid'] {}
-        [data-type='scaler-x-grid'][value='1'] {}
-        [data-type='scaler-x-grid'][value='2'] {}
-        [data-type='scaler-x-grid'][value='3'] {}
-        [data-type='scaler-x-grid'][value='4'] {}
-        [data-type='scaler-x-grid'][value='5'] {}
-        [data-type='scaler-y-grid'][value='1'] {}
-        [data-type='scaler-y-grid'][value='2'] {}
-        [data-type='scaler-y-grid'][value='3'] {}
-        [data-type='scaler-y-grid'][value='4'] {}
-        [data-type='scaler-y-grid'][value='5'] {}
+        [data-type='scaler-y-grid'] {position: absolute}
+        [data-type='scaler-x-grid'][value='1'] {margin-left:  20px; margin-top: -11px}
+        [data-type='scaler-x-grid'][value='2'] {margin-left:  31px; margin-top: -11px}
+        [data-type='scaler-x-grid'][value='3'] {margin-left:  42px; margin-top: -11px}
+        [data-type='scaler-x-grid'][value='4'] {margin-left:  53px; margin-top: -11px}
+        [data-type='scaler-x-grid'][value='5'] {margin-left:  64px; margin-top: -11px}
+        [data-type='scaler-y-grid'][value='1'] {margin-left: -11px; margin-top:  20px}
+        [data-type='scaler-y-grid'][value='2'] {margin-left: -11px; margin-top:  31px}
+        [data-type='scaler-y-grid'][value='3'] {margin-left: -11px; margin-top:  42px}
+        [data-type='scaler-y-grid'][value='4'] {margin-left: -11px; margin-top:  53px}
+        [data-type='scaler-y-grid'][value='5'] {margin-left: -11px; margin-top:  64px}
 
         [data-type='scaler-x-grid'][value='1']:checked ~ [data-type='grid-x5'] {grid-template-columns: repeat(1, 1fr)}
         [data-type='scaler-x-grid'][value='2']:checked ~ [data-type='grid-x5'] {grid-template-columns: repeat(2, 1fr)}

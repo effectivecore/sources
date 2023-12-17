@@ -11,7 +11,7 @@
           font-family: 'Arial';
           font-size: 16px;
           line-height: 1.5em;
-          background: lavender;
+          background: #30184d;
         }
 
         [data-area][data-group-id='body'] {
@@ -20,8 +20,6 @@
           max-width: 1000px;
           box-sizing: border-box;
           margin: 0 auto;
-          padding: 20px;
-          background: white;
         }
 
         /* grid */
@@ -42,10 +40,12 @@
 
         x-grid-item {
           display: block;
-          margin: 5px;
+          margin: 1px;
           padding: 20px;
-          border: 1px solid black;
-          background-color: whitesmoke;
+          color: white;
+          text-align: center;
+          border: 1px solid #7d6599;
+          background: #4a3466;
         }
 
         /* scaler */
@@ -190,7 +190,7 @@
             <input data-type="scaler-y-item" data-path-x="1" data-path-y="1" type="radio" name="item_y[1-1]" value="3">
             <input data-type="scaler-y-item" data-path-x="1" data-path-y="1" type="radio" name="item_y[1-1]" value="4">
             <input data-type="scaler-y-item" data-path-x="1" data-path-y="1" type="radio" name="item_y[1-1]" value="5">
-            <x-grid-item                     data-path-x="1" data-path-y="1">1.1</x-grid-item>
+            <x-grid-item                     data-path-x="1" data-path-y="1">GRID 1.1</x-grid-item>
 
             <input data-type="scaler-x-item" data-path-x="12" data-path-y="1" type="radio" name="item_x[1-2]" value="1" disabled>
             <input data-type="scaler-x-item" data-path-x="12" data-path-y="1" type="radio" name="item_x[1-2]" value="2" checked>
@@ -202,31 +202,31 @@
             <input data-type="scaler-y-item" data-path-x="12" data-path-y="1" type="radio" name="item_y[1-2]" value="3">
             <input data-type="scaler-y-item" data-path-x="12" data-path-y="1" type="radio" name="item_y[1-2]" value="4">
             <input data-type="scaler-y-item" data-path-x="12" data-path-y="1" type="radio" name="item_y[1-2]" value="5">
-            <x-grid-item                     data-path-x="12" data-path-y="1">1.2</x-grid-item>
+            <x-grid-item                     data-path-x="12" data-path-y="1">GRID 1.2</x-grid-item>
 
-            <x-grid-item data-path-x="123"   data-path-y="1"    >1.3</x-grid-item>
-            <x-grid-item data-path-x="1234"  data-path-y="1"    >1.4</x-grid-item>
-            <x-grid-item data-path-x="12345" data-path-y="1"    >1.5</x-grid-item>
-            <x-grid-item data-path-x="1"     data-path-y="12"   >2.1</x-grid-item>
-            <x-grid-item data-path-x="12"    data-path-y="12"   >2.2</x-grid-item>
-            <x-grid-item data-path-x="123"   data-path-y="12"   >2.3</x-grid-item>
-            <x-grid-item data-path-x="1234"  data-path-y="12"   >2.4</x-grid-item>
-            <x-grid-item data-path-x="12345" data-path-y="12"   >2.5</x-grid-item>
-            <x-grid-item data-path-x="1"     data-path-y="123"  >3.1</x-grid-item>
-            <x-grid-item data-path-x="12"    data-path-y="123"  >3.2</x-grid-item>
-            <x-grid-item data-path-x="123"   data-path-y="123"  >3.3</x-grid-item>
-            <x-grid-item data-path-x="1234"  data-path-y="123"  >3.4</x-grid-item>
-            <x-grid-item data-path-x="12345" data-path-y="123"  >3.5</x-grid-item>
-            <x-grid-item data-path-x="1"     data-path-y="1234" >4.1</x-grid-item>
-            <x-grid-item data-path-x="12"    data-path-y="1234" >4.2</x-grid-item>
-            <x-grid-item data-path-x="123"   data-path-y="1234" >4.3</x-grid-item>
-            <x-grid-item data-path-x="1234"  data-path-y="1234" >4.4</x-grid-item>
-            <x-grid-item data-path-x="12345" data-path-y="1234" >4.5</x-grid-item>
-            <x-grid-item data-path-x="1"     data-path-y="12345">5.1</x-grid-item>
-            <x-grid-item data-path-x="12"    data-path-y="12345">5.2</x-grid-item>
-            <x-grid-item data-path-x="123"   data-path-y="12345">5.3</x-grid-item>
-            <x-grid-item data-path-x="1234"  data-path-y="12345">5.4</x-grid-item>
-            <x-grid-item data-path-x="12345" data-path-y="12345">5.5</x-grid-item>
+            <x-grid-item data-path-x="123"   data-path-y="1"    >GRID 1.3</x-grid-item>
+            <x-grid-item data-path-x="1234"  data-path-y="1"    >GRID 1.4</x-grid-item>
+            <x-grid-item data-path-x="12345" data-path-y="1"    >GRID 1.5</x-grid-item>
+            <x-grid-item data-path-x="1"     data-path-y="12"   >GRID 2.1</x-grid-item>
+            <x-grid-item data-path-x="12"    data-path-y="12"   >GRID 2.2</x-grid-item>
+            <x-grid-item data-path-x="123"   data-path-y="12"   >GRID 2.3</x-grid-item>
+            <x-grid-item data-path-x="1234"  data-path-y="12"   >GRID 2.4</x-grid-item>
+            <x-grid-item data-path-x="12345" data-path-y="12"   >GRID 2.5</x-grid-item>
+            <x-grid-item data-path-x="1"     data-path-y="123"  >GRID 3.1</x-grid-item>
+            <x-grid-item data-path-x="12"    data-path-y="123"  >GRID 3.2</x-grid-item>
+            <x-grid-item data-path-x="123"   data-path-y="123"  >GRID 3.3</x-grid-item>
+            <x-grid-item data-path-x="1234"  data-path-y="123"  >GRID 3.4</x-grid-item>
+            <x-grid-item data-path-x="12345" data-path-y="123"  >GRID 3.5</x-grid-item>
+            <x-grid-item data-path-x="1"     data-path-y="1234" >GRID 4.1</x-grid-item>
+            <x-grid-item data-path-x="12"    data-path-y="1234" >GRID 4.2</x-grid-item>
+            <x-grid-item data-path-x="123"   data-path-y="1234" >GRID 4.3</x-grid-item>
+            <x-grid-item data-path-x="1234"  data-path-y="1234" >GRID 4.4</x-grid-item>
+            <x-grid-item data-path-x="12345" data-path-y="1234" >GRID 4.5</x-grid-item>
+            <x-grid-item data-path-x="1"     data-path-y="12345">GRID 5.1</x-grid-item>
+            <x-grid-item data-path-x="12"    data-path-y="12345">GRID 5.2</x-grid-item>
+            <x-grid-item data-path-x="123"   data-path-y="12345">GRID 5.3</x-grid-item>
+            <x-grid-item data-path-x="1234"  data-path-y="12345">GRID 5.4</x-grid-item>
+            <x-grid-item data-path-x="12345" data-path-y="12345">GRID 5.5</x-grid-item>
         </x-grid-manager>
 
     </x-part>

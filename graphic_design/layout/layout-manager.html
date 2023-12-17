@@ -55,16 +55,23 @@
          -webkit-appearance: none;
           display: inline-block;
           position: relative;
-          width: 10px;
-          height: 10px;
+          width: 12px;
+          height: 12px;
           margin: 0;
           padding: 0;
           cursor: pointer;
-          border: 1px dotted black;
+          border-radius: 6px;
+          border: 1px solid black;
+          background: white;
         }
 
         [data-type^='scaler']:checked {
           background: deepskyblue;
+        }
+
+        [data-type^='scaler']:disabled {
+          border-color: darkgray;
+          background: silver;
         }
 
         /* grid fixer */
@@ -117,16 +124,16 @@
 
         /* scaler for item */
 
-        [data-type='scaler-x-item'][value='1'] {left: 20px; top: 12px}
-        [data-type='scaler-x-item'][value='2'] {left: 30px; top: 12px}
-        [data-type='scaler-x-item'][value='3'] {left: 40px; top: 12px}
-        [data-type='scaler-x-item'][value='4'] {left: 50px; top: 12px}
-        [data-type='scaler-x-item'][value='5'] {left: 60px; top: 12px}
+        [data-type='scaler-x-item'][value='1'] {left: 20px; top: 10px}
+        [data-type='scaler-x-item'][value='2'] {left: 35px; top: 10px}
+        [data-type='scaler-x-item'][value='3'] {left: 50px; top: 10px}
+        [data-type='scaler-x-item'][value='4'] {left: 65px; top: 10px}
+        [data-type='scaler-x-item'][value='5'] {left: 80px; top: 10px}
         [data-type='scaler-y-item'][value='1'] {left: 10px; top: 20px}
-        [data-type='scaler-y-item'][value='2'] {left: 10px; top: 30px}
-        [data-type='scaler-y-item'][value='3'] {left: 10px; top: 40px}
-        [data-type='scaler-y-item'][value='4'] {left: 10px; top: 50px}
-        [data-type='scaler-y-item'][value='5'] {left: 10px; top: 60px}
+        [data-type='scaler-y-item'][value='2'] {left: 10px; top: 35px}
+        [data-type='scaler-y-item'][value='3'] {left: 10px; top: 50px}
+        [data-type='scaler-y-item'][value='4'] {left: 10px; top: 65px}
+        [data-type='scaler-y-item'][value='5'] {left: 10px; top: 80px}
 
         [data-type='scaler-x-item'][data-path-x='1'][data-path-y='1'][value='1']:checked ~ x-grid-item[data-path-x='1'][data-path-y='1'] {grid-column-end: 2}
         [data-type='scaler-x-item'][data-path-x='1'][data-path-y='1'][value='2']:checked ~ x-grid-item[data-path-x='1'][data-path-y='1'] {grid-column-end: 3}
@@ -184,6 +191,7 @@
             <input data-type="scaler-y-item" data-path-x="1" data-path-y="1" type="radio" name="item_y[1-1]" value="5">
             <x-grid-item                     data-path-x="1" data-path-y="1">1.1</x-grid-item>
 
+            <input data-type="scaler-x-item" data-path-x="12" data-path-y="1" type="radio" name="item_x[1-2]" value="1" disabled>
             <input data-type="scaler-x-item" data-path-x="12" data-path-y="1" type="radio" name="item_x[1-2]" value="2" checked>
             <input data-type="scaler-x-item" data-path-x="12" data-path-y="1" type="radio" name="item_x[1-2]" value="3">
             <input data-type="scaler-x-item" data-path-x="12" data-path-y="1" type="radio" name="item_x[1-2]" value="4">

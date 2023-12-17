@@ -24,21 +24,21 @@
 
         /* grid */
 
-        x-grid-manager {
+        [data-grid-manager] {
           display: grid;
         }
 
-        x-grid-manager * {
+        [data-grid-manager] * {
           user-select: none;
          -webkit-user-select: none;
         }
 
-        x-grid-manager[data-type='grid-x5'] {
+        [data-grid-manager][data-type='grid-x5'] {
           grid-template-columns: repeat(5,   1fr);
           grid-template-rows   : repeat(5, 100px);
         }
 
-        x-grid-item {
+        [data-grid-item] {
           display: block;
           margin: 1px;
           padding: 20px;
@@ -47,6 +47,19 @@
           border: 1px solid #7d6599;
           background: #4a3466;
         }
+
+        /* grid fixer */
+
+        [data-type='grid-x5'] *[data-path-x='1'    ] {grid-column-start: 1}
+        [data-type='grid-x5'] *[data-path-x='12'   ] {grid-column-start: 2}
+        [data-type='grid-x5'] *[data-path-x='123'  ] {grid-column-start: 3}
+        [data-type='grid-x5'] *[data-path-x='1234' ] {grid-column-start: 4}
+        [data-type='grid-x5'] *[data-path-x='12345'] {grid-column-start: 5}
+        [data-type='grid-x5'] *[data-path-y='1'    ] {grid-row-start: 1}
+        [data-type='grid-x5'] *[data-path-y='12'   ] {grid-row-start: 2}
+        [data-type='grid-x5'] *[data-path-y='123'  ] {grid-row-start: 3}
+        [data-type='grid-x5'] *[data-path-y='1234' ] {grid-row-start: 4}
+        [data-type='grid-x5'] *[data-path-y='12345'] {grid-row-start: 5}
 
         /* scaler */
 
@@ -74,19 +87,6 @@
         [data-type^='scaler']:disabled {
           background: silver;
         }
-
-        /* grid fixer */
-
-        [data-type='grid-x5'] *[data-path-x='1'    ] {grid-column-start: 1}
-        [data-type='grid-x5'] *[data-path-x='12'   ] {grid-column-start: 2}
-        [data-type='grid-x5'] *[data-path-x='123'  ] {grid-column-start: 3}
-        [data-type='grid-x5'] *[data-path-x='1234' ] {grid-column-start: 4}
-        [data-type='grid-x5'] *[data-path-x='12345'] {grid-column-start: 5}
-        [data-type='grid-x5'] *[data-path-y='1'    ] {grid-row-start: 1}
-        [data-type='grid-x5'] *[data-path-y='12'   ] {grid-row-start: 2}
-        [data-type='grid-x5'] *[data-path-y='123'  ] {grid-row-start: 3}
-        [data-type='grid-x5'] *[data-path-y='1234' ] {grid-row-start: 4}
-        [data-type='grid-x5'] *[data-path-y='12345'] {grid-row-start: 5}
 
         /* scaler for grid */
 
@@ -136,32 +136,32 @@
         [data-type='scaler-y-item'][value='4'] {left:  5px; top: 53px}
         [data-type='scaler-y-item'][value='5'] {left:  5px; top: 64px}
 
-        [data-type='scaler-x-item'][data-path-x='1'][data-path-y='1'][value='1']:checked ~ x-grid-item[data-path-x='1'][data-path-y='1'] {grid-column-end: 2}
-        [data-type='scaler-x-item'][data-path-x='1'][data-path-y='1'][value='2']:checked ~ x-grid-item[data-path-x='1'][data-path-y='1'] {grid-column-end: 3}
-        [data-type='scaler-x-item'][data-path-x='1'][data-path-y='1'][value='3']:checked ~ x-grid-item[data-path-x='1'][data-path-y='1'] {grid-column-end: 4}
-        [data-type='scaler-x-item'][data-path-x='1'][data-path-y='1'][value='4']:checked ~ x-grid-item[data-path-x='1'][data-path-y='1'] {grid-column-end: 5}
-        [data-type='scaler-x-item'][data-path-x='1'][data-path-y='1'][value='5']:checked ~ x-grid-item[data-path-x='1'][data-path-y='1'] {grid-column-end: 6}
-        [data-type='scaler-y-item'][data-path-x='1'][data-path-y='1'][value='1']:checked ~ x-grid-item[data-path-x='1'][data-path-y='1'] {grid-row-end: 2}
-        [data-type='scaler-y-item'][data-path-x='1'][data-path-y='1'][value='2']:checked ~ x-grid-item[data-path-x='1'][data-path-y='1'] {grid-row-end: 3}
-        [data-type='scaler-y-item'][data-path-x='1'][data-path-y='1'][value='3']:checked ~ x-grid-item[data-path-x='1'][data-path-y='1'] {grid-row-end: 4}
-        [data-type='scaler-y-item'][data-path-x='1'][data-path-y='1'][value='4']:checked ~ x-grid-item[data-path-x='1'][data-path-y='1'] {grid-row-end: 5}
-        [data-type='scaler-y-item'][data-path-x='1'][data-path-y='1'][value='5']:checked ~ x-grid-item[data-path-x='1'][data-path-y='1'] {grid-row-end: 6}
+        [data-type='scaler-x-item'][data-path-x='1'][data-path-y='1'][value='1']:checked ~ [data-grid-item][data-path-x='1'][data-path-y='1'] {grid-column-end: 2}
+        [data-type='scaler-x-item'][data-path-x='1'][data-path-y='1'][value='2']:checked ~ [data-grid-item][data-path-x='1'][data-path-y='1'] {grid-column-end: 3}
+        [data-type='scaler-x-item'][data-path-x='1'][data-path-y='1'][value='3']:checked ~ [data-grid-item][data-path-x='1'][data-path-y='1'] {grid-column-end: 4}
+        [data-type='scaler-x-item'][data-path-x='1'][data-path-y='1'][value='4']:checked ~ [data-grid-item][data-path-x='1'][data-path-y='1'] {grid-column-end: 5}
+        [data-type='scaler-x-item'][data-path-x='1'][data-path-y='1'][value='5']:checked ~ [data-grid-item][data-path-x='1'][data-path-y='1'] {grid-column-end: 6}
+        [data-type='scaler-y-item'][data-path-x='1'][data-path-y='1'][value='1']:checked ~ [data-grid-item][data-path-x='1'][data-path-y='1'] {grid-row-end: 2}
+        [data-type='scaler-y-item'][data-path-x='1'][data-path-y='1'][value='2']:checked ~ [data-grid-item][data-path-x='1'][data-path-y='1'] {grid-row-end: 3}
+        [data-type='scaler-y-item'][data-path-x='1'][data-path-y='1'][value='3']:checked ~ [data-grid-item][data-path-x='1'][data-path-y='1'] {grid-row-end: 4}
+        [data-type='scaler-y-item'][data-path-x='1'][data-path-y='1'][value='4']:checked ~ [data-grid-item][data-path-x='1'][data-path-y='1'] {grid-row-end: 5}
+        [data-type='scaler-y-item'][data-path-x='1'][data-path-y='1'][value='5']:checked ~ [data-grid-item][data-path-x='1'][data-path-y='1'] {grid-row-end: 6}
         [data-type='scaler-x-item'][data-path-x='1'][data-path-y='1'],
         [data-type='scaler-y-item'][data-path-x='1'][data-path-y='1'] {z-index: 50}
-        x-grid-item[data-path-x='1'][data-path-y='1'] {z-index: 49}
+        [data-grid-item][data-path-x='1'][data-path-y='1'] {z-index: 49}
 
-        [data-type='scaler-x-item'][data-path-x='12'][data-path-y='1'][value='2']:checked ~ x-grid-item[data-path-x='12'][data-path-y='1'] {grid-column-end: 3}
-        [data-type='scaler-x-item'][data-path-x='12'][data-path-y='1'][value='3']:checked ~ x-grid-item[data-path-x='12'][data-path-y='1'] {grid-column-end: 4}
-        [data-type='scaler-x-item'][data-path-x='12'][data-path-y='1'][value='4']:checked ~ x-grid-item[data-path-x='12'][data-path-y='1'] {grid-column-end: 5}
-        [data-type='scaler-x-item'][data-path-x='12'][data-path-y='1'][value='5']:checked ~ x-grid-item[data-path-x='12'][data-path-y='1'] {grid-column-end: 6}
-        [data-type='scaler-y-item'][data-path-x='12'][data-path-y='1'][value='1']:checked ~ x-grid-item[data-path-x='12'][data-path-y='1'] {grid-row-end: 2}
-        [data-type='scaler-y-item'][data-path-x='12'][data-path-y='1'][value='2']:checked ~ x-grid-item[data-path-x='12'][data-path-y='1'] {grid-row-end: 3}
-        [data-type='scaler-y-item'][data-path-x='12'][data-path-y='1'][value='3']:checked ~ x-grid-item[data-path-x='12'][data-path-y='1'] {grid-row-end: 4}
-        [data-type='scaler-y-item'][data-path-x='12'][data-path-y='1'][value='4']:checked ~ x-grid-item[data-path-x='12'][data-path-y='1'] {grid-row-end: 5}
-        [data-type='scaler-y-item'][data-path-x='12'][data-path-y='1'][value='5']:checked ~ x-grid-item[data-path-x='12'][data-path-y='1'] {grid-row-end: 6}
+        [data-type='scaler-x-item'][data-path-x='12'][data-path-y='1'][value='2']:checked ~ [data-grid-item][data-path-x='12'][data-path-y='1'] {grid-column-end: 3}
+        [data-type='scaler-x-item'][data-path-x='12'][data-path-y='1'][value='3']:checked ~ [data-grid-item][data-path-x='12'][data-path-y='1'] {grid-column-end: 4}
+        [data-type='scaler-x-item'][data-path-x='12'][data-path-y='1'][value='4']:checked ~ [data-grid-item][data-path-x='12'][data-path-y='1'] {grid-column-end: 5}
+        [data-type='scaler-x-item'][data-path-x='12'][data-path-y='1'][value='5']:checked ~ [data-grid-item][data-path-x='12'][data-path-y='1'] {grid-column-end: 6}
+        [data-type='scaler-y-item'][data-path-x='12'][data-path-y='1'][value='1']:checked ~ [data-grid-item][data-path-x='12'][data-path-y='1'] {grid-row-end: 2}
+        [data-type='scaler-y-item'][data-path-x='12'][data-path-y='1'][value='2']:checked ~ [data-grid-item][data-path-x='12'][data-path-y='1'] {grid-row-end: 3}
+        [data-type='scaler-y-item'][data-path-x='12'][data-path-y='1'][value='3']:checked ~ [data-grid-item][data-path-x='12'][data-path-y='1'] {grid-row-end: 4}
+        [data-type='scaler-y-item'][data-path-x='12'][data-path-y='1'][value='4']:checked ~ [data-grid-item][data-path-x='12'][data-path-y='1'] {grid-row-end: 5}
+        [data-type='scaler-y-item'][data-path-x='12'][data-path-y='1'][value='5']:checked ~ [data-grid-item][data-path-x='12'][data-path-y='1'] {grid-row-end: 6}
         [data-type='scaler-x-item'][data-path-x='12'][data-path-y='1'],
         [data-type='scaler-y-item'][data-path-x='12'][data-path-y='1'] {z-index: 48}
-        x-grid-item[data-path-x='12'][data-path-y='1'] {z-index: 47}
+        [data-grid-item][data-path-x='12'][data-path-y='1'] {z-index: 47}
     </style>
 </head>
 <body>
@@ -178,7 +178,7 @@
         <input data-type="scaler-y-grid" type="radio" name="grid_y" value="3">
         <input data-type="scaler-y-grid" type="radio" name="grid_y" value="4">
         <input data-type="scaler-y-grid" type="radio" name="grid_y" value="5" checked>
-        <x-grid-manager data-type="grid-x5">
+        <x-grid-manager data-grid-manager data-type="grid-x5">
 
             <input data-type="scaler-x-item" data-path-x="1" data-path-y="1" type="radio" name="item_x[1-1]" value="1" checked>
             <input data-type="scaler-x-item" data-path-x="1" data-path-y="1" type="radio" name="item_x[1-1]" value="2">
@@ -190,7 +190,7 @@
             <input data-type="scaler-y-item" data-path-x="1" data-path-y="1" type="radio" name="item_y[1-1]" value="3">
             <input data-type="scaler-y-item" data-path-x="1" data-path-y="1" type="radio" name="item_y[1-1]" value="4">
             <input data-type="scaler-y-item" data-path-x="1" data-path-y="1" type="radio" name="item_y[1-1]" value="5">
-            <x-grid-item                     data-path-x="1" data-path-y="1">GRID 1.1</x-grid-item>
+            <x-grid-item data-grid-item      data-path-x="1" data-path-y="1">GRID 1.1</x-grid-item>
 
             <input data-type="scaler-x-item" data-path-x="12" data-path-y="1" type="radio" name="item_x[1-2]" value="1" disabled>
             <input data-type="scaler-x-item" data-path-x="12" data-path-y="1" type="radio" name="item_x[1-2]" value="2" checked>
@@ -202,31 +202,31 @@
             <input data-type="scaler-y-item" data-path-x="12" data-path-y="1" type="radio" name="item_y[1-2]" value="3">
             <input data-type="scaler-y-item" data-path-x="12" data-path-y="1" type="radio" name="item_y[1-2]" value="4">
             <input data-type="scaler-y-item" data-path-x="12" data-path-y="1" type="radio" name="item_y[1-2]" value="5">
-            <x-grid-item                     data-path-x="12" data-path-y="1">GRID 1.2</x-grid-item>
+            <x-grid-item data-grid-item      data-path-x="12" data-path-y="1">GRID 1.2</x-grid-item>
 
-            <x-grid-item data-path-x="123"   data-path-y="1"    >GRID 1.3</x-grid-item>
-            <x-grid-item data-path-x="1234"  data-path-y="1"    >GRID 1.4</x-grid-item>
-            <x-grid-item data-path-x="12345" data-path-y="1"    >GRID 1.5</x-grid-item>
-            <x-grid-item data-path-x="1"     data-path-y="12"   >GRID 2.1</x-grid-item>
-            <x-grid-item data-path-x="12"    data-path-y="12"   >GRID 2.2</x-grid-item>
-            <x-grid-item data-path-x="123"   data-path-y="12"   >GRID 2.3</x-grid-item>
-            <x-grid-item data-path-x="1234"  data-path-y="12"   >GRID 2.4</x-grid-item>
-            <x-grid-item data-path-x="12345" data-path-y="12"   >GRID 2.5</x-grid-item>
-            <x-grid-item data-path-x="1"     data-path-y="123"  >GRID 3.1</x-grid-item>
-            <x-grid-item data-path-x="12"    data-path-y="123"  >GRID 3.2</x-grid-item>
-            <x-grid-item data-path-x="123"   data-path-y="123"  >GRID 3.3</x-grid-item>
-            <x-grid-item data-path-x="1234"  data-path-y="123"  >GRID 3.4</x-grid-item>
-            <x-grid-item data-path-x="12345" data-path-y="123"  >GRID 3.5</x-grid-item>
-            <x-grid-item data-path-x="1"     data-path-y="1234" >GRID 4.1</x-grid-item>
-            <x-grid-item data-path-x="12"    data-path-y="1234" >GRID 4.2</x-grid-item>
-            <x-grid-item data-path-x="123"   data-path-y="1234" >GRID 4.3</x-grid-item>
-            <x-grid-item data-path-x="1234"  data-path-y="1234" >GRID 4.4</x-grid-item>
-            <x-grid-item data-path-x="12345" data-path-y="1234" >GRID 4.5</x-grid-item>
-            <x-grid-item data-path-x="1"     data-path-y="12345">GRID 5.1</x-grid-item>
-            <x-grid-item data-path-x="12"    data-path-y="12345">GRID 5.2</x-grid-item>
-            <x-grid-item data-path-x="123"   data-path-y="12345">GRID 5.3</x-grid-item>
-            <x-grid-item data-path-x="1234"  data-path-y="12345">GRID 5.4</x-grid-item>
-            <x-grid-item data-path-x="12345" data-path-y="12345">GRID 5.5</x-grid-item>
+            <x-grid-item data-grid-item data-path-x="123"   data-path-y="1"    >GRID 1.3</x-grid-item>
+            <x-grid-item data-grid-item data-path-x="1234"  data-path-y="1"    >GRID 1.4</x-grid-item>
+            <x-grid-item data-grid-item data-path-x="12345" data-path-y="1"    >GRID 1.5</x-grid-item>
+            <x-grid-item data-grid-item data-path-x="1"     data-path-y="12"   >GRID 2.1</x-grid-item>
+            <x-grid-item data-grid-item data-path-x="12"    data-path-y="12"   >GRID 2.2</x-grid-item>
+            <x-grid-item data-grid-item data-path-x="123"   data-path-y="12"   >GRID 2.3</x-grid-item>
+            <x-grid-item data-grid-item data-path-x="1234"  data-path-y="12"   >GRID 2.4</x-grid-item>
+            <x-grid-item data-grid-item data-path-x="12345" data-path-y="12"   >GRID 2.5</x-grid-item>
+            <x-grid-item data-grid-item data-path-x="1"     data-path-y="123"  >GRID 3.1</x-grid-item>
+            <x-grid-item data-grid-item data-path-x="12"    data-path-y="123"  >GRID 3.2</x-grid-item>
+            <x-grid-item data-grid-item data-path-x="123"   data-path-y="123"  >GRID 3.3</x-grid-item>
+            <x-grid-item data-grid-item data-path-x="1234"  data-path-y="123"  >GRID 3.4</x-grid-item>
+            <x-grid-item data-grid-item data-path-x="12345" data-path-y="123"  >GRID 3.5</x-grid-item>
+            <x-grid-item data-grid-item data-path-x="1"     data-path-y="1234" >GRID 4.1</x-grid-item>
+            <x-grid-item data-grid-item data-path-x="12"    data-path-y="1234" >GRID 4.2</x-grid-item>
+            <x-grid-item data-grid-item data-path-x="123"   data-path-y="1234" >GRID 4.3</x-grid-item>
+            <x-grid-item data-grid-item data-path-x="1234"  data-path-y="1234" >GRID 4.4</x-grid-item>
+            <x-grid-item data-grid-item data-path-x="12345" data-path-y="1234" >GRID 4.5</x-grid-item>
+            <x-grid-item data-grid-item data-path-x="1"     data-path-y="12345">GRID 5.1</x-grid-item>
+            <x-grid-item data-grid-item data-path-x="12"    data-path-y="12345">GRID 5.2</x-grid-item>
+            <x-grid-item data-grid-item data-path-x="123"   data-path-y="12345">GRID 5.3</x-grid-item>
+            <x-grid-item data-grid-item data-path-x="1234"  data-path-y="12345">GRID 5.4</x-grid-item>
+            <x-grid-item data-grid-item data-path-x="12345" data-path-y="12345">GRID 5.5</x-grid-item>
         </x-grid-manager>
 
     </x-part>

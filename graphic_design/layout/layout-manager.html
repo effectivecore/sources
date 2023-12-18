@@ -33,7 +33,7 @@
          -webkit-user-select: none;
         }
 
-        [data-grid-manager][data-type='grid-x5'] {
+        [data-grid-manager][data-type='grid-5x-custom'] {
           grid-template-columns: repeat(5,   1fr);
           grid-template-rows   : repeat(5, 100px);
         }
@@ -50,16 +50,16 @@
 
         /* grid fixer */
 
-        [data-type='grid-x5'] *[data-path-x='1'    ] {grid-column-start: 1}
-        [data-type='grid-x5'] *[data-path-x='12'   ] {grid-column-start: 2}
-        [data-type='grid-x5'] *[data-path-x='123'  ] {grid-column-start: 3}
-        [data-type='grid-x5'] *[data-path-x='1234' ] {grid-column-start: 4}
-        [data-type='grid-x5'] *[data-path-x='12345'] {grid-column-start: 5}
-        [data-type='grid-x5'] *[data-path-y='1'    ] {grid-row-start: 1}
-        [data-type='grid-x5'] *[data-path-y='12'   ] {grid-row-start: 2}
-        [data-type='grid-x5'] *[data-path-y='123'  ] {grid-row-start: 3}
-        [data-type='grid-x5'] *[data-path-y='1234' ] {grid-row-start: 4}
-        [data-type='grid-x5'] *[data-path-y='12345'] {grid-row-start: 5}
+        [data-type='grid-5x-custom'] *[data-path-x='1'    ] {grid-column-start: 1}
+        [data-type='grid-5x-custom'] *[data-path-x='12'   ] {grid-column-start: 2}
+        [data-type='grid-5x-custom'] *[data-path-x='123'  ] {grid-column-start: 3}
+        [data-type='grid-5x-custom'] *[data-path-x='1234' ] {grid-column-start: 4}
+        [data-type='grid-5x-custom'] *[data-path-x='12345'] {grid-column-start: 5}
+        [data-type='grid-5x-custom'] *[data-path-y='1'    ] {grid-row-start: 1}
+        [data-type='grid-5x-custom'] *[data-path-y='12'   ] {grid-row-start: 2}
+        [data-type='grid-5x-custom'] *[data-path-y='123'  ] {grid-row-start: 3}
+        [data-type='grid-5x-custom'] *[data-path-y='1234' ] {grid-row-start: 4}
+        [data-type='grid-5x-custom'] *[data-path-y='12345'] {grid-row-start: 5}
 
         /* scaler */
 
@@ -104,25 +104,25 @@
         [data-type='scaler-y-grid'][value='4'] {margin-left: -11px; margin-top:  53px}
         [data-type='scaler-y-grid'][value='5'] {margin-left: -11px; margin-top:  64px}
 
-        [data-type='scaler-x-grid'][value='1']:checked ~ [data-type='grid-x5'] {grid-template-columns: repeat(1, 1fr)}
-        [data-type='scaler-x-grid'][value='2']:checked ~ [data-type='grid-x5'] {grid-template-columns: repeat(2, 1fr)}
-        [data-type='scaler-x-grid'][value='3']:checked ~ [data-type='grid-x5'] {grid-template-columns: repeat(3, 1fr)}
-        [data-type='scaler-x-grid'][value='4']:checked ~ [data-type='grid-x5'] {grid-template-columns: repeat(4, 1fr)}
-        [data-type='scaler-x-grid'][value='5']:checked ~ [data-type='grid-x5'] {grid-template-columns: repeat(5, 1fr)}
-        [data-type='scaler-x-grid'][value='1']:checked ~ [data-type='grid-x5'] *[data-path-x^='12'   ],
-        [data-type='scaler-x-grid'][value='2']:checked ~ [data-type='grid-x5'] *[data-path-x^='123'  ],
-        [data-type='scaler-x-grid'][value='3']:checked ~ [data-type='grid-x5'] *[data-path-x^='1234' ],
-        [data-type='scaler-x-grid'][value='4']:checked ~ [data-type='grid-x5'] *[data-path-x^='12345'] {display: none}
+        [data-type='scaler-x-grid'][value='1']:checked ~ [data-type='grid-5x-custom'] {grid-template-columns: repeat(1, 1fr)}
+        [data-type='scaler-x-grid'][value='2']:checked ~ [data-type='grid-5x-custom'] {grid-template-columns: repeat(2, 1fr)}
+        [data-type='scaler-x-grid'][value='3']:checked ~ [data-type='grid-5x-custom'] {grid-template-columns: repeat(3, 1fr)}
+        [data-type='scaler-x-grid'][value='4']:checked ~ [data-type='grid-5x-custom'] {grid-template-columns: repeat(4, 1fr)}
+        [data-type='scaler-x-grid'][value='5']:checked ~ [data-type='grid-5x-custom'] {grid-template-columns: repeat(5, 1fr)}
+        [data-type='scaler-x-grid'][value='1']:checked ~ [data-type='grid-5x-custom'] *[data-path-x^='12'   ],
+        [data-type='scaler-x-grid'][value='2']:checked ~ [data-type='grid-5x-custom'] *[data-path-x^='123'  ],
+        [data-type='scaler-x-grid'][value='3']:checked ~ [data-type='grid-5x-custom'] *[data-path-x^='1234' ],
+        [data-type='scaler-x-grid'][value='4']:checked ~ [data-type='grid-5x-custom'] *[data-path-x^='12345'] {display: none}
 
-        [data-type='scaler-y-grid'][value='1']:checked ~ [data-type='grid-x5'] {grid-template-rows: repeat(1, 100px)}
-        [data-type='scaler-y-grid'][value='2']:checked ~ [data-type='grid-x5'] {grid-template-rows: repeat(2, 100px)}
-        [data-type='scaler-y-grid'][value='3']:checked ~ [data-type='grid-x5'] {grid-template-rows: repeat(3, 100px)}
-        [data-type='scaler-y-grid'][value='4']:checked ~ [data-type='grid-x5'] {grid-template-rows: repeat(4, 100px)}
-        [data-type='scaler-y-grid'][value='5']:checked ~ [data-type='grid-x5'] {grid-template-rows: repeat(5, 100px)}
-        [data-type='scaler-y-grid'][value='1']:checked ~ [data-type='grid-x5'] *[data-path-y^='12'   ],
-        [data-type='scaler-y-grid'][value='2']:checked ~ [data-type='grid-x5'] *[data-path-y^='123'  ],
-        [data-type='scaler-y-grid'][value='3']:checked ~ [data-type='grid-x5'] *[data-path-y^='1234' ],
-        [data-type='scaler-y-grid'][value='4']:checked ~ [data-type='grid-x5'] *[data-path-y^='12345'] {display: none}
+        [data-type='scaler-y-grid'][value='1']:checked ~ [data-type='grid-5x-custom'] {grid-template-rows: repeat(1, 100px)}
+        [data-type='scaler-y-grid'][value='2']:checked ~ [data-type='grid-5x-custom'] {grid-template-rows: repeat(2, 100px)}
+        [data-type='scaler-y-grid'][value='3']:checked ~ [data-type='grid-5x-custom'] {grid-template-rows: repeat(3, 100px)}
+        [data-type='scaler-y-grid'][value='4']:checked ~ [data-type='grid-5x-custom'] {grid-template-rows: repeat(4, 100px)}
+        [data-type='scaler-y-grid'][value='5']:checked ~ [data-type='grid-5x-custom'] {grid-template-rows: repeat(5, 100px)}
+        [data-type='scaler-y-grid'][value='1']:checked ~ [data-type='grid-5x-custom'] *[data-path-y^='12'   ],
+        [data-type='scaler-y-grid'][value='2']:checked ~ [data-type='grid-5x-custom'] *[data-path-y^='123'  ],
+        [data-type='scaler-y-grid'][value='3']:checked ~ [data-type='grid-5x-custom'] *[data-path-y^='1234' ],
+        [data-type='scaler-y-grid'][value='4']:checked ~ [data-type='grid-5x-custom'] *[data-path-y^='12345'] {display: none}
 
         /* scaler for item */
 
@@ -462,7 +462,7 @@
         <input data-type="scaler-y-grid" type="radio" name="grid_y" value="3">
         <input data-type="scaler-y-grid" type="radio" name="grid_y" value="4">
         <input data-type="scaler-y-grid" type="radio" name="grid_y" value="5" checked>
-        <x-grid-manager data-grid-manager data-type="grid-x5">
+        <x-grid-manager data-grid-manager data-type="grid-5x-custom">
 
             <input data-type="scaler-x-item" data-path-x="1" data-path-y="1" type="radio" name="item_x[1-1]" value="1" checked>
             <input data-type="scaler-x-item" data-path-x="1" data-path-y="1" type="radio" name="item_x[1-1]" value="2">
@@ -474,7 +474,7 @@
             <input data-type="scaler-y-item" data-path-x="1" data-path-y="1" type="radio" name="item_y[1-1]" value="3">
             <input data-type="scaler-y-item" data-path-x="1" data-path-y="1" type="radio" name="item_y[1-1]" value="4">
             <input data-type="scaler-y-item" data-path-x="1" data-path-y="1" type="radio" name="item_y[1-1]" value="5">
-            <x-grid-item data-grid-item      data-path-x="1" data-path-y="1">GRID 1.1</x-grid-item>
+            <x-grid-item data-grid-item      data-path-x="1" data-path-y="1">Cell 1.1</x-grid-item>
 
             <input data-type="scaler-x-item" data-path-x="12" data-path-y="1" type="radio" name="item_x[1-2]" value="1" disabled>
             <input data-type="scaler-x-item" data-path-x="12" data-path-y="1" type="radio" name="item_x[1-2]" value="2" checked>
@@ -486,7 +486,7 @@
             <input data-type="scaler-y-item" data-path-x="12" data-path-y="1" type="radio" name="item_y[1-2]" value="3">
             <input data-type="scaler-y-item" data-path-x="12" data-path-y="1" type="radio" name="item_y[1-2]" value="4">
             <input data-type="scaler-y-item" data-path-x="12" data-path-y="1" type="radio" name="item_y[1-2]" value="5">
-            <x-grid-item data-grid-item      data-path-x="12" data-path-y="1">GRID 1.2</x-grid-item>
+            <x-grid-item data-grid-item      data-path-x="12" data-path-y="1">Cell 1.2</x-grid-item>
 
             <input data-type="scaler-x-item" data-path-x="123" data-path-y="1" type="radio" name="item_x[1-3]" value="1" disabled>
             <input data-type="scaler-x-item" data-path-x="123" data-path-y="1" type="radio" name="item_x[1-3]" value="2" disabled>
@@ -498,7 +498,7 @@
             <input data-type="scaler-y-item" data-path-x="123" data-path-y="1" type="radio" name="item_y[1-3]" value="3">
             <input data-type="scaler-y-item" data-path-x="123" data-path-y="1" type="radio" name="item_y[1-3]" value="4">
             <input data-type="scaler-y-item" data-path-x="123" data-path-y="1" type="radio" name="item_y[1-3]" value="5">
-            <x-grid-item data-grid-item      data-path-x="123" data-path-y="1">GRID 1.3</x-grid-item>
+            <x-grid-item data-grid-item      data-path-x="123" data-path-y="1">Cell 1.3</x-grid-item>
 
             <input data-type="scaler-x-item" data-path-x="1234" data-path-y="1" type="radio" name="item_x[1-4]" value="1" disabled>
             <input data-type="scaler-x-item" data-path-x="1234" data-path-y="1" type="radio" name="item_x[1-4]" value="2" disabled>
@@ -510,7 +510,7 @@
             <input data-type="scaler-y-item" data-path-x="1234" data-path-y="1" type="radio" name="item_y[1-4]" value="3">
             <input data-type="scaler-y-item" data-path-x="1234" data-path-y="1" type="radio" name="item_y[1-4]" value="4">
             <input data-type="scaler-y-item" data-path-x="1234" data-path-y="1" type="radio" name="item_y[1-4]" value="5">
-            <x-grid-item data-grid-item      data-path-x="1234" data-path-y="1">GRID 1.4</x-grid-item>
+            <x-grid-item data-grid-item      data-path-x="1234" data-path-y="1">Cell 1.4</x-grid-item>
 
             <input data-type="scaler-x-item" data-path-x="12345" data-path-y="1" type="radio" name="item_x[1-5]" value="1" disabled>
             <input data-type="scaler-x-item" data-path-x="12345" data-path-y="1" type="radio" name="item_x[1-5]" value="2" disabled>
@@ -522,7 +522,7 @@
             <input data-type="scaler-y-item" data-path-x="12345" data-path-y="1" type="radio" name="item_y[1-5]" value="3">
             <input data-type="scaler-y-item" data-path-x="12345" data-path-y="1" type="radio" name="item_y[1-5]" value="4">
             <input data-type="scaler-y-item" data-path-x="12345" data-path-y="1" type="radio" name="item_y[1-5]" value="5">
-            <x-grid-item data-grid-item      data-path-x="12345" data-path-y="1">GRID 1.5</x-grid-item>
+            <x-grid-item data-grid-item      data-path-x="12345" data-path-y="1">Cell 1.5</x-grid-item>
 
             <!-- ///////////////////////////////////////////////////////////////////////////////// -->
 
@@ -536,7 +536,7 @@
             <input data-type="scaler-y-item" data-path-x="1" data-path-y="12" type="radio" name="item_y[2-1]" value="3">
             <input data-type="scaler-y-item" data-path-x="1" data-path-y="12" type="radio" name="item_y[2-1]" value="4">
             <input data-type="scaler-y-item" data-path-x="1" data-path-y="12" type="radio" name="item_y[2-1]" value="5">
-            <x-grid-item data-grid-item      data-path-x="1" data-path-y="12">GRID 2.1</x-grid-item>
+            <x-grid-item data-grid-item      data-path-x="1" data-path-y="12">Cell 2.1</x-grid-item>
 
             <input data-type="scaler-x-item" data-path-x="12" data-path-y="12" type="radio" name="item_x[2-2]" value="1" disabled>
             <input data-type="scaler-x-item" data-path-x="12" data-path-y="12" type="radio" name="item_x[2-2]" value="2" checked>
@@ -548,7 +548,7 @@
             <input data-type="scaler-y-item" data-path-x="12" data-path-y="12" type="radio" name="item_y[2-2]" value="3">
             <input data-type="scaler-y-item" data-path-x="12" data-path-y="12" type="radio" name="item_y[2-2]" value="4">
             <input data-type="scaler-y-item" data-path-x="12" data-path-y="12" type="radio" name="item_y[2-2]" value="5">
-            <x-grid-item data-grid-item      data-path-x="12" data-path-y="12">GRID 2.2</x-grid-item>
+            <x-grid-item data-grid-item      data-path-x="12" data-path-y="12">Cell 2.2</x-grid-item>
 
             <input data-type="scaler-x-item" data-path-x="123" data-path-y="12" type="radio" name="item_x[2-3]" value="1" disabled>
             <input data-type="scaler-x-item" data-path-x="123" data-path-y="12" type="radio" name="item_x[2-3]" value="2" disabled>
@@ -560,7 +560,7 @@
             <input data-type="scaler-y-item" data-path-x="123" data-path-y="12" type="radio" name="item_y[2-3]" value="3">
             <input data-type="scaler-y-item" data-path-x="123" data-path-y="12" type="radio" name="item_y[2-3]" value="4">
             <input data-type="scaler-y-item" data-path-x="123" data-path-y="12" type="radio" name="item_y[2-3]" value="5">
-            <x-grid-item data-grid-item      data-path-x="123" data-path-y="12">GRID 2.3</x-grid-item>
+            <x-grid-item data-grid-item      data-path-x="123" data-path-y="12">Cell 2.3</x-grid-item>
 
             <input data-type="scaler-x-item" data-path-x="1234" data-path-y="12" type="radio" name="item_x[2-4]" value="1" disabled>
             <input data-type="scaler-x-item" data-path-x="1234" data-path-y="12" type="radio" name="item_x[2-4]" value="2" disabled>
@@ -572,7 +572,7 @@
             <input data-type="scaler-y-item" data-path-x="1234" data-path-y="12" type="radio" name="item_y[2-4]" value="3">
             <input data-type="scaler-y-item" data-path-x="1234" data-path-y="12" type="radio" name="item_y[2-4]" value="4">
             <input data-type="scaler-y-item" data-path-x="1234" data-path-y="12" type="radio" name="item_y[2-4]" value="5">
-            <x-grid-item data-grid-item      data-path-x="1234" data-path-y="12">GRID 2.4</x-grid-item>
+            <x-grid-item data-grid-item      data-path-x="1234" data-path-y="12">Cell 2.4</x-grid-item>
 
             <input data-type="scaler-x-item" data-path-x="12345" data-path-y="12" type="radio" name="item_x[2-5]" value="1" disabled>
             <input data-type="scaler-x-item" data-path-x="12345" data-path-y="12" type="radio" name="item_x[2-5]" value="2" disabled>
@@ -584,7 +584,7 @@
             <input data-type="scaler-y-item" data-path-x="12345" data-path-y="12" type="radio" name="item_y[2-5]" value="3">
             <input data-type="scaler-y-item" data-path-x="12345" data-path-y="12" type="radio" name="item_y[2-5]" value="4">
             <input data-type="scaler-y-item" data-path-x="12345" data-path-y="12" type="radio" name="item_y[2-5]" value="5">
-            <x-grid-item data-grid-item      data-path-x="12345" data-path-y="12">GRID 2.5</x-grid-item>
+            <x-grid-item data-grid-item      data-path-x="12345" data-path-y="12">Cell 2.5</x-grid-item>
 
             <!-- ///////////////////////////////////////////////////////////////////////////////// -->
 
@@ -598,7 +598,7 @@
             <input data-type="scaler-y-item" data-path-x="1" data-path-y="123" type="radio" name="item_y[3-1]" value="3" checked>
             <input data-type="scaler-y-item" data-path-x="1" data-path-y="123" type="radio" name="item_y[3-1]" value="4">
             <input data-type="scaler-y-item" data-path-x="1" data-path-y="123" type="radio" name="item_y[3-1]" value="5">
-            <x-grid-item data-grid-item      data-path-x="1" data-path-y="123">GRID 3.1</x-grid-item>
+            <x-grid-item data-grid-item      data-path-x="1" data-path-y="123">Cell 3.1</x-grid-item>
 
             <input data-type="scaler-x-item" data-path-x="12" data-path-y="123" type="radio" name="item_x[3-2]" value="1" disabled>
             <input data-type="scaler-x-item" data-path-x="12" data-path-y="123" type="radio" name="item_x[3-2]" value="2" checked>
@@ -610,7 +610,7 @@
             <input data-type="scaler-y-item" data-path-x="12" data-path-y="123" type="radio" name="item_y[3-2]" value="3" checked>
             <input data-type="scaler-y-item" data-path-x="12" data-path-y="123" type="radio" name="item_y[3-2]" value="4">
             <input data-type="scaler-y-item" data-path-x="12" data-path-y="123" type="radio" name="item_y[3-2]" value="5">
-            <x-grid-item data-grid-item      data-path-x="12" data-path-y="123">GRID 3.2</x-grid-item>
+            <x-grid-item data-grid-item      data-path-x="12" data-path-y="123">Cell 3.2</x-grid-item>
 
             <input data-type="scaler-x-item" data-path-x="123" data-path-y="123" type="radio" name="item_x[3-3]" value="1" disabled>
             <input data-type="scaler-x-item" data-path-x="123" data-path-y="123" type="radio" name="item_x[3-3]" value="2" disabled>
@@ -622,7 +622,7 @@
             <input data-type="scaler-y-item" data-path-x="123" data-path-y="123" type="radio" name="item_y[3-3]" value="3" checked>
             <input data-type="scaler-y-item" data-path-x="123" data-path-y="123" type="radio" name="item_y[3-3]" value="4">
             <input data-type="scaler-y-item" data-path-x="123" data-path-y="123" type="radio" name="item_y[3-3]" value="5">
-            <x-grid-item data-grid-item      data-path-x="123" data-path-y="123">GRID 3.3</x-grid-item>
+            <x-grid-item data-grid-item      data-path-x="123" data-path-y="123">Cell 3.3</x-grid-item>
 
             <input data-type="scaler-x-item" data-path-x="1234" data-path-y="123" type="radio" name="item_x[3-4]" value="1" disabled>
             <input data-type="scaler-x-item" data-path-x="1234" data-path-y="123" type="radio" name="item_x[3-4]" value="2" disabled>
@@ -634,7 +634,7 @@
             <input data-type="scaler-y-item" data-path-x="1234" data-path-y="123" type="radio" name="item_y[3-4]" value="3" checked>
             <input data-type="scaler-y-item" data-path-x="1234" data-path-y="123" type="radio" name="item_y[3-4]" value="4">
             <input data-type="scaler-y-item" data-path-x="1234" data-path-y="123" type="radio" name="item_y[3-4]" value="5">
-            <x-grid-item data-grid-item      data-path-x="1234" data-path-y="123">GRID 3.4</x-grid-item>
+            <x-grid-item data-grid-item      data-path-x="1234" data-path-y="123">Cell 3.4</x-grid-item>
 
             <input data-type="scaler-x-item" data-path-x="12345" data-path-y="123" type="radio" name="item_x[3-5]" value="1" disabled>
             <input data-type="scaler-x-item" data-path-x="12345" data-path-y="123" type="radio" name="item_x[3-5]" value="2" disabled>
@@ -646,7 +646,7 @@
             <input data-type="scaler-y-item" data-path-x="12345" data-path-y="123" type="radio" name="item_y[3-5]" value="3" checked>
             <input data-type="scaler-y-item" data-path-x="12345" data-path-y="123" type="radio" name="item_y[3-5]" value="4">
             <input data-type="scaler-y-item" data-path-x="12345" data-path-y="123" type="radio" name="item_y[3-5]" value="5">
-            <x-grid-item data-grid-item      data-path-x="12345" data-path-y="123">GRID 3.5</x-grid-item>
+            <x-grid-item data-grid-item      data-path-x="12345" data-path-y="123">Cell 3.5</x-grid-item>
 
             <!-- ///////////////////////////////////////////////////////////////////////////////// -->
 
@@ -660,7 +660,7 @@
             <input data-type="scaler-y-item" data-path-x="1" data-path-y="1234" type="radio" name="item_y[4-1]" value="3" disabled>
             <input data-type="scaler-y-item" data-path-x="1" data-path-y="1234" type="radio" name="item_y[4-1]" value="4" checked>
             <input data-type="scaler-y-item" data-path-x="1" data-path-y="1234" type="radio" name="item_y[4-1]" value="5">
-            <x-grid-item data-grid-item      data-path-x="1" data-path-y="1234">GRID 4.1</x-grid-item>
+            <x-grid-item data-grid-item      data-path-x="1" data-path-y="1234">Cell 4.1</x-grid-item>
 
             <input data-type="scaler-x-item" data-path-x="12" data-path-y="1234" type="radio" name="item_x[4-2]" value="1" disabled>
             <input data-type="scaler-x-item" data-path-x="12" data-path-y="1234" type="radio" name="item_x[4-2]" value="2" checked>
@@ -672,7 +672,7 @@
             <input data-type="scaler-y-item" data-path-x="12" data-path-y="1234" type="radio" name="item_y[4-2]" value="3" disabled>
             <input data-type="scaler-y-item" data-path-x="12" data-path-y="1234" type="radio" name="item_y[4-2]" value="4" checked>
             <input data-type="scaler-y-item" data-path-x="12" data-path-y="1234" type="radio" name="item_y[4-2]" value="5">
-            <x-grid-item data-grid-item      data-path-x="12" data-path-y="1234">GRID 4.2</x-grid-item>
+            <x-grid-item data-grid-item      data-path-x="12" data-path-y="1234">Cell 4.2</x-grid-item>
 
             <input data-type="scaler-x-item" data-path-x="123" data-path-y="1234" type="radio" name="item_x[4-3]" value="1" disabled>
             <input data-type="scaler-x-item" data-path-x="123" data-path-y="1234" type="radio" name="item_x[4-3]" value="2" disabled>
@@ -684,7 +684,7 @@
             <input data-type="scaler-y-item" data-path-x="123" data-path-y="1234" type="radio" name="item_y[4-3]" value="3" disabled>
             <input data-type="scaler-y-item" data-path-x="123" data-path-y="1234" type="radio" name="item_y[4-3]" value="4" checked>
             <input data-type="scaler-y-item" data-path-x="123" data-path-y="1234" type="radio" name="item_y[4-3]" value="5">
-            <x-grid-item data-grid-item      data-path-x="123" data-path-y="1234">GRID 4.3</x-grid-item>
+            <x-grid-item data-grid-item      data-path-x="123" data-path-y="1234">Cell 4.3</x-grid-item>
 
             <input data-type="scaler-x-item" data-path-x="1234" data-path-y="1234" type="radio" name="item_x[4-4]" value="1" disabled>
             <input data-type="scaler-x-item" data-path-x="1234" data-path-y="1234" type="radio" name="item_x[4-4]" value="2" disabled>
@@ -696,7 +696,7 @@
             <input data-type="scaler-y-item" data-path-x="1234" data-path-y="1234" type="radio" name="item_y[4-4]" value="3" disabled>
             <input data-type="scaler-y-item" data-path-x="1234" data-path-y="1234" type="radio" name="item_y[4-4]" value="4" checked>
             <input data-type="scaler-y-item" data-path-x="1234" data-path-y="1234" type="radio" name="item_y[4-4]" value="5">
-            <x-grid-item data-grid-item      data-path-x="1234" data-path-y="1234">GRID 4.4</x-grid-item>
+            <x-grid-item data-grid-item      data-path-x="1234" data-path-y="1234">Cell 4.4</x-grid-item>
 
             <input data-type="scaler-x-item" data-path-x="12345" data-path-y="1234" type="radio" name="item_x[4-5]" value="1" disabled>
             <input data-type="scaler-x-item" data-path-x="12345" data-path-y="1234" type="radio" name="item_x[4-5]" value="2" disabled>
@@ -708,7 +708,7 @@
             <input data-type="scaler-y-item" data-path-x="12345" data-path-y="1234" type="radio" name="item_y[4-5]" value="3" disabled>
             <input data-type="scaler-y-item" data-path-x="12345" data-path-y="1234" type="radio" name="item_y[4-5]" value="4" checked>
             <input data-type="scaler-y-item" data-path-x="12345" data-path-y="1234" type="radio" name="item_y[4-5]" value="5">
-            <x-grid-item data-grid-item      data-path-x="12345" data-path-y="1234">GRID 4.5</x-grid-item>
+            <x-grid-item data-grid-item      data-path-x="12345" data-path-y="1234">Cell 4.5</x-grid-item>
 
             <!-- ///////////////////////////////////////////////////////////////////////////////// -->
 
@@ -722,7 +722,7 @@
             <input data-type="scaler-y-item" data-path-x="1" data-path-y="12345" type="radio" name="item_y[5-1]" value="3" disabled>
             <input data-type="scaler-y-item" data-path-x="1" data-path-y="12345" type="radio" name="item_y[5-1]" value="4" disabled>
             <input data-type="scaler-y-item" data-path-x="1" data-path-y="12345" type="radio" name="item_y[5-1]" value="5" checked>
-            <x-grid-item data-grid-item      data-path-x="1" data-path-y="12345">GRID 5.1</x-grid-item>
+            <x-grid-item data-grid-item      data-path-x="1" data-path-y="12345">Cell 5.1</x-grid-item>
 
             <input data-type="scaler-x-item" data-path-x="12" data-path-y="12345" type="radio" name="item_x[5-2]" value="1" disabled>
             <input data-type="scaler-x-item" data-path-x="12" data-path-y="12345" type="radio" name="item_x[5-2]" value="2" checked>
@@ -734,7 +734,7 @@
             <input data-type="scaler-y-item" data-path-x="12" data-path-y="12345" type="radio" name="item_y[5-2]" value="3" disabled>
             <input data-type="scaler-y-item" data-path-x="12" data-path-y="12345" type="radio" name="item_y[5-2]" value="4" disabled>
             <input data-type="scaler-y-item" data-path-x="12" data-path-y="12345" type="radio" name="item_y[5-2]" value="5" checked>
-            <x-grid-item data-grid-item      data-path-x="12" data-path-y="12345">GRID 5.2</x-grid-item>
+            <x-grid-item data-grid-item      data-path-x="12" data-path-y="12345">Cell 5.2</x-grid-item>
 
             <input data-type="scaler-x-item" data-path-x="123" data-path-y="12345" type="radio" name="item_x[5-3]" value="1" disabled>
             <input data-type="scaler-x-item" data-path-x="123" data-path-y="12345" type="radio" name="item_x[5-3]" value="2" disabled>
@@ -746,7 +746,7 @@
             <input data-type="scaler-y-item" data-path-x="123" data-path-y="12345" type="radio" name="item_y[5-3]" value="3" disabled>
             <input data-type="scaler-y-item" data-path-x="123" data-path-y="12345" type="radio" name="item_y[5-3]" value="4" disabled>
             <input data-type="scaler-y-item" data-path-x="123" data-path-y="12345" type="radio" name="item_y[5-3]" value="5" checked>
-            <x-grid-item data-grid-item      data-path-x="123" data-path-y="12345">GRID 5.3</x-grid-item>
+            <x-grid-item data-grid-item      data-path-x="123" data-path-y="12345">Cell 5.3</x-grid-item>
 
             <input data-type="scaler-x-item" data-path-x="1234" data-path-y="12345" type="radio" name="item_x[5-4]" value="1" disabled>
             <input data-type="scaler-x-item" data-path-x="1234" data-path-y="12345" type="radio" name="item_x[5-4]" value="2" disabled>
@@ -758,7 +758,7 @@
             <input data-type="scaler-y-item" data-path-x="1234" data-path-y="12345" type="radio" name="item_y[5-4]" value="3" disabled>
             <input data-type="scaler-y-item" data-path-x="1234" data-path-y="12345" type="radio" name="item_y[5-4]" value="4" disabled>
             <input data-type="scaler-y-item" data-path-x="1234" data-path-y="12345" type="radio" name="item_y[5-4]" value="5" checked>
-            <x-grid-item data-grid-item      data-path-x="1234" data-path-y="12345">GRID 5.4</x-grid-item>
+            <x-grid-item data-grid-item      data-path-x="1234" data-path-y="12345">Cell 5.4</x-grid-item>
 
             <input data-type="scaler-x-item" data-path-x="12345" data-path-y="12345" type="radio" name="item_x[5-5]" value="1" disabled>
             <input data-type="scaler-x-item" data-path-x="12345" data-path-y="12345" type="radio" name="item_x[5-5]" value="2" disabled>
@@ -770,7 +770,7 @@
             <input data-type="scaler-y-item" data-path-x="12345" data-path-y="12345" type="radio" name="item_y[5-5]" value="3" disabled>
             <input data-type="scaler-y-item" data-path-x="12345" data-path-y="12345" type="radio" name="item_y[5-5]" value="4" disabled>
             <input data-type="scaler-y-item" data-path-x="12345" data-path-y="12345" type="radio" name="item_y[5-5]" value="5" checked>
-            <x-grid-item data-grid-item      data-path-x="12345" data-path-y="12345">GRID 5.5</x-grid-item>
+            <x-grid-item data-grid-item      data-path-x="12345" data-path-y="12345">Cell 5.5</x-grid-item>
         </x-grid-manager>
 
     </x-part>

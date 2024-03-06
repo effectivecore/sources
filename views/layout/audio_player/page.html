@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="player.css" rel="stylesheet" media="all">
+    <script src="BaseComponent.js" defer></script>
+    <script src="AudioPlayerComponent.js" defer></script>
+    <script src="audioplayercomponent-mount.js" defer></script>
+    <title>Audio player</title>
+    <style>
+        body {
+          display: block;
+          margin: 0;
+          padding: 0;
+        }
+        [aria-hidden='true'] {
+          display: none !important;
+        }
+    </style>
+</head>
+<body>
+
+    <p> text 1 text 1 text 1 text 1 text 1 text 1 text 1 text 1 text 1 text 1 text 1 text 1 text 1 
+        text 1 text 1 text 1 text 1 text 1 text 1 text 1 text 1 text 1 text 1 text 1 text 1 text 1 
+        text 1 text 1 text 1 text 1 text 1 text 1 text 1 text 1 text 1 text 1 text 1 text 1 text 1 </p>
+
+    <audio src="audios/audio.mp3" data-player-name="default" preload="metadata" controls></audio>
+
+    <p> text 2 text 2 text 2 text 2 text 2 text 2 text 2 text 2 text 2 text 2 text 2 text 2 text 2 
+        text 2 text 2 text 2 text 2 text 2 text 2 text 2 text 2 text 2 text 2 text 2 text 2 text 2 
+        text 2 text 2 text 2 text 2 text 2 text 2 text 2 text 2 text 2 text 2 text 2 text 2 text 2 </p>
+
+</body>
+</html>

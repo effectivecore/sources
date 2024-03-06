@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="gallery.cssd" rel="stylesheet" media="all">
+    <title>Gallery player</title>
+    <style>
+        body {
+          display: block;
+          margin: 0;
+          padding: 0;
+        }
+    </style>
+</head>
+<body>
+
+    <x-gallery-player>
+
+        <x-thumbnails><!--
+         --><x-thumbnail data-type="picture" data-num= "0"><img src="pictures/thumbnail-01.png"></x-thumbnail><!--
+         --><x-thumbnail data-type="picture" data-num= "1"><img src="pictures/thumbnail-02.png"></x-thumbnail><!--
+         --><x-thumbnail data-type="picture" data-num= "2"><img src="pictures/thumbnail-03.png"></x-thumbnail><!--
+         --><x-thumbnail data-type="picture" data-num= "3"><img src="pictures/thumbnail-04.png"></x-thumbnail><!--
+         --><x-thumbnail data-type="picture" data-num= "4"><img src="pictures/thumbnail-05.png"></x-thumbnail><!--
+         --><x-thumbnail data-type="picture" data-num= "5"><img src="pictures/thumbnail-06.png"></x-thumbnail><!--
+         --><x-thumbnail data-type="picture" data-num= "6"><img src="pictures/thumbnail-07.png"></x-thumbnail><!--
+         --><x-thumbnail data-type="picture" data-num= "7"><img src="pictures/thumbnail-08.png"></x-thumbnail><!--
+         --><x-thumbnail data-type="picture" data-num= "8"><img src="pictures/thumbnail-09.png"></x-thumbnail><!--
+         --><x-thumbnail data-type="picture" data-num= "9" aria-selected="true"><img src="pictures/thumbnail-10.png"></x-thumbnail><!--
+         --><x-thumbnail data-type="picture" data-num="10"><img src="pictures/thumbnail-11.png"></x-thumbnail><!--
+         --><x-thumbnail data-type="picture" data-num="11"><img src="pictures/thumbnail-12.png"></x-thumbnail><!--
+         --><x-thumbnail data-type="picture" data-num="12"><img src="pictures/thumbnail-13.png"></x-thumbnail><!--
+         --><x-thumbnail data-type="picture" data-num="13"><img src="pictures/thumbnail-14.png"></x-thumbnail><!--
+         --><x-thumbnail data-type="picture" data-num="14"><img src="pictures/thumbnail-15.png"></x-thumbnail><!--
+         --><x-thumbnail data-type="picture" data-num="15"><img src="pictures/thumbnail-16.png"></x-thumbnail><!--
+         --><x-thumbnail data-type="picture" data-num="16"><img src="pictures/thumbnail-17.png"></x-thumbnail><!--
+         --><x-thumbnail data-type="picture" data-num="17"><img src="pictures/thumbnail-18.png"></x-thumbnail><!--
+         --><x-thumbnail data-type="picture" data-num="18"><img src="pictures/thumbnail-19.png"></x-thumbnail><!--
+         --><x-thumbnail data-type="picture" data-num="19"><img src="pictures/thumbnail-20.png"></x-thumbnail><!--
+     --></x-thumbnails>
+
+        <x-button-c></x-button-c>
+
+        <x-viewing-part>
+            <x-button-l data-is-blocked></x-button-l>
+            <x-viewing-area>
+                <img src="pictures/main.png">
+            </x-viewing-area>
+            <x-button-r></x-button-r>
+        </x-viewing-part>
+    </x-gallery-player>
+
+</body>
+</html>

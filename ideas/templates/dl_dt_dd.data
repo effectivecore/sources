@@ -1,0 +1,22 @@
+templates
+# ─────────────────────────────────────────────────────────────────────
+# dl list
+# ─────────────────────────────────────────────────────────────────────
+- dl
+    name: dl
+    type: markup
+    data|Node
+      children
+      - dl|Markup
+          tag_name: dl
+          children
+          - dt|Markup
+              tag_name: dt
+              children
+              - title|Text
+                  text: title
+          - dd|Markup
+              tag_name: dd
+              children
+              - value|Text
+                  text: value

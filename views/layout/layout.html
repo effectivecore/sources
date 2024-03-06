@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Layout "Universal"</title>
+    <style>
+        body {
+          display: block;
+          margin: 0 auto;
+          padding: 20px;
+          box-sizing: border-box;
+          min-width: 200px;
+          max-width: 1200px;
+          font-family: 'Arial';
+          font-size: 16px;
+          line-height: 1.5em;
+          background: lavender;
+        }
+
+        [data-area] {
+          display: block;
+          overflow: auto; /* !!! */
+          border: 1px solid black;
+          background: white;
+        }
+
+        [data-area][data-type^='grid-'] {display: grid}
+        [data-area][data-type='grid-2x'] {grid-template-columns: repeat(2, 1fr)}
+        [data-area][data-type='grid-3x'] {grid-template-columns: repeat(3, 1fr)}
+        [data-area][data-type='grid-4x'] {grid-template-columns: repeat(4, 1fr)}
+        [data-area][data-type='grid-5x'] {grid-template-columns: repeat(5, 1fr)}
+
+        @media screen and (max-width: 600px) {
+          [data-area][data-type^='grid-'] {display: block}
+        }
+
+        [data-area][data-type='flex'] {display: flex; flex-wrap: wrap}
+        [data-area][data-type='flex'] > [data-area] {flex: 200px}
+        [data-area][data-type='flex'] > [data-area]:empty {flex: 0}
+
+        [data-layout-id='universal'] [data-group-id='main-columns'] > [data-group-id='center'] {
+          flex: 500px;
+        }
+
+        [data-block] {
+          display: block;
+          padding: 10px;
+          background: honeydew;
+        }
+        
+        [aria-hidden] {
+          display: none;
+        }
+
+        pre {
+          overflow: auto;
+          background: powderblue;
+        }
+    </style>
+</head>
+<body data-layout-id="universal">
+
+    <x-area data-area data-id="system">
+        <section data-block>
+            <h2 data-block-title aria-hidden="true">Block</h2>
+            <x-section-content data-block-content>
+                system area system area system area system area system area system area system area
+                system area system area system area system area system area system area system area
+                system area system area system area system area system area system area system area
+            </x-section-content>
+        </section>
+    </x-area>
+
+    <header data-area data-id="header">
+        <section data-block>
+            <h2 data-block-title aria-hidden="true">Block</h2>
+            <x-section-content data-block-content>
+                header area header area header area header area header area header area header area
+                header area header area header area header area header area header area header area
+                header area header area header area header area header area header area header area
+            </x-section-content>
+        </section>
+    </header>
+
+    <x-area data-area data-id="menu">
+        <section data-block>
+            <h2 data-block-title aria-hidden="true">Block</h2>
+            <x-section-content data-block-content>
+                menu area menu area menu area menu area menu area menu area menu area menu area
+                menu area menu area menu area menu area menu area menu area menu area menu area
+                menu area menu area menu area menu area menu area menu area menu area menu area
+                <pre><!--
+                  -->overflow overflow overflow overflow overflow overflow overflow
+<!--              -->overflow overflow overflow overflow overflow overflow overflow
+<!--              -->overflow overflow overflow overflow overflow overflow overflow<!--
+             --></pre>
+            </x-section-content>
+        </section>
+    </x-area>
+
+    <x-area data-area data-type="flex" data-group-id="main-columns">
+        <aside data-area data-id="left">
+            <section data-block>
+                <h2 data-block-title aria-hidden="true">Block</h2>
+                <x-section-content data-block-content>
+                    left area left area left area left area left area left area left area
+                    left area left area left area left area left area left area left area
+                    left area left area left area left area left area left area left area
+                    <pre><!--
+                      -->overflow overflow overflow overflow overflow overflow overflow
+<!--                  -->overflow overflow overflow overflow overflow overflow overflow
+<!--                  -->overflow overflow overflow overflow overflow overflow overflow<!--
+                 --></pre>
+                </x-section-content>
+            </section>
+        </aside>
+
+        <x-area data-area data-group-id="center">
+            <x-area data-area data-type="flex" data-group-id="center-tiles">
+                <x-area data-area data-id="tile_1">
+                    <section data-block>
+                        <h2 data-block-title aria-hidden="true">Block</h2>
+                        <x-section-content data-block-content>
+                            tile_1 area tile_1 area tile_1 area tile_1 area
+                            tile_1 area tile_1 area tile_1 area tile_1 area
+                            tile_1 area tile_1 area tile_1 area tile_1 area
+                            <pre><!--
+                              -->overflow overflow overflow overflow overflow overflow overflow
+<!--                          -->overflow overflow overflow overflow overflow overflow overflow
+<!--                          -->overflow overflow overflow overflow overflow overflow overflow<!--
+                         --></pre>
+                        </x-section-content>
+                    </section>
+                </x-area>
+
+                <x-area data-area data-id="tile_2">
+                    <section data-block>
+                        <h2 data-block-title aria-hidden="true">Block</h2>
+                        <x-section-content data-block-content>
+                            tile_2 area tile_2 area tile_2 area tile_2 area
+                            tile_2 area tile_2 area tile_2 area tile_2 area
+                            tile_2 area tile_2 area tile_2 area tile_2 area
+                            tile_2 area tile_2 area tile_2 area tile_2 area
+                            tile_2 area tile_2 area tile_2 area tile_2 area
+                            tile_2 area tile_2 area tile_2 area tile_2 area
+                        </x-section-content>
+                    </section>
+                </x-area>
+
+                <x-area data-area data-id="tile_3">
+                    <section data-block>
+                        <h2 data-block-title aria-hidden="true">Block</h2>
+                        <x-section-content data-block-content>
+                            tile_3 area tile_3 area tile_3 area tile_3 area
+                            tile_3 area tile_3 area tile_3 area tile_3 area
+                            tile_3 area tile_3 area tile_3 area tile_3 area
+                        </x-section-content>
+                    </section>
+                </x-area>
+
+                <x-area data-area data-id="tile_4">
+                    <section data-block>
+                        <h2 data-block-title aria-hidden="true">Block</h2>
+                        <x-section-content data-block-content>
+                            tile_4 area tile_4 area tile_4 area tile_4 area
+                            tile_4 area tile_4 area tile_4 area tile_4 area
+                            tile_4 area tile_4 area tile_4 area tile_4 area
+                        </x-section-content>
+                    </section>
+                </x-area>
+            </x-area>
+
+            <x-area data-area data-id="breadcrumbs">
+                <section data-block>
+                    <h2 data-block-title aria-hidden="true">Block</h2>
+                    <x-section-content data-block-content>
+                        breadcrumbs area breadcrumbs area breadcrumbs area
+                        breadcrumbs area breadcrumbs area breadcrumbs area
+                        breadcrumbs area breadcrumbs area breadcrumbs area
+                    </x-section-content>
+                </section>
+            </x-area>
+
+            <x-area data-area data-id="messages">
+                <section data-block>
+                    <h2 data-block-title aria-hidden="true">Block</h2>
+                    <x-section-content data-block-content>
+                        messages area messages area messages area messages area
+                        messages area messages area messages area messages area
+                        messages area messages area messages area messages area
+                    </x-section-content>
+                </section>
+            </x-area>
+
+            <x-area data-area data-id="title">
+                <section data-block>
+                    <h2 data-block-title aria-hidden="true">Block</h2>
+                    <x-section-content data-block-content>
+                        title area title area title area title area title area
+                        title area title area title area title area title area
+                        title area title area title area title area title area
+                    </x-section-content>
+                </section>
+            </x-area>
+
+            <x-area data-area data-id="tabs">
+                <section data-block>
+                    <h2 data-block-title aria-hidden="true">Block</h2>
+                    <x-section-content data-block-content>
+                        tabs area tabs area tabs area tabs area tabs area tabs area
+                        tabs area tabs area tabs area tabs area tabs area tabs area
+                        tabs area tabs area tabs area tabs area tabs area tabs area
+                    </x-section-content>
+                </section>
+            </x-area>
+
+            <x-area data-area data-id="content">
+                <section data-block>
+                    <h2 data-block-title aria-hidden="true">Block</h2>
+                    <x-section-content data-block-content>
+                        content area content area content area content area content area
+                        content area content area content area content area content area
+                        content area content area content area content area content area
+                        content area content area content area content area content area
+                        content area content area content area content area content area
+                    </x-section-content>
+                </section>
+            </x-area>
+        </x-area>
+
+        <aside data-area data-id="right">
+            <section data-block>
+                <h2 data-block-title aria-hidden="true">Block</h2>
+                <x-section-content data-block-content>
+                    right area right area right area right area right area right area
+                    right area right area right area right area right area right area
+                    right area right area right area right area right area right area
+                </x-section-content>
+            </section>
+        </aside>
+    </x-area>
+
+    <footer data-area data-id="footer">
+        <section data-block>
+            <h2 data-block-title aria-hidden="true">Block</h2>
+            <x-section-content data-block-content>
+                footer area footer area footer area footer area footer area footer area footer area
+                footer area footer area footer area footer area footer area footer area footer area
+                footer area footer area footer area footer area footer area footer area footer area
+            </x-section-content>
+        </section>
+    </footer>
+
+</body>
+</html>

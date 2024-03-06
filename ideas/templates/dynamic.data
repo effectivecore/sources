@@ -1,0 +1,23 @@
+templates
+# ─────────────────────────────────────────────────────────────────────
+# dynamic example
+# ─────────────────────────────────────────────────────────────────────
+- dynamic
+    name: dynamic
+    type: markup
+    data|Node
+      children
+      - check|Template_check
+          condition: ...
+          on_success
+          - result|Markup
+              tag_name: x-contaner
+              children
+              - content|Text
+                  text: case "on_success"
+          on_failure
+          - result|Markup
+              tag_name: x-contaner
+              children
+              - content|Text
+                  text: case "on_failure"

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>"vertical-align" in DIV</title>
+    <style>
+        body {
+          display: block;
+          margin: 0;
+          padding: 0;
+        }
+
+        [data-id^='example-'] {
+          max-width: 800px;
+          height: 200px;
+          margin: 20px auto;
+          background: gray;
+        }
+
+        [data-id^='example-'] img {
+          width: 100px;
+          height: 131px;
+          border: 1px solid black;
+          background: gray;
+        }
+
+        /*        example via Grid
+        ┌─────┬───────────────────────┬─────┐
+        │ 1fr │          1fr          │ 1fr │
+        ├─────┼───────────────────────┼─────┤
+        │     │  ▲                    │     │
+        │     │ ◀┼──────────────────▶ │     │
+        │ 1fr │  │ 1px|max-content    │ 1fr │
+        │     │  │                    │     │
+        │     │  ▼                    │     │
+        ├─────┼───────────────────────┼─────┤
+        │ 1fr │          1fr          │ 1fr │
+        └─────┴───────────────────────┴─────┘
+        */
+
+        [data-id='example-1'] {
+          display: grid;
+          grid-template-columns: 1fr minmax(1px, max-content) 1fr;
+          grid-template-rows   : 1fr minmax(1px, max-content) 1fr;
+        }
+
+        [data-id='example-1'] img {
+          grid-column-start: 2;
+          grid-row-start:    2;
+        }
+
+        /* example via "flex" */
+
+        [data-id='example-2'] {
+          display: flex;
+          align-items: center;
+        }
+
+        [data-id='example-2'] img {
+          margin: 0 auto;
+        }
+
+        /* example via "vertical-align" */
+
+        [data-id='example-3'] {
+          text-align: center;
+          white-space: nowrap;
+        }
+
+        [data-id='example-3']:before {
+          content: '';
+          display: inline-block;
+          height: 100%;
+          vertical-align: middle;
+        }
+
+        [data-id='example-3'] img {
+          vertical-align: middle;
+        }
+    </style>
+</head>
+<body>
+
+    <div data-id="example-1"><img src="gallery/pictures/thumbnail-01.png"></div>
+    <div data-id="example-2"><img src="gallery/pictures/thumbnail-01.png"></div>
+    <div data-id="example-3"><img src="gallery/pictures/thumbnail-01.png"></div>
+
+</body>
+</html>

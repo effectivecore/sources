@@ -1,0 +1,39 @@
+GET /test.file HTTP/1.1
+Host: example.com
+User-Agent: %%_USER_AGENT
+Range: bytes=4374464-
+Accept: */*
+Cache-Control: no-cache
+Pragma: no-cache
+Connection: close
+
+HTTP/1.1 206 Partial Content
+Server: %%_SERVER_NAME
+Date: Wed, 01 Jan 2020 00:00:00 GMT
+Content-Type: application/octet-stream
+Content-Length: 1948975168
+Last-Modified: Wed, 01 Jan 2020 00:00:00 GMT
+ETag: "ffffffff-ffffffff"
+Content-Range: bytes 4374464-1953349631/1953349632
+Proxy-Connection: close
+
+---
+
+GET /test.file HTTP/1.1
+Host: example.com
+User-Agent: %%_USER_AGENT
+Range: bytes=979672896-
+Accept: */*
+Cache-Control: no-cache
+Pragma: no-cache
+Connection: close
+
+HTTP/1.1 206 Partial Content
+Server: %%_SERVER_NAME
+Date: Wed, 01 Jan 2020 00:00:00 GMT
+Content-Type: application/octet-stream
+Content-Length: 973676736
+Last-Modified: Wed, 01 Jan 2020 00:00:00 GMT
+ETag: "ffffffff-ffffffff"
+Content-Range: bytes 979672896-1953349631/1953349632
+Proxy-Connection: close

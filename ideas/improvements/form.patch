@@ -1,0 +1,60 @@
+diff --git forkSrcPrefix/system/module_core/backend/Events_Form_Modules_Update_data.php forkDstPrefix/system/module_core/backend/Events_Form_Modules_Update_data.php
+index af5faa987d7815a12709b44e2c702a4bb5f58224..77dd212509a1443f91c81637326038b2ef75c4d9 100644
+--- forkSrcPrefix/system/module_core/backend/Events_Form_Modules_Update_data.php
++++ forkDstPrefix/system/module_core/backend/Events_Form_Modules_Update_data.php
+@@ -91,6 +91,7 @@ abstract class Events_Form_Modules_Update_data {
+                         'No one item was selected!', 'warning'
+                     );
+                 } else {
++########
+                     static::on_build(null, $form);
+                     static::on_init (null, $form, $form->items_update());
+                 }
+diff --git forkSrcPrefix/system/module_core/backend/Events_Form_Modules_Update_files.php forkDstPrefix/system/module_core/backend/Events_Form_Modules_Update_files.php
+index a581134ea7c1529c3738fa009192926c6d651ef8..5a7526d4eb1f714d00c7089f481d417b1a595589 100644
+--- forkSrcPrefix/system/module_core/backend/Events_Form_Modules_Update_files.php
++++ forkDstPrefix/system/module_core/backend/Events_Form_Modules_Update_files.php
+@@ -25,6 +25,7 @@ abstract class Events_Form_Modules_Update_files {
+         $info->children_delete();
+         $bundles = Module::bundle_get_all();
+         Core::array_sort_by_string($bundles);
++########
+         foreach ($bundles as $c_bundle) {
+             if (isset($c_bundle->repo_update_handler_in_module) && Module::is_enabled(
+                       $c_bundle->repo_update_handler_in_module)) {
+@@ -60,6 +61,7 @@ abstract class Events_Form_Modules_Update_files {
+     static function on_submit($event, $form, $items) {
+         switch ($form->clicked_button->_type) {
+             case 'update':
++########
+                 static::on_init(null, $form, $items);
+                 $bundle_id = $form->clicked_button->_id;
+                 $result = Event::start('on_update_files', $bundle_id, ['bundle_id' => $bundle_id]);
+@@ -74,6 +76,7 @@ abstract class Events_Form_Modules_Update_files {
+                 }
+                 break;
+             case 'repo_restore':
++########
+                 static::on_init(null, $form, $items);
+                 $bundle_id = $form->clicked_button->_id;
+                 $result = Event::start('on_repo_restore', $bundle_id, ['bundle_id' => $bundle_id]);
+diff --git forkSrcPrefix/system/module_user/backend/Events_Form_Instance_update.php forkDstPrefix/system/module_user/backend/Events_Form_Instance_update.php
+index 5b5c70cac32729d5efaad78377f7832af7dae2e0..c1b5f4683375d23c129ee4e05721e25c3dd8d27d 100644
+--- forkSrcPrefix/system/module_user/backend/Events_Form_Instance_update.php
++++ forkDstPrefix/system/module_user/backend/Events_Form_Instance_update.php
+@@ -26,6 +26,7 @@ abstract class Events_Form_Instance_update {
+             }
+             if ($entity->name === 'user') {
+                 # field 'password'
++########
+                 $field_password_hash_current = new Field_Password('Current password', null, [], -500);
+                 $field_password_hash_current->build();
+                 $field_password_hash_current->name_set('password_hash_current');
+@@ -48,6 +49,7 @@ abstract class Events_Form_Instance_update {
+             }
+             if ($entity->name === 'user') {
+                 # field 'avatar'
++########
+                 $items['#avatar_path']->fixed_name = 'avatar-'.$form->_instance->id;
+             }
+         }

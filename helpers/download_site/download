@@ -1,0 +1,57 @@
+#!/usr/bin/env bash
+
+cd "$(dirname "$0")"
+
+path_root="$(dirname "$0")"
+
+path_urls="$path_root/urls.txt"
+path_cookies="$path_root/cookies.txt"
+path_user_agent="$path_root/user_agent.txt"
+
+path_result="$path_root/result"
+path_result_log_anonymous="$path_root/result/log-anonymous.txt"
+path_result_log_registered="$path_root/result/log-registered.txt"
+path_result_site="$path_root/result/files"
+path_result_site_anonymous="$path_root/result/files/anonymous"
+path_result_site_registered="$path_root/result/files/registered"
+
+user_agent=$(<$path_user_agent)
+urls=$(<$path_urls)
+
+rm -rf $path_result
+
+mkdir $path_result
+mkdir $path_result_site
+touch $path_result_log_anonymous
+touch $path_result_log_registered
+
+#################
+### anonymous ###
+#################
+
+wget --recursive \
+     --level=0 \
+     --max-redirect=20 \
+     --no-cache \
+     --show-progress \
+     --directory-prefix=$path_result_site_anonymous \
+     --append-output=$path_result_log_anonymous \
+     --default-page=index \
+     --input-file=$urls
+
+##################
+### registered ###
+##################
+
+wget --recursive \
+     --level=0 \
+     --max-redirect=20 \
+     --no-cache \
+     --show-progress \
+     --directory-prefix=$path_result_site_registered \
+     --append-output=$path_result_log_registered \
+          --load-cookies=$path_cookies \
+          --keep-session-cookies \
+          --user-agent="$user_agent" \
+     --default-page=index \
+     --input-file=$urls

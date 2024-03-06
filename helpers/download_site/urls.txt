@@ -1,0 +1,15 @@
+http://effcore
+http://effcore/manage/data/content/page
+http://effcore/manage/data/content/text
+http://effcore/manage/data/content/picture
+http://effcore/manage/data/content/audio
+http://effcore/manage/data/content/video
+http://effcore/manage/data/content/gallery
+http://effcore/manage/data/content/selection
+http://effcore/manage/data/content/poll
+http://effcore/develop/tests
+http://effcore/develop/palette
+http://effcore/develop/structures/class/list
+http://effcore/develop/structures/interface/list
+http://effcore/develop/structures/trait/list
+http://effcore/develop/data_nosql

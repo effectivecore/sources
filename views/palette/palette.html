@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="utf-8">
+    <title>Palette</title>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            let result = document.getElementById('result');
+            document.querySelectorAll('x-palette x-item-group').forEach((c_group) => {
+                let c_group_name = c_group.getAttribute('data-name');
+                let c_prefixes = ['_l10', '_l9', '_l8', '_l7', '_l6', '_l5', '_l4', '_l3', '_l2', '_l1', '', '_r1', '_r2', '_r3', '_r4', '_r5', '_r6', '_r7', '_r8', '_r9', '_r10'];
+                result.value += '# ─────────────────────────────────────────────────────────────────────\n';
+                result.value += '# ' + c_group_name + ' group\n';
+                result.value += '# ─────────────────────────────────────────────────────────────────────\n';
+                c_group.querySelectorAll('x-item').forEach((c_item) => {
+                    let [r,g,b] = window.getComputedStyle(c_item)
+                        .backgroundColor
+                        .replace(/[rgb \)\(]/g, '')
+                        .split(',');
+                    let c_hex_value =
+                        parseInt(r).toString(16).padStart(2, '0') +
+                        parseInt(g).toString(16).padStart(2, '0') +
+                        parseInt(b).toString(16).padStart(2, '0');
+                    let c_color_id = c_group_name + c_prefixes.shift();
+                    result.value += '- ' + c_color_id + '|Color\n';
+                    result.value += '    id: ' + c_color_id + '\n';
+                    result.value += '    value_hex: #' + c_hex_value + '\n';
+                    result.value += '    group: ' + c_group_name + '\n';
+                });
+            });
+        });
+    </script>
+
+    <style>
+        :root {
+          --color-red         : 10;
+          --color-orange      : 35;
+          --color-orangeyellow: 49;
+          --color-yellow      : 61;
+          --color-yellowgreen : 80;
+          --color-green       : 126;
+          --color-greenblue   : 168;
+          --color-lightblue   : 203;
+          --color-blue        : 245;
+          --color-blueviolet  : 267;
+          --color-violet      : 285;
+          --lightness         : 100%;
+        }
+
+        body {
+          margin: 0;
+          padding: 30px;
+          background: white;
+        }
+
+        x-palette {
+          float: left;
+          clear: both}
+        x-palette::after {content: ''; clear: both; display: block}
+
+        x-palette x-item-group {
+          float: left;
+          clear: both;
+        }
+
+        x-palette x-item-group x-item {
+          float: left;
+          width: 25px;
+          height: 25px;
+        }
+        
+        x-palette x-item-group x-item:nth-child(11) {
+          border-left : 1px dotted white;
+          border-right: 1px dotted white;
+        }
+        
+        textarea#result {
+          display: block;
+          width: 700px;
+          height: 300px;
+          margin: 20px 0;
+          font-family: monospace;
+          font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+
+    <x-palette>
+        <x-item-group data-name="gray">
+            <x-item style="background: hsl(0, 0%, 10%)"></x-item>
+            <x-item style="background: hsl(0, 0%, 14%)"></x-item>
+            <x-item style="background: hsl(0, 0%, 18%)"></x-item>
+            <x-item style="background: hsl(0, 0%, 22%)"></x-item>
+            <x-item style="background: hsl(0, 0%, 26%)"></x-item>
+            <x-item style="background: hsl(0, 0%, 30%)"></x-item>
+            <x-item style="background: hsl(0, 0%, 34%)"></x-item>
+            <x-item style="background: hsl(0, 0%, 38%)"></x-item>
+            <x-item style="background: hsl(0, 0%, 42%)"></x-item>
+            <x-item style="background: hsl(0, 0%, 47%)"></x-item>
+            <x-item style="background: hsl(0, 0%, 50%)"></x-item>
+            <x-item style="background: hsl(0, 0%, 55%)"></x-item>
+            <x-item style="background: hsl(0, 0%, 59%)"></x-item>
+            <x-item style="background: hsl(0, 0%, 64%)"></x-item>
+            <x-item style="background: hsl(0, 0%, 68%)"></x-item>
+            <x-item style="background: hsl(0, 0%, 73%)"></x-item>
+            <x-item style="background: hsl(0, 0%, 77%)"></x-item>
+            <x-item style="background: hsl(0, 0%, 82%)"></x-item>
+            <x-item style="background: hsl(0, 0%, 86%)"></x-item>
+            <x-item style="background: hsl(0, 0%, 91%)"></x-item>
+            <x-item style="background: hsl(0, 0%, 95%)"></x-item>
+        </x-item-group>
+        <x-item-group data-name="red">
+            <x-item style="background: hsl(var(--color-red), var(--lightness), 10%)"></x-item>
+            <x-item style="background: hsl(var(--color-red), var(--lightness), 14%)"></x-item>
+            <x-item style="background: hsl(var(--color-red), var(--lightness), 18%)"></x-item>
+            <x-item style="background: hsl(var(--color-red), var(--lightness), 22%)"></x-item>
+            <x-item style="background: hsl(var(--color-red), var(--lightness), 26%)"></x-item>
+            <x-item style="background: hsl(var(--color-red), var(--lightness), 30%)"></x-item>
+            <x-item style="background: hsl(var(--color-red), var(--lightness), 34%)"></x-item>
+            <x-item style="background: hsl(var(--color-red), var(--lightness), 38%)"></x-item>
+            <x-item style="background: hsl(var(--color-red), var(--lightness), 42%)"></x-item>
+            <x-item style="background: hsl(var(--color-red), var(--lightness), 47%)"></x-item>
+            <x-item style="background: hsl(var(--color-red), var(--lightness), 50%)"></x-item>
+            <x-item style="background: hsl(var(--color-red), var(--lightness), 55%)"></x-item>
+            <x-item style="background: hsl(var(--color-red), var(--lightness), 59%)"></x-item>
+            <x-item style="background: hsl(var(--color-red), var(--lightness), 64%)"></x-item>
+            <x-item style="background: hsl(var(--color-red), var(--lightness), 68%)"></x-item>
+            <x-item style="background: hsl(var(--color-red), var(--lightness), 73%)"></x-item>
+            <x-item style="background: hsl(var(--color-red), var(--lightness), 77%)"></x-item>
+            <x-item style="background: hsl(var(--color-red), var(--lightness), 82%)"></x-item>
+            <x-item style="background: hsl(var(--color-red), var(--lightness), 86%)"></x-item>
+            <x-item style="background: hsl(var(--color-red), var(--lightness), 91%)"></x-item>
+            <x-item style="background: hsl(var(--color-red), var(--lightness), 95%)"></x-item>
+        </x-item-group>
+        <x-item-group data-name="orange">
+            <x-item style="background: hsl(var(--color-orange), var(--lightness), 10%)"></x-item>
+            <x-item style="background: hsl(var(--color-orange), var(--lightness), 14%)"></x-item>
+            <x-item style="background: hsl(var(--color-orange), var(--lightness), 18%)"></x-item>
+            <x-item style="background: hsl(var(--color-orange), var(--lightness), 22%)"></x-item>
+            <x-item style="background: hsl(var(--color-orange), var(--lightness), 26%)"></x-item>
+            <x-item style="background: hsl(var(--color-orange), var(--lightness), 30%)"></x-item>
+            <x-item style="background: hsl(var(--color-orange), var(--lightness), 34%)"></x-item>
+            <x-item style="background: hsl(var(--color-orange), var(--lightness), 38%)"></x-item>
+            <x-item style="background: hsl(var(--color-orange), var(--lightness), 42%)"></x-item>
+            <x-item style="background: hsl(var(--color-orange), var(--lightness), 47%)"></x-item>
+            <x-item style="background: hsl(var(--color-orange), var(--lightness), 50%)"></x-item>
+            <x-item style="background: hsl(var(--color-orange), var(--lightness), 55%)"></x-item>
+            <x-item style="background: hsl(var(--color-orange), var(--lightness), 59%)"></x-item>
+            <x-item style="background: hsl(var(--color-orange), var(--lightness), 64%)"></x-item>
+            <x-item style="background: hsl(var(--color-orange), var(--lightness), 68%)"></x-item>
+            <x-item style="background: hsl(var(--color-orange), var(--lightness), 73%)"></x-item>
+            <x-item style="background: hsl(var(--color-orange), var(--lightness), 77%)"></x-item>
+            <x-item style="background: hsl(var(--color-orange), var(--lightness), 82%)"></x-item>
+            <x-item style="background: hsl(var(--color-orange), var(--lightness), 86%)"></x-item>
+            <x-item style="background: hsl(var(--color-orange), var(--lightness), 91%)"></x-item>
+            <x-item style="background: hsl(var(--color-orange), var(--lightness), 95%)"></x-item>
+        </x-item-group>
+        <x-item-group data-name="orangeyellow">
+            <x-item style="background: hsl(var(--color-orangeyellow), var(--lightness), 10%)"></x-item>
+            <x-item style="background: hsl(var(--color-orangeyellow), var(--lightness), 14%)"></x-item>
+            <x-item style="background: hsl(var(--color-orangeyellow), var(--lightness), 18%)"></x-item>
+            <x-item style="background: hsl(var(--color-orangeyellow), var(--lightness), 22%)"></x-item>
+            <x-item style="background: hsl(var(--color-orangeyellow), var(--lightness), 26%)"></x-item>
+            <x-item style="background: hsl(var(--color-orangeyellow), var(--lightness), 30%)"></x-item>
+            <x-item style="background: hsl(var(--color-orangeyellow), var(--lightness), 34%)"></x-item>
+            <x-item style="background: hsl(var(--color-orangeyellow), var(--lightness), 38%)"></x-item>
+            <x-item style="background: hsl(var(--color-orangeyellow), var(--lightness), 42%)"></x-item>
+            <x-item style="background: hsl(var(--color-orangeyellow), var(--lightness), 47%)"></x-item>
+            <x-item style="background: hsl(var(--color-orangeyellow), var(--lightness), 50%)"></x-item>
+            <x-item style="background: hsl(var(--color-orangeyellow), var(--lightness), 55%)"></x-item>
+            <x-item style="background: hsl(var(--color-orangeyellow), var(--lightness), 59%)"></x-item>
+            <x-item style="background: hsl(var(--color-orangeyellow), var(--lightness), 64%)"></x-item>
+            <x-item style="background: hsl(var(--color-orangeyellow), var(--lightness), 68%)"></x-item>
+            <x-item style="background: hsl(var(--color-orangeyellow), var(--lightness), 73%)"></x-item>
+            <x-item style="background: hsl(var(--color-orangeyellow), var(--lightness), 77%)"></x-item>
+            <x-item style="background: hsl(var(--color-orangeyellow), var(--lightness), 82%)"></x-item>
+            <x-item style="background: hsl(var(--color-orangeyellow), var(--lightness), 86%)"></x-item>
+            <x-item style="background: hsl(var(--color-orangeyellow), var(--lightness), 91%)"></x-item>
+            <x-item style="background: hsl(var(--color-orangeyellow), var(--lightness), 95%)"></x-item>
+        </x-item-group>
+        <x-item-group data-name="yellow">
+            <x-item style="background: hsl(var(--color-yellow), var(--lightness), 10%)"></x-item>
+            <x-item style="background: hsl(var(--color-yellow), var(--lightness), 14%)"></x-item>
+            <x-item style="background: hsl(var(--color-yellow), var(--lightness), 18%)"></x-item>
+            <x-item style="background: hsl(var(--color-yellow), var(--lightness), 22%)"></x-item>
+            <x-item style="background: hsl(var(--color-yellow), var(--lightness), 26%)"></x-item>
+            <x-item style="background: hsl(var(--color-yellow), var(--lightness), 30%)"></x-item>
+            <x-item style="background: hsl(var(--color-yellow), var(--lightness), 34%)"></x-item>
+            <x-item style="background: hsl(var(--color-yellow), var(--lightness), 38%)"></x-item>
+            <x-item style="background: hsl(var(--color-yellow), var(--lightness), 42%)"></x-item>
+            <x-item style="background: hsl(var(--color-yellow), var(--lightness), 47%)"></x-item>
+            <x-item style="background: hsl(var(--color-yellow), var(--lightness), 50%)"></x-item>
+            <x-item style="background: hsl(var(--color-yellow), var(--lightness), 55%)"></x-item>
+            <x-item style="background: hsl(var(--color-yellow), var(--lightness), 59%)"></x-item>
+            <x-item style="background: hsl(var(--color-yellow), var(--lightness), 64%)"></x-item>
+            <x-item style="background: hsl(var(--color-yellow), var(--lightness), 68%)"></x-item>
+            <x-item style="background: hsl(var(--color-yellow), var(--lightness), 73%)"></x-item>
+            <x-item style="background: hsl(var(--color-yellow), var(--lightness), 77%)"></x-item>
+            <x-item style="background: hsl(var(--color-yellow), var(--lightness), 82%)"></x-item>
+            <x-item style="background: hsl(var(--color-yellow), var(--lightness), 86%)"></x-item>
+            <x-item style="background: hsl(var(--color-yellow), var(--lightness), 91%)"></x-item>
+            <x-item style="background: hsl(var(--color-yellow), var(--lightness), 95%)"></x-item>
+        </x-item-group>
+        <x-item-group data-name="yellowgreen">
+            <x-item style="background: hsl(var(--color-yellowgreen), var(--lightness), 10%)"></x-item>
+            <x-item style="background: hsl(var(--color-yellowgreen), var(--lightness), 14%)"></x-item>
+            <x-item style="background: hsl(var(--color-yellowgreen), var(--lightness), 18%)"></x-item>
+            <x-item style="background: hsl(var(--color-yellowgreen), var(--lightness), 22%)"></x-item>
+            <x-item style="background: hsl(var(--color-yellowgreen), var(--lightness), 26%)"></x-item>
+            <x-item style="background: hsl(var(--color-yellowgreen), var(--lightness), 30%)"></x-item>
+            <x-item style="background: hsl(var(--color-yellowgreen), var(--lightness), 34%)"></x-item>
+            <x-item style="background: hsl(var(--color-yellowgreen), var(--lightness), 38%)"></x-item>
+            <x-item style="background: hsl(var(--color-yellowgreen), var(--lightness), 42%)"></x-item>
+            <x-item style="background: hsl(var(--color-yellowgreen), var(--lightness), 47%)"></x-item>
+            <x-item style="background: hsl(var(--color-yellowgreen), var(--lightness), 50%)"></x-item>
+            <x-item style="background: hsl(var(--color-yellowgreen), var(--lightness), 55%)"></x-item>
+            <x-item style="background: hsl(var(--color-yellowgreen), var(--lightness), 59%)"></x-item>
+            <x-item style="background: hsl(var(--color-yellowgreen), var(--lightness), 64%)"></x-item>
+            <x-item style="background: hsl(var(--color-yellowgreen), var(--lightness), 68%)"></x-item>
+            <x-item style="background: hsl(var(--color-yellowgreen), var(--lightness), 73%)"></x-item>
+            <x-item style="background: hsl(var(--color-yellowgreen), var(--lightness), 77%)"></x-item>
+            <x-item style="background: hsl(var(--color-yellowgreen), var(--lightness), 82%)"></x-item>
+            <x-item style="background: hsl(var(--color-yellowgreen), var(--lightness), 86%)"></x-item>
+            <x-item style="background: hsl(var(--color-yellowgreen), var(--lightness), 91%)"></x-item>
+            <x-item style="background: hsl(var(--color-yellowgreen), var(--lightness), 95%)"></x-item>
+        </x-item-group>
+        <x-item-group data-name="green">
+            <x-item style="background: hsl(var(--color-green), var(--lightness), 10%)"></x-item>
+            <x-item style="background: hsl(var(--color-green), var(--lightness), 14%)"></x-item>
+            <x-item style="background: hsl(var(--color-green), var(--lightness), 18%)"></x-item>
+            <x-item style="background: hsl(var(--color-green), var(--lightness), 22%)"></x-item>
+            <x-item style="background: hsl(var(--color-green), var(--lightness), 26%)"></x-item>
+            <x-item style="background: hsl(var(--color-green), var(--lightness), 30%)"></x-item>
+            <x-item style="background: hsl(var(--color-green), var(--lightness), 34%)"></x-item>
+            <x-item style="background: hsl(var(--color-green), var(--lightness), 38%)"></x-item>
+            <x-item style="background: hsl(var(--color-green), var(--lightness), 42%)"></x-item>
+            <x-item style="background: hsl(var(--color-green), var(--lightness), 47%)"></x-item>
+            <x-item style="background: hsl(var(--color-green), var(--lightness), 50%)"></x-item>
+            <x-item style="background: hsl(var(--color-green), var(--lightness), 55%)"></x-item>
+            <x-item style="background: hsl(var(--color-green), var(--lightness), 59%)"></x-item>
+            <x-item style="background: hsl(var(--color-green), var(--lightness), 64%)"></x-item>
+            <x-item style="background: hsl(var(--color-green), var(--lightness), 68%)"></x-item>
+            <x-item style="background: hsl(var(--color-green), var(--lightness), 73%)"></x-item>
+            <x-item style="background: hsl(var(--color-green), var(--lightness), 77%)"></x-item>
+            <x-item style="background: hsl(var(--color-green), var(--lightness), 82%)"></x-item>
+            <x-item style="background: hsl(var(--color-green), var(--lightness), 86%)"></x-item>
+            <x-item style="background: hsl(var(--color-green), var(--lightness), 91%)"></x-item>
+            <x-item style="background: hsl(var(--color-green), var(--lightness), 95%)"></x-item>
+        </x-item-group>
+        <x-item-group data-name="greenblue">
+            <x-item style="background: hsl(var(--color-greenblue), var(--lightness), 10%)"></x-item>
+            <x-item style="background: hsl(var(--color-greenblue), var(--lightness), 14%)"></x-item>
+            <x-item style="background: hsl(var(--color-greenblue), var(--lightness), 18%)"></x-item>
+            <x-item style="background: hsl(var(--color-greenblue), var(--lightness), 22%)"></x-item>
+            <x-item style="background: hsl(var(--color-greenblue), var(--lightness), 26%)"></x-item>
+            <x-item style="background: hsl(var(--color-greenblue), var(--lightness), 30%)"></x-item>
+            <x-item style="background: hsl(var(--color-greenblue), var(--lightness), 34%)"></x-item>
+            <x-item style="background: hsl(var(--color-greenblue), var(--lightness), 38%)"></x-item>
+            <x-item style="background: hsl(var(--color-greenblue), var(--lightness), 42%)"></x-item>
+            <x-item style="background: hsl(var(--color-greenblue), var(--lightness), 47%)"></x-item>
+            <x-item style="background: hsl(var(--color-greenblue), var(--lightness), 50%)"></x-item>
+            <x-item style="background: hsl(var(--color-greenblue), var(--lightness), 55%)"></x-item>
+            <x-item style="background: hsl(var(--color-greenblue), var(--lightness), 59%)"></x-item>
+            <x-item style="background: hsl(var(--color-greenblue), var(--lightness), 64%)"></x-item>
+            <x-item style="background: hsl(var(--color-greenblue), var(--lightness), 68%)"></x-item>
+            <x-item style="background: hsl(var(--color-greenblue), var(--lightness), 73%)"></x-item>
+            <x-item style="background: hsl(var(--color-greenblue), var(--lightness), 77%)"></x-item>
+            <x-item style="background: hsl(var(--color-greenblue), var(--lightness), 82%)"></x-item>
+            <x-item style="background: hsl(var(--color-greenblue), var(--lightness), 86%)"></x-item>
+            <x-item style="background: hsl(var(--color-greenblue), var(--lightness), 91%)"></x-item>
+            <x-item style="background: hsl(var(--color-greenblue), var(--lightness), 95%)"></x-item>
+        </x-item-group>
+        <x-item-group data-name="lightblue">
+            <x-item style="background: hsl(var(--color-lightblue), var(--lightness), 10%)"></x-item>
+            <x-item style="background: hsl(var(--color-lightblue), var(--lightness), 14%)"></x-item>
+            <x-item style="background: hsl(var(--color-lightblue), var(--lightness), 18%)"></x-item>
+            <x-item style="background: hsl(var(--color-lightblue), var(--lightness), 22%)"></x-item>
+            <x-item style="background: hsl(var(--color-lightblue), var(--lightness), 26%)"></x-item>
+            <x-item style="background: hsl(var(--color-lightblue), var(--lightness), 30%)"></x-item>
+            <x-item style="background: hsl(var(--color-lightblue), var(--lightness), 34%)"></x-item>
+            <x-item style="background: hsl(var(--color-lightblue), var(--lightness), 38%)"></x-item>
+            <x-item style="background: hsl(var(--color-lightblue), var(--lightness), 42%)"></x-item>
+            <x-item style="background: hsl(var(--color-lightblue), var(--lightness), 47%)"></x-item>
+            <x-item style="background: hsl(var(--color-lightblue), var(--lightness), 50%)"></x-item>
+            <x-item style="background: hsl(var(--color-lightblue), var(--lightness), 55%)"></x-item>
+            <x-item style="background: hsl(var(--color-lightblue), var(--lightness), 59%)"></x-item>
+            <x-item style="background: hsl(var(--color-lightblue), var(--lightness), 64%)"></x-item>
+            <x-item style="background: hsl(var(--color-lightblue), var(--lightness), 68%)"></x-item>
+            <x-item style="background: hsl(var(--color-lightblue), var(--lightness), 73%)"></x-item>
+            <x-item style="background: hsl(var(--color-lightblue), var(--lightness), 77%)"></x-item>
+            <x-item style="background: hsl(var(--color-lightblue), var(--lightness), 82%)"></x-item>
+            <x-item style="background: hsl(var(--color-lightblue), var(--lightness), 86%)"></x-item>
+            <x-item style="background: hsl(var(--color-lightblue), var(--lightness), 91%)"></x-item>
+            <x-item style="background: hsl(var(--color-lightblue), var(--lightness), 95%)"></x-item>
+        </x-item-group>
+        <x-item-group data-name="blue">
+            <x-item style="background: hsl(var(--color-blue), var(--lightness), 10%)"></x-item>
+            <x-item style="background: hsl(var(--color-blue), var(--lightness), 14%)"></x-item>
+            <x-item style="background: hsl(var(--color-blue), var(--lightness), 18%)"></x-item>
+            <x-item style="background: hsl(var(--color-blue), var(--lightness), 22%)"></x-item>
+            <x-item style="background: hsl(var(--color-blue), var(--lightness), 26%)"></x-item>
+            <x-item style="background: hsl(var(--color-blue), var(--lightness), 30%)"></x-item>
+            <x-item style="background: hsl(var(--color-blue), var(--lightness), 34%)"></x-item>
+            <x-item style="background: hsl(var(--color-blue), var(--lightness), 38%)"></x-item>
+            <x-item style="background: hsl(var(--color-blue), var(--lightness), 42%)"></x-item>
+            <x-item style="background: hsl(var(--color-blue), var(--lightness), 47%)"></x-item>
+            <x-item style="background: hsl(var(--color-blue), var(--lightness), 50%)"></x-item>
+            <x-item style="background: hsl(var(--color-blue), var(--lightness), 55%)"></x-item>
+            <x-item style="background: hsl(var(--color-blue), var(--lightness), 59%)"></x-item>
+            <x-item style="background: hsl(var(--color-blue), var(--lightness), 64%)"></x-item>
+            <x-item style="background: hsl(var(--color-blue), var(--lightness), 68%)"></x-item>
+            <x-item style="background: hsl(var(--color-blue), var(--lightness), 73%)"></x-item>
+            <x-item style="background: hsl(var(--color-blue), var(--lightness), 77%)"></x-item>
+            <x-item style="background: hsl(var(--color-blue), var(--lightness), 82%)"></x-item>
+            <x-item style="background: hsl(var(--color-blue), var(--lightness), 86%)"></x-item>
+            <x-item style="background: hsl(var(--color-blue), var(--lightness), 91%)"></x-item>
+            <x-item style="background: hsl(var(--color-blue), var(--lightness), 95%)"></x-item>
+        </x-item-group>
+        <x-item-group data-name="blueviolet">
+            <x-item style="background: hsl(var(--color-blueviolet), var(--lightness), 10%)"></x-item>
+            <x-item style="background: hsl(var(--color-blueviolet), var(--lightness), 14%)"></x-item>
+            <x-item style="background: hsl(var(--color-blueviolet), var(--lightness), 18%)"></x-item>
+            <x-item style="background: hsl(var(--color-blueviolet), var(--lightness), 22%)"></x-item>
+            <x-item style="background: hsl(var(--color-blueviolet), var(--lightness), 26%)"></x-item>
+            <x-item style="background: hsl(var(--color-blueviolet), var(--lightness), 30%)"></x-item>
+            <x-item style="background: hsl(var(--color-blueviolet), var(--lightness), 34%)"></x-item>
+            <x-item style="background: hsl(var(--color-blueviolet), var(--lightness), 38%)"></x-item>
+            <x-item style="background: hsl(var(--color-blueviolet), var(--lightness), 42%)"></x-item>
+            <x-item style="background: hsl(var(--color-blueviolet), var(--lightness), 47%)"></x-item>
+            <x-item style="background: hsl(var(--color-blueviolet), var(--lightness), 50%)"></x-item>
+            <x-item style="background: hsl(var(--color-blueviolet), var(--lightness), 55%)"></x-item>
+            <x-item style="background: hsl(var(--color-blueviolet), var(--lightness), 59%)"></x-item>
+            <x-item style="background: hsl(var(--color-blueviolet), var(--lightness), 64%)"></x-item>
+            <x-item style="background: hsl(var(--color-blueviolet), var(--lightness), 68%)"></x-item>
+            <x-item style="background: hsl(var(--color-blueviolet), var(--lightness), 73%)"></x-item>
+            <x-item style="background: hsl(var(--color-blueviolet), var(--lightness), 77%)"></x-item>
+            <x-item style="background: hsl(var(--color-blueviolet), var(--lightness), 82%)"></x-item>
+            <x-item style="background: hsl(var(--color-blueviolet), var(--lightness), 86%)"></x-item>
+            <x-item style="background: hsl(var(--color-blueviolet), var(--lightness), 91%)"></x-item>
+            <x-item style="background: hsl(var(--color-blueviolet), var(--lightness), 95%)"></x-item>
+        </x-item-group>
+        <x-item-group data-name="violet">
+            <x-item style="background: hsl(var(--color-violet), var(--lightness), 10%)"></x-item>
+            <x-item style="background: hsl(var(--color-violet), var(--lightness), 14%)"></x-item>
+            <x-item style="background: hsl(var(--color-violet), var(--lightness), 18%)"></x-item>
+            <x-item style="background: hsl(var(--color-violet), var(--lightness), 22%)"></x-item>
+            <x-item style="background: hsl(var(--color-violet), var(--lightness), 26%)"></x-item>
+            <x-item style="background: hsl(var(--color-violet), var(--lightness), 30%)"></x-item>
+            <x-item style="background: hsl(var(--color-violet), var(--lightness), 34%)"></x-item>
+            <x-item style="background: hsl(var(--color-violet), var(--lightness), 38%)"></x-item>
+            <x-item style="background: hsl(var(--color-violet), var(--lightness), 42%)"></x-item>
+            <x-item style="background: hsl(var(--color-violet), var(--lightness), 47%)"></x-item>
+            <x-item style="background: hsl(var(--color-violet), var(--lightness), 50%)"></x-item>
+            <x-item style="background: hsl(var(--color-violet), var(--lightness), 55%)"></x-item>
+            <x-item style="background: hsl(var(--color-violet), var(--lightness), 59%)"></x-item>
+            <x-item style="background: hsl(var(--color-violet), var(--lightness), 64%)"></x-item>
+            <x-item style="background: hsl(var(--color-violet), var(--lightness), 68%)"></x-item>
+            <x-item style="background: hsl(var(--color-violet), var(--lightness), 73%)"></x-item>
+            <x-item style="background: hsl(var(--color-violet), var(--lightness), 77%)"></x-item>
+            <x-item style="background: hsl(var(--color-violet), var(--lightness), 82%)"></x-item>
+            <x-item style="background: hsl(var(--color-violet), var(--lightness), 86%)"></x-item>
+            <x-item style="background: hsl(var(--color-violet), var(--lightness), 91%)"></x-item>
+            <x-item style="background: hsl(var(--color-violet), var(--lightness), 95%)"></x-item>
+        </x-item-group>
+    <x-palette>
+
+    <textarea id="result"></textarea>
+
+</body>
+</html>

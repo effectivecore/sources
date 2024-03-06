@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Layout via "column-count"</title>
+    <style>
+        body {
+          margin: 0;
+          padding: 20px;
+          font-family: 'Arial';
+          font-size: 16px;
+          line-height: 1.5em;
+          background: lavender;
+        }
+
+        [data-area] {
+          display: block;
+          min-width: 200px;
+          max-width: 800px;
+          box-sizing: border-box;
+          margin: 0 auto;
+        }
+
+        [data-area][data-group-id='body'] {
+          padding: 20px;
+          column-count: 3;
+          column-gap: 7px;
+          background: white;
+        }
+
+        [data-block] {
+          display: block;
+        }
+
+        [data-block]:nth-child(5n + 1) {background-color: lightcyan}
+        [data-block]:nth-child(5n + 2) {background-color: lightyellow}
+        [data-block]:nth-child(5n + 3) {background-color: honeydew}
+        [data-block]:nth-child(5n + 4) {background-color: ghostwhite}
+        [data-block]:nth-child(5n + 5) {background-color: azure}
+
+        @media screen and (min-width:   0  ) and (max-width: 500px) { [data-area][data-group-id='body'] {column-count: 1} }
+        @media screen and (min-width: 500px) and (max-width: 700px) { [data-area][data-group-id='body'] {column-count: 2} }
+        @media screen and (min-width: 700px) and (max-width: 900px) { [data-area][data-group-id='body'] {column-count: 3} }
+
+        pre {
+          overflow: auto;
+          background: powderblue;
+        }
+    </style>
+</head>
+<body>
+
+    <x-part data-area data-group-id="body">
+
+        <section data-block>
+            <h2 data-block-title aria-hidden="true">Block</h2>
+            <x-section-content data-block-content>
+                Some content in block 1. Some content in block 1. Some content in block 1.
+                Some content in block 1. Some content in block 1. Some content in block 1.
+                Some content in block 1. Some content in block 1. Some content in block 1.
+                Some content in block 1. Some content in block 1. Some content in block 1.
+                Some content in block 1. Some content in block 1. Some content in block 1.
+            </x-section-content>
+        </section>
+
+        <section data-block>
+            <h2 data-block-title aria-hidden="true">Block</h2>
+            <x-section-content data-block-content>
+                Some content in block 2. Some content in block 2. Some content in block 2.
+                Some content in block 2. Some content in block 2. Some content in block 2.
+                Some content in block 2. Some content in block 2. Some content in block 2.
+            </x-section-content>
+        </section>
+
+        <section data-block>
+            <h2 data-block-title aria-hidden="true">Block</h2>
+            <x-section-content data-block-content>
+                Some content in block 3. Some content in block 3. Some content in block 3.
+                Some content in block 3. Some content in block 3. Some content in block 3.
+                Some content in block 3. Some content in block 3. Some content in block 3.
+                Some content in block 3. Some content in block 3. Some content in block 3.
+                <pre><!--
+                  -->overflow overflow overflow overflow overflow overflow overflow
+<!--              -->overflow overflow overflow overflow overflow overflow overflow
+<!--              -->overflow overflow overflow overflow overflow overflow overflow<!--
+             --></pre>
+            </x-section-content>
+        </section>
+
+        <section data-block>
+            <h2 data-block-title aria-hidden="true">Block</h2>
+            <x-section-content data-block-content>
+                Some content in block 4. Some content in block 4. Some content in block 4.
+                Some content in block 4. Some content in block 4. Some content in block 4.
+                Some content in block 4. Some content in block 4. Some content in block 4.
+                Some content in block 4. Some content in block 4. Some content in block 4.
+                Some content in block 4. Some content in block 4. Some content in block 4.
+            </x-section-content>
+        </section>
+
+        <section data-block>
+            <h2 data-block-title aria-hidden="true">Block</h2>
+            <x-section-content data-block-content>
+                Some content in block 5. Some content in block 5. Some content in block 5.
+                Some content in block 5. Some content in block 5. Some content in block 5.
+                Some content in block 5. Some content in block 5. Some content in block 5.
+                Some content in block 5. Some content in block 5. Some content in block 5.
+            </x-section-content>
+        </section>
+
+    </x-part>
+
+</body>
+</html>

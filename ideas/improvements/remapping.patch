@@ -1,0 +1,89 @@
+diff --git forkSrcPrefix/modules/examples/profile_classic/backend/remapping_example/Demo_class_final.php forkDstPrefix/modules/examples/profile_classic/backend/remapping_example/Demo_class_final.php
+new file mode 100644
+index 0000000000000000000000000000000000000000..f452ca4d80f218a6a94c4a775a079a9477ba9456
+--- /dev/null
++++ forkDstPrefix/modules/examples/profile_classic/backend/remapping_example/Demo_class_final.php
+@@ -0,0 +1,24 @@
++<?php
++
++##################################################################
++### Copyright © 2017—2023 Maxim Rysevets. All rights reserved. ###
++##################################################################
++
++namespace effcore;
++
++final class Demo_class_final {
++
++          public           function public() {}
++          protected        function protected() {}
++          private          function private() {}
++          public    static function publicStatic() {}
++          protected static function protectedStatic() {}
++          private   static function privateStatic() {}
++    final public           function finalPublic() {}
++    final protected        function finalProtected() {}
++    final private          function finalPrivate() {}
++    final public    static function finalPublicStatic() {}
++    final protected static function finalProtectedStatic() {}
++    final private   static function finalPrivateStatic() {}
++
++}
+diff --git forkSrcPrefix/modules/examples/profile_classic/backend/remapping_example/Demo_class_abstract.php forkDstPrefix/modules/examples/profile_classic/backend/remapping_example/Demo_class_abstract.php
+new file mode 100644
+index 0000000000000000000000000000000000000000..5417428d58ebd629857207c38c8684bd63445ddc
+--- /dev/null
++++ forkDstPrefix/modules/examples/profile_classic/backend/remapping_example/Demo_class_abstract.php
+@@ -0,0 +1,24 @@
++<?php
++
++##################################################################
++### Copyright © 2017—2023 Maxim Rysevets. All rights reserved. ###
++##################################################################
++
++namespace effcore;
++
++abstract class Demo_class_abstract {
++
++             public           function public() {}
++             protected        function protected() {}
++             private          function private() {}
++             public    static function publicStatic() {}
++             protected static function protectedStatic() {}
++             private   static function privateStatic() {}
++    abstract public           function abstractPublic();
++    abstract protected        function abstractProtected();
++  # abstract private          function abstractPrivate();
++    abstract public    static function abstractPublicStatic();
++    abstract protected static function abstractProtectedStatic();
++  # abstract private   static function abstractPrivateStatic();
++
++}
+diff --git forkSrcPrefix/modules/examples/profile_classic/backend/remapping_example/Demo_class_pattern.php forkDstPrefix/modules/examples/profile_classic/backend/remapping_example/Demo_class_pattern.php
+new file mode 100644
+index 0000000000000000000000000000000000000000..55e827a2b4221482166a7096e87b04ba48ae5564
+--- /dev/null
++++ forkDstPrefix/modules/examples/profile_classic/backend/remapping_example/Demo_class_pattern.php
+@@ -0,0 +1,23 @@
++<?php
++
++##################################################################
++### Copyright © 2017—2023 Maxim Rysevets. All rights reserved. ###
++##################################################################
++
++namespace effcore;
++
++#[\AllowDynamicProperties]
++
++class Demo_class_pattern {
++
++    public $property_1 = 'property value 1';
++    public $property_2 = 'property value 2';
++    public $property_3 = 'property value 3';
++
++    public $property_as_array = [
++        'key 1' => 'value 1',
++        'key 2' => 'value 2',
++        'key 3' => 'value 3'
++    ];
++
++}

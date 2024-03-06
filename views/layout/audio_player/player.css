@@ -1,0 +1,62 @@
+
+x-audio-player {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  max-width: 600px;
+  color: white;
+  background: black;
+}
+
+x-audio-player * {
+  user-select: none;
+ -webkit-user-select: none;
+}
+
+x-audio-player button[value='play'] {
+  width: 44px;
+  height: 44px;
+  margin: 0;
+  padding: 0;
+  border: none;
+  border-radius: 0;
+  cursor: pointer;
+  background: #3d3d3d url('pictures/icons-button.svg') 4px -118px;
+}
+
+x-audio-player button[value='play']:enabled:hover  {background-color: #4f4f4f}
+x-audio-player button[value='play']:enabled:active {background-color: #6a6a6a; box-shadow: none}
+x-audio-player[data-is-playing] button[value='play'] {background-position: 2px -158px}
+
+x-audio-player x-timeline {
+  flex: 100 45px;
+  height: 20px;
+  margin: 12px;
+  cursor: not-allowed;
+  background: #717171;
+}
+
+x-audio-player[data-is-loadedmetadata] x-timeline {cursor: pointer}
+x-audio-player[data-is-progressing]    x-timeline {background-image: url('pictures/lines.svg'); background-size: 20px 20px}
+
+x-audio-player x-timeline x-track-position {
+  display: block;
+  width: 0;
+  height: 10px;
+  margin-top: 10px;
+  cursor: pointer;
+  background: #cacaca;
+}
+
+x-audio-player x-time {
+  flex: 59px;
+  margin: 6px 0;
+  overflow: auto;
+  font-family: monospace;
+  font-size: 12px;
+  line-height: 1em;
+  text-align: center;
+}
+
+x-audio-player x-time x-time-elapsed {display: inline-block; margin: 2px 7px 2px 3px; white-space: nowrap}
+x-audio-player x-time x-time-total   {display: inline-block; margin: 2px 7px 2px 3px; white-space: nowrap; opacity: .5}

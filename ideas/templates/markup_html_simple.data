@@ -1,0 +1,82 @@
+templates
+# ─────────────────────────────────────────────────────────────────────
+# elementary types
+# ─────────────────────────────────────────────────────────────────────
+- markup_html_simple__embedded
+    name: markup_html_simple__embedded
+    type: markup
+    data|Node
+      children
+      - tag_begin_open|Text_simple
+          text: <
+      - tag_begin|Text_simple
+          text: %%_tag_name
+      - attributes_delimiter|Text_simple
+          text:  
+      - attributes|Text_simple
+          text: %%_attributes
+      - tag_begin_close|Text_simple
+          text: >
+- markup_html__embedded
+    name: markup_html__embedded
+    type: markup
+    data|Node
+      children
+      - tag_begin_open|Text_simple
+          text: <
+      - tag_begin|Text_simple
+          text: %%_tag_name
+      - attributes_delimiter|Text_simple
+          text:  
+      - attributes|Text_simple
+          text: %%_attributes
+      - tag_begin_close|Text_simple
+          text: >
+      - children|Text_simple
+          text: %%_children
+      - tag_end_open|Text_simple
+          text: </
+      - tag_end|Text_simple
+          text: %%_tag_name
+      - tag_end_close|Text_simple
+          text: >
+    is_ready_for_selection: true
+# ◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦
+- markup_xml_simple__embedded
+    name: markup_xml_simple__embedded
+    type: markup
+    data|Node
+      children
+      - tag_begin_open|Text_simple
+          text: <
+      - tag_begin|Text_simple
+          text: %%_tag_name
+      - attributes_delimiter|Text_simple
+          text:  
+      - attributes|Text_simple
+          text: %%_attributes
+      - tag_begin_close|Text_simple
+          text: />
+- markup_xml__embedded
+    name: markup_xml__embedded
+    type: markup
+    data|Node
+      children
+      - tag_begin_open|Text_simple
+          text: <
+      - tag_begin|Text_simple
+          text: %%_tag_name
+      - attributes_delimiter|Text_simple
+          text:  
+      - attributes|Text_simple
+          text: %%_attributes
+      - tag_begin_close|Text_simple
+          text: >
+      - children|Text_simple
+          text: %%_children
+      - tag_end_open|Text_simple
+          text: </
+      - tag_end|Text_simple
+          text: %%_tag_name
+      - tag_end_close|Text_simple
+          text: >

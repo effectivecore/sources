@@ -1,0 +1,70 @@
+server: iis75
+os: Win
+php: 71
+https: no
+url: http://effcore/category/категория?key=value&ключ=значение
+
+$_SERVER
+---------------------------------------------------------------------
+- AUTH_PASSWORD: 
+- AUTH_TYPE: 
+- AUTH_USER: 
+- CERT_COOKIE: 
+- CERT_FLAGS: 
+- CERT_ISSUER: 
+- CERT_SERIALNUMBER: 
+- CERT_SUBJECT: 
+- CONTENT_LENGTH: %%_CONTENT_LENGTH
+- CONTENT_TYPE: %%_CONTENT_TYPE
+- DOCUMENT_ROOT: C:\www
+- FCGI_ROLE: RESPONDER
+- FP_NO_HOST_CHECK: NO
+- GATEWAY_INTERFACE: CGI/1.1
+- HTTPS: off
+- HTTPS_KEYSIZE: 
+- HTTPS_SECRETKEYSIZE: 
+- HTTPS_SERVER_ISSUER: 
+- HTTPS_SERVER_SUBJECT: 
+- HTTP_ACCEPT: %%_HTTP_ACCEPT
+- HTTP_ACCEPT_ENCODING: %%_HTTP_ACCEPT_ENCODING
+- HTTP_ACCEPT_LANGUAGE: %%_HTTP_ACCEPT_LANGUAGE
+- HTTP_CACHE_CONTROL: %%_HTTP_CACHE_CONTROL
+- HTTP_CONNECTION: %%_HTTP_CONNECTION
+- HTTP_CONTENT_LENGTH: 0
+- HTTP_COOKIE: %%_HTTP_COOKIE
+- HTTP_HOST: effcore
+- HTTP_UPGRADE_INSECURE_REQUESTS: 1
+- HTTP_USER_AGENT: %%_HTTP_USER_AGENT
+- HTTP_X_ORIGINAL_URL: /category/%D0%BA%D0%B0%D1%82%D0%B5%D0%B3%D0%BE%D1%80%D0%B8%D1%8F?key=value&%D0%BA%D0%BB%D1%8E%D1%87=%D0%B7%D0%BD%D0%B0%D1%87%D0%B5%D0%BD%D0%B8%D0%B5
+- IIS_UrlRewriteModule: 7.1.0761.0
+- IIS_WasUrlRewritten: 1
+- INSTANCE_NAME: EFFCORE
+- LOCAL_ADDR: 127.0.0.1
+- LOGON_USER: 
+- ORIG_PATH_INFO: /index.php/category/?????????
+- PATH_INFO: /category/?????????
+- PATH_TRANSLATED: C:\www\index.php\category\?????????
+- PHP_SELF: /index.php/category/?????????
+- QUERY_STRING: key=value&%D0%BA%D0%BB%D1%8E%D1%87=%D0%B7%D0%BD%D0%B0%D1%87%D0%B5%D0%BD%D0%B8%D0%B5
+- REMOTE_ADDR: 127.0.0.1
+- REMOTE_HOST: 127.0.0.1
+- REMOTE_PORT: %%_REMOTE_PORT
+- REMOTE_USER: 
+- REQUEST_METHOD: GET
+- REQUEST_TIME: %%_REQUEST_TIME
+- REQUEST_TIME_FLOAT: %%_REQUEST_TIME_FLOAT
+- REQUEST_URI: /category/??????????key=value&%D0%BA%D0%BB%D1%8E%D1%87=%D0%B7%D0%BD%D0%B0%D1%87%D0%B5%D0%BD%D0%B8%D0%B5
+- SCRIPT_FILENAME: C:\www\index.php
+- SCRIPT_NAME: /index.php
+- SERVER_NAME: effcore
+- SERVER_PORT: 80
+- SERVER_PORT_SECURE: 0
+- SERVER_PROTOCOL: HTTP/1.1
+- SERVER_SOFTWARE: Microsoft-IIS/7.5
+- UNENCODED_URL: /category/%D0%BA%D0%B0%D1%82%D0%B5%D0%B3%D0%BE%D1%80%D0%B8%D1%8F?key=value&%D0%BA%D0%BB%D1%8E%D1%87=%D0%B7%D0%BD%D0%B0%D1%87%D0%B5%D0%BD%D0%B8%D0%B5
+- URL: /index.php
+
+$_GET
+---------------------------------------------------------------------
+- key: value
+- ключ: значение

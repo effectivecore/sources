@@ -1,0 +1,234 @@
+diff --git forkSrcPrefix/system/module_develop/module_test/backend/Events_Test__Class_Template.php forkDstPrefix/system/module_develop/module_test/backend/Events_Test__Class_Template.php
+index 3237af57b914abced949689eb385a2d55ce86646..7e2195cc12a9a0dddab4bdb2ca5e1571e15d3563 100644
+--- forkSrcPrefix/system/module_develop/module_test/backend/Events_Test__Class_Template.php
++++ forkDstPrefix/system/module_develop/module_test/backend/Events_Test__Class_Template.php
+@@ -33,6 +33,7 @@ abstract class Events_Test__Class_Template {
+             'value_object_empty'       => (object)[],
+             'value_object'             => (object)['property_1' => 'value 1', 'property_2' => 'value 2', 'property_3' => 'value 3'],
+             'value_object_nested'      => (object)[0 => (object)[0 => 'nested value']],
++########
+             'value_resource'           => fopen(DIR_ROOT.'license.md', 'r'),
+             'value_array_empty'        => [],
+             'value_array_nested'       => [
+@@ -50,6 +51,7 @@ abstract class Events_Test__Class_Template {
+                 'value_nested_object_empty'       => (object)[],
+                 'value_nested_object'             => (object)['property_4' => 'value 4', 'property_5' => 'value 5', 'property_6' => 'value 6'],
+                 'value_nested_object_nested'      => (object)[0 => (object)[0 => 'nested/nested value']],
++########
+                 'value_nested_resource'           => fopen(DIR_ROOT.'license.md', 'r'),
+                 'value_nested_array_empty'        => []
+             ]
+@@ -125,6 +127,7 @@ abstract class Events_Test__Class_Template {
+             'value_object_empty'          => (object)[],
+             'value_object'                => (object)['property_1' => 'value 1', 'property_2' => 'value 2', 'property_3' => 'value 3'],
+             'value_object_nested'         => (object)[0 => (object)[0 => 'nested value']],
++########
+             'value_resource'              => fopen(DIR_ROOT.'license.md', 'r'),
+             'value_array_empty'           => [],
+             'value_array_nested'          => [
+@@ -142,6 +145,7 @@ abstract class Events_Test__Class_Template {
+                 'value_nested_object_empty'       => (object)[],
+                 'value_nested_object'             => (object)['property_4' => 'value 4', 'property_5' => 'value 5', 'property_6' => 'value 6'],
+                 'value_nested_object_nested'      => (object)[0 => (object)[0 => 'nested/nested value']],
++########
+                 'value_nested_resource'           => fopen(DIR_ROOT.'license.md', 'r'),
+                 'value_nested_array_empty'        => []
+             ]
+diff --git forkSrcPrefix/system/module_develop/module_test/backend/Events_Test__PHP.php forkDstPrefix/system/module_develop/module_test/backend/Events_Test__PHP.php
+index 3afded36d64fbc6b03d3398ae522202a63002380..7b7748b46c4a06374933f48cf9b34c24c6a79e77 100644
+--- forkSrcPrefix/system/module_develop/module_test/backend/Events_Test__PHP.php
++++ forkDstPrefix/system/module_develop/module_test/backend/Events_Test__PHP.php
+@@ -1084,6 +1084,7 @@ abstract class Events_Test__PHP {
+             'array_1'      => [1]  ,
+             'class_std'    => new stdCLass,
+             'class_test'   => new Test,
++########
+             'resource'     => fopen(DIR_ROOT.'license.md', 'r')
+         ];
+ 
+@@ -1150,6 +1151,7 @@ abstract class Events_Test__PHP {
+             'array_1'      => [1]  ,
+             'class_std'    => new stdCLass,
+             'class_test'   => new Test,
++########
+             'resource'     => fopen(DIR_ROOT.'license.md', 'r')
+         ];
+ 
+@@ -1216,6 +1218,7 @@ abstract class Events_Test__PHP {
+             'array_1'      => [1]  ,
+             'class_std'    => new stdCLass,
+             'class_test'   => new Test,
++########
+             'resource'     => fopen(DIR_ROOT.'license.md', 'r')
+         ];
+ 
+@@ -1283,6 +1286,7 @@ abstract class Events_Test__PHP {
+             'array_1'      => [1]  ,
+             'class_std'    => new stdCLass,
+             'class_test'   => new Test,
++########
+             'resource'     => fopen(DIR_ROOT.'license.md', 'r')
+         ];
+ 
+@@ -1351,6 +1355,7 @@ abstract class Events_Test__PHP {
+             'array_1'      => [1]  ,
+             'class_std'    => new stdCLass,
+             'class_test'   => new Test,
++########
+             'resource'     => fopen(DIR_ROOT.'license.md', 'r')
+         ];
+ 
+@@ -1433,6 +1438,7 @@ abstract class Events_Test__PHP {
+             'array_1'      => [1]  ,
+             'class_std'    => new stdCLass,
+             'class_test'   => new Test,
++########
+             'resource'     => fopen(DIR_ROOT.'license.md', 'r')
+         ];
+ 
+@@ -1499,6 +1505,7 @@ abstract class Events_Test__PHP {
+             'array_1'      => [1]  ,
+             'class_std'    => new stdCLass,
+             'class_test'   => new Test,
++########
+             'resource'     => fopen(DIR_ROOT.'license.md', 'r')
+         ];
+ 
+@@ -1565,6 +1572,7 @@ abstract class Events_Test__PHP {
+             'array_1'      => [1]  ,
+             'class_std'    => new stdCLass,
+             'class_test'   => new Test,
++########
+             'resource'     => fopen(DIR_ROOT.'license.md', 'r')
+         ];
+ 
+@@ -1632,6 +1640,7 @@ abstract class Events_Test__PHP {
+             'array_1'      => [1]  ,
+             'class_std'    => new stdCLass,
+             'class_test'   => new Test,
++########
+             'resource'     => fopen(DIR_ROOT.'license.md', 'r')
+         ];
+ 
+@@ -1700,6 +1709,7 @@ abstract class Events_Test__PHP {
+             'array_1'      => [1]  ,
+             'class_std'    => new stdCLass,
+             'class_test'   => new Test,
++########
+             'resource'     => fopen(DIR_ROOT.'license.md', 'r')
+         ];
+ 
+diff --git forkSrcPrefix/system/module_core/backend/Media.php forkDstPrefix/system/module_core/backend/Media.php
+index 08596fc83046bc5920cda067d427108aecb68bdc..4699847e54edfb9c0f6910968e776fbd098dd7e0 100644
+--- forkSrcPrefix/system/module_core/backend/Media.php
++++ forkDstPrefix/system/module_core/backend/Media.php
+@@ -16,6 +16,7 @@ abstract class Media {
+     }
+ 
+     static function container_file_insert($container_path, $file_path, $path_local) {
++########
+         $handle = fopen($container_path.':info', 'rb');
+         if ($handle) {
+             $info = fread($handle, 0xffff);
+diff --git forkSrcPrefix/system/module_core/backend/File_container.php forkDstPrefix/system/module_core/backend/File_container.php
+index 3abcf39285f3ef6c851b40e49629e7eaee7b4ab6..4d248b36dad39409cac13e8decb72128749b35d2 100644
+--- forkSrcPrefix/system/module_core/backend/File_container.php
++++ forkDstPrefix/system/module_core/backend/File_container.php
+@@ -337,7 +337,9 @@ class File_container {
+     }
+ 
+     static function add_file($path_src, $path_dst) {
++########
+         $handle_src = fopen($path_src,  'rb');
++########
+         $handle_dst = fopen($path_dst, 'c+b');
+         if ($handle_src && $handle_dst) {
+             $result = 0;
+@@ -353,6 +355,7 @@ class File_container {
+ 
+     static function add_from_string($data, $path) {
+         if (strlen($data)) {
++########
+             if ($handle = fopen($path, 'c+b')) {
+                 stream_set_read_buffer ($handle, 0);
+                 stream_set_write_buffer($handle, 0);
+diff --git forkSrcPrefix/system/module_develop/module_test/backend/Events_Test__Class_File_container.php forkDstPrefix/system/module_develop/module_test/backend/Events_Test__Class_File_container.php
+index 9a86c4d9f4959b94ebfc2c0db72af1d9b1a520be..7fd86b2370ba86e8ac123cf87b0449a188401ccf 100644
+--- forkSrcPrefix/system/module_develop/module_test/backend/Events_Test__Class_File_container.php
++++ forkDstPrefix/system/module_develop/module_test/backend/Events_Test__Class_File_container.php
+@@ -217,6 +217,7 @@ abstract class Events_Test__Class_File_container {
+             ###########################################################################################
+ 
+             $received = true;
++########
+             $handle = fopen($path_internal, 'c+b');
+             stream_set_read_buffer ($handle, 0);
+             stream_set_write_buffer($handle, 0);
+@@ -243,6 +244,7 @@ abstract class Events_Test__Class_File_container {
+             ### fopen() → [ fread(,1) ] → fclose() ###
+             ##########################################
+ 
++########
+             $handle = fopen($path_internal, 'rb');
+             stream_set_read_buffer ($handle, 0);
+             stream_set_write_buffer($handle, 0);
+@@ -272,6 +274,7 @@ abstract class Events_Test__Class_File_container {
+             ### fopen() → [ fread(,N) ] → fclose() ###
+             ##########################################
+ 
++########
+             $handle = fopen($path_internal, 'rb');
+             stream_set_read_buffer ($handle, 0);
+             stream_set_write_buffer($handle, 0);
+@@ -295,6 +298,7 @@ abstract class Events_Test__Class_File_container {
+             ### [ fopen() → fread(,N) → fclose() ] ###
+             ##########################################
+ 
++########
+             $received = true;
+                 $handle = fopen($path_internal, 'rb'); stream_set_read_buffer($handle, 0); stream_set_write_buffer($handle, 0); $received&= fread($handle,  1) === '0'         ; fclose($handle);
+                 $handle = fopen($path_internal, 'rb'); stream_set_read_buffer($handle, 0); stream_set_write_buffer($handle, 0); $received&= fread($handle,  2) === '01'        ; fclose($handle);
+@@ -321,6 +325,7 @@ abstract class Events_Test__Class_File_container {
+             ### fopen() → [ fseek(,0) → fread(,N) ] → fclose() ###
+             ######################################################
+ 
++########
+             $handle = fopen($path_internal, 'rb');
+             stream_set_read_buffer ($handle, 0);
+             stream_set_write_buffer($handle, 0);
+@@ -350,6 +355,7 @@ abstract class Events_Test__Class_File_container {
+             ### fopen() → [ fseek(,5) → fread(,N) ] → fclose() ###
+             ######################################################
+ 
++########
+             $handle = fopen($path_internal, 'rb');
+             stream_set_read_buffer ($handle, 0);
+             stream_set_write_buffer($handle, 0);
+@@ -374,6 +380,7 @@ abstract class Events_Test__Class_File_container {
+             ### fopen() → [ fseek(,11) → fread(,N) ] → fclose() ###
+             #######################################################
+ 
++########
+             $handle = fopen($path_internal, 'rb');
+             stream_set_read_buffer ($handle, 0);
+             stream_set_write_buffer($handle, 0);
+diff --git forkSrcPrefix/system/module_develop/module_test/backend/Events_Test__Class_Data_validator.php forkDstPrefix/system/module_develop/module_test/backend/Events_Test__Class_Data_validator.php
+index b217c8da5c3926d99b052295f61ed041bf715df7..3e6a8e8b476c42ce77986103172daf7c8c4adb00 100644
+--- forkSrcPrefix/system/module_develop/module_test/backend/Events_Test__Class_Data_validator.php
++++ forkDstPrefix/system/module_develop/module_test/backend/Events_Test__Class_Data_validator.php
+@@ -81,6 +81,7 @@ abstract class Events_Test__Class_Data_validator {
+                 'object_empty'       => /* error */ (object)[],
+                 'object'             => /* error */ (object)['property_1' => 'value 1', 'property_2' => 'value 2', 'property_3' => 'value 3'],
+                 'object_nested'      => /* error */ (object)[0 => (object)[0 => 'nested value']],
++########
+                 'resource'           => /* error */ fopen(DIR_ROOT.'license.md', 'r'),
+                 'string'             => 'text',
+                 'string_empty'       => '',
+@@ -109,6 +110,7 @@ abstract class Events_Test__Class_Data_validator {
+                     'item_object_empty'       => /* error */ (object)[],
+                     'item_object'             => /* error */ (object)['property_1' => 'value 1', 'property_2' => 'value 2', 'property_3' => 'value 3'],
+                     'item_object_nested'      => /* error */ (object)[0 => (object)[0 => 'nested value']],
++########
+                     'item_resource'           => /* error */ fopen(DIR_ROOT.'license.md', 'r')
+                 ],
+             ],

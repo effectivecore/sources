@@ -1,0 +1,779 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Layout Manager</title>
+    <style>
+        body {
+          margin: 0;
+          padding: 20px;
+          font-family: 'Arial';
+          font-size: 16px;
+          line-height: 1.5em;
+          background: #30184d;
+        }
+
+        [data-area][data-group-id='body'] {
+          display: block;
+          min-width:  200px;
+          max-width: 1000px;
+          box-sizing: border-box;
+          margin: 0 auto;
+        }
+
+        /* grid */
+
+        [data-grid-manager] {
+          display: grid;
+        }
+
+        [data-grid-manager] * {
+          user-select: none;
+         -webkit-user-select: none;
+        }
+
+        [data-grid-manager][data-type='grid-5x-custom'] {
+          grid-template-columns: repeat(5,   1fr);
+          grid-template-rows   : repeat(5, 100px);
+        }
+
+        [data-grid-item] {
+          display: block;
+          margin: 1px;
+          padding: 20px;
+          color: white;
+          text-align: center;
+          border: 1px solid #7d6599;
+          background: #4a3466;
+        }
+
+        /* grid fixer */
+
+        [data-type='grid-5x-custom'] *[data-path-x='1'    ] {grid-column-start: 1}
+        [data-type='grid-5x-custom'] *[data-path-x='12'   ] {grid-column-start: 2}
+        [data-type='grid-5x-custom'] *[data-path-x='123'  ] {grid-column-start: 3}
+        [data-type='grid-5x-custom'] *[data-path-x='1234' ] {grid-column-start: 4}
+        [data-type='grid-5x-custom'] *[data-path-x='12345'] {grid-column-start: 5}
+        [data-type='grid-5x-custom'] *[data-path-y='1'    ] {grid-row-start: 1}
+        [data-type='grid-5x-custom'] *[data-path-y='12'   ] {grid-row-start: 2}
+        [data-type='grid-5x-custom'] *[data-path-y='123'  ] {grid-row-start: 3}
+        [data-type='grid-5x-custom'] *[data-path-y='1234' ] {grid-row-start: 4}
+        [data-type='grid-5x-custom'] *[data-path-y='12345'] {grid-row-start: 5}
+
+        /* scaler */
+
+        [data-type^='scaler'] {
+          appearance: none;
+         -webkit-appearance: none;
+          display: inline-block;
+          position: relative;
+          width: 12px;
+          height: 12px;
+          margin: 0;
+          padding: 0;
+          cursor: pointer;
+          border: 1px solid black;
+          background: white;
+        }
+
+        [data-type^='scaler-x-'] {height: 8px}
+        [data-type^='scaler-y-'] {width:  8px}
+
+        [data-type^='scaler']:checked {
+          background: deepskyblue;
+        }
+
+        [data-type^='scaler']:disabled {
+          cursor: not-allowed;
+          background: silver;
+        }
+
+        /* scaler for grid */
+
+        [data-type='scaler-x-grid'],
+        [data-type='scaler-y-grid'] {position: absolute}
+        [data-type='scaler-x-grid'][value='1'] {margin-left:  20px; margin-top: -11px}
+        [data-type='scaler-x-grid'][value='2'] {margin-left:  31px; margin-top: -11px}
+        [data-type='scaler-x-grid'][value='3'] {margin-left:  42px; margin-top: -11px}
+        [data-type='scaler-x-grid'][value='4'] {margin-left:  53px; margin-top: -11px}
+        [data-type='scaler-x-grid'][value='5'] {margin-left:  64px; margin-top: -11px}
+        [data-type='scaler-y-grid'][value='1'] {margin-left: -11px; margin-top:  20px}
+        [data-type='scaler-y-grid'][value='2'] {margin-left: -11px; margin-top:  31px}
+        [data-type='scaler-y-grid'][value='3'] {margin-left: -11px; margin-top:  42px}
+        [data-type='scaler-y-grid'][value='4'] {margin-left: -11px; margin-top:  53px}
+        [data-type='scaler-y-grid'][value='5'] {margin-left: -11px; margin-top:  64px}
+
+        [data-type='scaler-x-grid'][value='1']:checked ~ [data-type='grid-5x-custom'] {grid-template-columns: repeat(1, 1fr)}
+        [data-type='scaler-x-grid'][value='2']:checked ~ [data-type='grid-5x-custom'] {grid-template-columns: repeat(2, 1fr)}
+        [data-type='scaler-x-grid'][value='3']:checked ~ [data-type='grid-5x-custom'] {grid-template-columns: repeat(3, 1fr)}
+        [data-type='scaler-x-grid'][value='4']:checked ~ [data-type='grid-5x-custom'] {grid-template-columns: repeat(4, 1fr)}
+        [data-type='scaler-x-grid'][value='5']:checked ~ [data-type='grid-5x-custom'] {grid-template-columns: repeat(5, 1fr)}
+        [data-type='scaler-x-grid'][value='1']:checked ~ [data-type='grid-5x-custom'] *[data-path-x^='12'   ],
+        [data-type='scaler-x-grid'][value='2']:checked ~ [data-type='grid-5x-custom'] *[data-path-x^='123'  ],
+        [data-type='scaler-x-grid'][value='3']:checked ~ [data-type='grid-5x-custom'] *[data-path-x^='1234' ],
+        [data-type='scaler-x-grid'][value='4']:checked ~ [data-type='grid-5x-custom'] *[data-path-x^='12345'] {display: none}
+
+        [data-type='scaler-y-grid'][value='1']:checked ~ [data-type='grid-5x-custom'] {grid-template-rows: repeat(1, 100px)}
+        [data-type='scaler-y-grid'][value='2']:checked ~ [data-type='grid-5x-custom'] {grid-template-rows: repeat(2, 100px)}
+        [data-type='scaler-y-grid'][value='3']:checked ~ [data-type='grid-5x-custom'] {grid-template-rows: repeat(3, 100px)}
+        [data-type='scaler-y-grid'][value='4']:checked ~ [data-type='grid-5x-custom'] {grid-template-rows: repeat(4, 100px)}
+        [data-type='scaler-y-grid'][value='5']:checked ~ [data-type='grid-5x-custom'] {grid-template-rows: repeat(5, 100px)}
+        [data-type='scaler-y-grid'][value='1']:checked ~ [data-type='grid-5x-custom'] *[data-path-y^='12'   ],
+        [data-type='scaler-y-grid'][value='2']:checked ~ [data-type='grid-5x-custom'] *[data-path-y^='123'  ],
+        [data-type='scaler-y-grid'][value='3']:checked ~ [data-type='grid-5x-custom'] *[data-path-y^='1234' ],
+        [data-type='scaler-y-grid'][value='4']:checked ~ [data-type='grid-5x-custom'] *[data-path-y^='12345'] {display: none}
+
+        /* scaler for item */
+
+        [data-type='scaler-x-item'][value='1'] {left: 20px; top:  5px}
+        [data-type='scaler-x-item'][value='2'] {left: 31px; top:  5px}
+        [data-type='scaler-x-item'][value='3'] {left: 42px; top:  5px}
+        [data-type='scaler-x-item'][value='4'] {left: 53px; top:  5px}
+        [data-type='scaler-x-item'][value='5'] {left: 64px; top:  5px}
+        [data-type='scaler-y-item'][value='1'] {left:  5px; top: 20px}
+        [data-type='scaler-y-item'][value='2'] {left:  5px; top: 31px}
+        [data-type='scaler-y-item'][value='3'] {left:  5px; top: 42px}
+        [data-type='scaler-y-item'][value='4'] {left:  5px; top: 53px}
+        [data-type='scaler-y-item'][value='5'] {left:  5px; top: 64px}
+
+        /* … row 1 */
+
+        [data-type='scaler-x-item'][data-path-x='1'][data-path-y='1'][value='1']:checked ~ [data-grid-item][data-path-x='1'][data-path-y='1'] {grid-column-end: 2}
+        [data-type='scaler-x-item'][data-path-x='1'][data-path-y='1'][value='2']:checked ~ [data-grid-item][data-path-x='1'][data-path-y='1'] {grid-column-end: 3}
+        [data-type='scaler-x-item'][data-path-x='1'][data-path-y='1'][value='3']:checked ~ [data-grid-item][data-path-x='1'][data-path-y='1'] {grid-column-end: 4}
+        [data-type='scaler-x-item'][data-path-x='1'][data-path-y='1'][value='4']:checked ~ [data-grid-item][data-path-x='1'][data-path-y='1'] {grid-column-end: 5}
+        [data-type='scaler-x-item'][data-path-x='1'][data-path-y='1'][value='5']:checked ~ [data-grid-item][data-path-x='1'][data-path-y='1'] {grid-column-end: 6}
+        [data-type='scaler-y-item'][data-path-x='1'][data-path-y='1'][value='1']:checked ~ [data-grid-item][data-path-x='1'][data-path-y='1'] {grid-row-end: 2}
+        [data-type='scaler-y-item'][data-path-x='1'][data-path-y='1'][value='2']:checked ~ [data-grid-item][data-path-x='1'][data-path-y='1'] {grid-row-end: 3}
+        [data-type='scaler-y-item'][data-path-x='1'][data-path-y='1'][value='3']:checked ~ [data-grid-item][data-path-x='1'][data-path-y='1'] {grid-row-end: 4}
+        [data-type='scaler-y-item'][data-path-x='1'][data-path-y='1'][value='4']:checked ~ [data-grid-item][data-path-x='1'][data-path-y='1'] {grid-row-end: 5}
+        [data-type='scaler-y-item'][data-path-x='1'][data-path-y='1'][value='5']:checked ~ [data-grid-item][data-path-x='1'][data-path-y='1'] {grid-row-end: 6}
+        [data-type='scaler-x-item'][data-path-x='1'][data-path-y='1'],
+        [data-type='scaler-y-item'][data-path-x='1'][data-path-y='1'] {z-index: 49}
+                   [data-grid-item][data-path-x='1'][data-path-y='1'] {z-index: 48}
+
+        [data-type='scaler-x-item'][data-path-x='12'][data-path-y='1'][value='2']:checked ~ [data-grid-item][data-path-x='12'][data-path-y='1'] {grid-column-end: 3}
+        [data-type='scaler-x-item'][data-path-x='12'][data-path-y='1'][value='3']:checked ~ [data-grid-item][data-path-x='12'][data-path-y='1'] {grid-column-end: 4}
+        [data-type='scaler-x-item'][data-path-x='12'][data-path-y='1'][value='4']:checked ~ [data-grid-item][data-path-x='12'][data-path-y='1'] {grid-column-end: 5}
+        [data-type='scaler-x-item'][data-path-x='12'][data-path-y='1'][value='5']:checked ~ [data-grid-item][data-path-x='12'][data-path-y='1'] {grid-column-end: 6}
+        [data-type='scaler-y-item'][data-path-x='12'][data-path-y='1'][value='1']:checked ~ [data-grid-item][data-path-x='12'][data-path-y='1'] {grid-row-end: 2}
+        [data-type='scaler-y-item'][data-path-x='12'][data-path-y='1'][value='2']:checked ~ [data-grid-item][data-path-x='12'][data-path-y='1'] {grid-row-end: 3}
+        [data-type='scaler-y-item'][data-path-x='12'][data-path-y='1'][value='3']:checked ~ [data-grid-item][data-path-x='12'][data-path-y='1'] {grid-row-end: 4}
+        [data-type='scaler-y-item'][data-path-x='12'][data-path-y='1'][value='4']:checked ~ [data-grid-item][data-path-x='12'][data-path-y='1'] {grid-row-end: 5}
+        [data-type='scaler-y-item'][data-path-x='12'][data-path-y='1'][value='5']:checked ~ [data-grid-item][data-path-x='12'][data-path-y='1'] {grid-row-end: 6}
+        [data-type='scaler-x-item'][data-path-x='12'][data-path-y='1'],
+        [data-type='scaler-y-item'][data-path-x='12'][data-path-y='1'] {z-index: 47}
+                   [data-grid-item][data-path-x='12'][data-path-y='1'] {z-index: 46}
+
+        [data-type='scaler-x-item'][data-path-x='123'][data-path-y='1'][value='3']:checked ~ [data-grid-item][data-path-x='123'][data-path-y='1'] {grid-column-end: 4}
+        [data-type='scaler-x-item'][data-path-x='123'][data-path-y='1'][value='4']:checked ~ [data-grid-item][data-path-x='123'][data-path-y='1'] {grid-column-end: 5}
+        [data-type='scaler-x-item'][data-path-x='123'][data-path-y='1'][value='5']:checked ~ [data-grid-item][data-path-x='123'][data-path-y='1'] {grid-column-end: 6}
+        [data-type='scaler-y-item'][data-path-x='123'][data-path-y='1'][value='1']:checked ~ [data-grid-item][data-path-x='123'][data-path-y='1'] {grid-row-end: 2}
+        [data-type='scaler-y-item'][data-path-x='123'][data-path-y='1'][value='2']:checked ~ [data-grid-item][data-path-x='123'][data-path-y='1'] {grid-row-end: 3}
+        [data-type='scaler-y-item'][data-path-x='123'][data-path-y='1'][value='3']:checked ~ [data-grid-item][data-path-x='123'][data-path-y='1'] {grid-row-end: 4}
+        [data-type='scaler-y-item'][data-path-x='123'][data-path-y='1'][value='4']:checked ~ [data-grid-item][data-path-x='123'][data-path-y='1'] {grid-row-end: 5}
+        [data-type='scaler-y-item'][data-path-x='123'][data-path-y='1'][value='5']:checked ~ [data-grid-item][data-path-x='123'][data-path-y='1'] {grid-row-end: 6}
+        [data-type='scaler-x-item'][data-path-x='123'][data-path-y='1'],
+        [data-type='scaler-y-item'][data-path-x='123'][data-path-y='1'] {z-index: 45}
+                   [data-grid-item][data-path-x='123'][data-path-y='1'] {z-index: 44}
+
+        [data-type='scaler-x-item'][data-path-x='1234'][data-path-y='1'][value='4']:checked ~ [data-grid-item][data-path-x='1234'][data-path-y='1'] {grid-column-end: 5}
+        [data-type='scaler-x-item'][data-path-x='1234'][data-path-y='1'][value='5']:checked ~ [data-grid-item][data-path-x='1234'][data-path-y='1'] {grid-column-end: 6}
+        [data-type='scaler-y-item'][data-path-x='1234'][data-path-y='1'][value='1']:checked ~ [data-grid-item][data-path-x='1234'][data-path-y='1'] {grid-row-end: 2}
+        [data-type='scaler-y-item'][data-path-x='1234'][data-path-y='1'][value='2']:checked ~ [data-grid-item][data-path-x='1234'][data-path-y='1'] {grid-row-end: 3}
+        [data-type='scaler-y-item'][data-path-x='1234'][data-path-y='1'][value='3']:checked ~ [data-grid-item][data-path-x='1234'][data-path-y='1'] {grid-row-end: 4}
+        [data-type='scaler-y-item'][data-path-x='1234'][data-path-y='1'][value='4']:checked ~ [data-grid-item][data-path-x='1234'][data-path-y='1'] {grid-row-end: 5}
+        [data-type='scaler-y-item'][data-path-x='1234'][data-path-y='1'][value='5']:checked ~ [data-grid-item][data-path-x='1234'][data-path-y='1'] {grid-row-end: 6}
+        [data-type='scaler-x-item'][data-path-x='1234'][data-path-y='1'],
+        [data-type='scaler-y-item'][data-path-x='1234'][data-path-y='1'] {z-index: 43}
+                   [data-grid-item][data-path-x='1234'][data-path-y='1'] {z-index: 42}
+
+        [data-type='scaler-x-item'][data-path-x='12345'][data-path-y='1'][value='5']:checked ~ [data-grid-item][data-path-x='12345'][data-path-y='1'] {grid-column-end: 6}
+        [data-type='scaler-y-item'][data-path-x='12345'][data-path-y='1'][value='1']:checked ~ [data-grid-item][data-path-x='12345'][data-path-y='1'] {grid-row-end: 2}
+        [data-type='scaler-y-item'][data-path-x='12345'][data-path-y='1'][value='2']:checked ~ [data-grid-item][data-path-x='12345'][data-path-y='1'] {grid-row-end: 3}
+        [data-type='scaler-y-item'][data-path-x='12345'][data-path-y='1'][value='3']:checked ~ [data-grid-item][data-path-x='12345'][data-path-y='1'] {grid-row-end: 4}
+        [data-type='scaler-y-item'][data-path-x='12345'][data-path-y='1'][value='4']:checked ~ [data-grid-item][data-path-x='12345'][data-path-y='1'] {grid-row-end: 5}
+        [data-type='scaler-y-item'][data-path-x='12345'][data-path-y='1'][value='5']:checked ~ [data-grid-item][data-path-x='12345'][data-path-y='1'] {grid-row-end: 6}
+        [data-type='scaler-x-item'][data-path-x='12345'][data-path-y='1'],
+        [data-type='scaler-y-item'][data-path-x='12345'][data-path-y='1'] {z-index: 41}
+                   [data-grid-item][data-path-x='12345'][data-path-y='1'] {z-index: 40}
+
+        /* … row 2 */
+
+        [data-type='scaler-x-item'][data-path-x='1'][data-path-y='12'][value='1']:checked ~ [data-grid-item][data-path-x='1'][data-path-y='12'] {grid-column-end: 2}
+        [data-type='scaler-x-item'][data-path-x='1'][data-path-y='12'][value='2']:checked ~ [data-grid-item][data-path-x='1'][data-path-y='12'] {grid-column-end: 3}
+        [data-type='scaler-x-item'][data-path-x='1'][data-path-y='12'][value='3']:checked ~ [data-grid-item][data-path-x='1'][data-path-y='12'] {grid-column-end: 4}
+        [data-type='scaler-x-item'][data-path-x='1'][data-path-y='12'][value='4']:checked ~ [data-grid-item][data-path-x='1'][data-path-y='12'] {grid-column-end: 5}
+        [data-type='scaler-x-item'][data-path-x='1'][data-path-y='12'][value='5']:checked ~ [data-grid-item][data-path-x='1'][data-path-y='12'] {grid-column-end: 6}
+        [data-type='scaler-y-item'][data-path-x='1'][data-path-y='12'][value='1']:checked ~ [data-grid-item][data-path-x='1'][data-path-y='12'] {grid-row-end: 2}
+        [data-type='scaler-y-item'][data-path-x='1'][data-path-y='12'][value='2']:checked ~ [data-grid-item][data-path-x='1'][data-path-y='12'] {grid-row-end: 3}
+        [data-type='scaler-y-item'][data-path-x='1'][data-path-y='12'][value='3']:checked ~ [data-grid-item][data-path-x='1'][data-path-y='12'] {grid-row-end: 4}
+        [data-type='scaler-y-item'][data-path-x='1'][data-path-y='12'][value='4']:checked ~ [data-grid-item][data-path-x='1'][data-path-y='12'] {grid-row-end: 5}
+        [data-type='scaler-y-item'][data-path-x='1'][data-path-y='12'][value='5']:checked ~ [data-grid-item][data-path-x='1'][data-path-y='12'] {grid-row-end: 6}
+        [data-type='scaler-x-item'][data-path-x='1'][data-path-y='12'],
+        [data-type='scaler-y-item'][data-path-x='1'][data-path-y='12'] {z-index: 39}
+                   [data-grid-item][data-path-x='1'][data-path-y='12'] {z-index: 38}
+
+        [data-type='scaler-x-item'][data-path-x='12'][data-path-y='12'][value='2']:checked ~ [data-grid-item][data-path-x='12'][data-path-y='12'] {grid-column-end: 3}
+        [data-type='scaler-x-item'][data-path-x='12'][data-path-y='12'][value='3']:checked ~ [data-grid-item][data-path-x='12'][data-path-y='12'] {grid-column-end: 4}
+        [data-type='scaler-x-item'][data-path-x='12'][data-path-y='12'][value='4']:checked ~ [data-grid-item][data-path-x='12'][data-path-y='12'] {grid-column-end: 5}
+        [data-type='scaler-x-item'][data-path-x='12'][data-path-y='12'][value='5']:checked ~ [data-grid-item][data-path-x='12'][data-path-y='12'] {grid-column-end: 6}
+        [data-type='scaler-y-item'][data-path-x='12'][data-path-y='12'][value='1']:checked ~ [data-grid-item][data-path-x='12'][data-path-y='12'] {grid-row-end: 2}
+        [data-type='scaler-y-item'][data-path-x='12'][data-path-y='12'][value='2']:checked ~ [data-grid-item][data-path-x='12'][data-path-y='12'] {grid-row-end: 3}
+        [data-type='scaler-y-item'][data-path-x='12'][data-path-y='12'][value='3']:checked ~ [data-grid-item][data-path-x='12'][data-path-y='12'] {grid-row-end: 4}
+        [data-type='scaler-y-item'][data-path-x='12'][data-path-y='12'][value='4']:checked ~ [data-grid-item][data-path-x='12'][data-path-y='12'] {grid-row-end: 5}
+        [data-type='scaler-y-item'][data-path-x='12'][data-path-y='12'][value='5']:checked ~ [data-grid-item][data-path-x='12'][data-path-y='12'] {grid-row-end: 6}
+        [data-type='scaler-x-item'][data-path-x='12'][data-path-y='12'],
+        [data-type='scaler-y-item'][data-path-x='12'][data-path-y='12'] {z-index: 37}
+                   [data-grid-item][data-path-x='12'][data-path-y='12'] {z-index: 36}
+
+        [data-type='scaler-x-item'][data-path-x='123'][data-path-y='12'][value='3']:checked ~ [data-grid-item][data-path-x='123'][data-path-y='12'] {grid-column-end: 4}
+        [data-type='scaler-x-item'][data-path-x='123'][data-path-y='12'][value='4']:checked ~ [data-grid-item][data-path-x='123'][data-path-y='12'] {grid-column-end: 5}
+        [data-type='scaler-x-item'][data-path-x='123'][data-path-y='12'][value='5']:checked ~ [data-grid-item][data-path-x='123'][data-path-y='12'] {grid-column-end: 6}
+        [data-type='scaler-y-item'][data-path-x='123'][data-path-y='12'][value='1']:checked ~ [data-grid-item][data-path-x='123'][data-path-y='12'] {grid-row-end: 2}
+        [data-type='scaler-y-item'][data-path-x='123'][data-path-y='12'][value='2']:checked ~ [data-grid-item][data-path-x='123'][data-path-y='12'] {grid-row-end: 3}
+        [data-type='scaler-y-item'][data-path-x='123'][data-path-y='12'][value='3']:checked ~ [data-grid-item][data-path-x='123'][data-path-y='12'] {grid-row-end: 4}
+        [data-type='scaler-y-item'][data-path-x='123'][data-path-y='12'][value='4']:checked ~ [data-grid-item][data-path-x='123'][data-path-y='12'] {grid-row-end: 5}
+        [data-type='scaler-y-item'][data-path-x='123'][data-path-y='12'][value='5']:checked ~ [data-grid-item][data-path-x='123'][data-path-y='12'] {grid-row-end: 6}
+        [data-type='scaler-x-item'][data-path-x='123'][data-path-y='12'],
+        [data-type='scaler-y-item'][data-path-x='123'][data-path-y='12'] {z-index: 35}
+                   [data-grid-item][data-path-x='123'][data-path-y='12'] {z-index: 34}
+
+        [data-type='scaler-x-item'][data-path-x='1234'][data-path-y='12'][value='4']:checked ~ [data-grid-item][data-path-x='1234'][data-path-y='12'] {grid-column-end: 5}
+        [data-type='scaler-x-item'][data-path-x='1234'][data-path-y='12'][value='5']:checked ~ [data-grid-item][data-path-x='1234'][data-path-y='12'] {grid-column-end: 6}
+        [data-type='scaler-y-item'][data-path-x='1234'][data-path-y='12'][value='1']:checked ~ [data-grid-item][data-path-x='1234'][data-path-y='12'] {grid-row-end: 2}
+        [data-type='scaler-y-item'][data-path-x='1234'][data-path-y='12'][value='2']:checked ~ [data-grid-item][data-path-x='1234'][data-path-y='12'] {grid-row-end: 3}
+        [data-type='scaler-y-item'][data-path-x='1234'][data-path-y='12'][value='3']:checked ~ [data-grid-item][data-path-x='1234'][data-path-y='12'] {grid-row-end: 4}
+        [data-type='scaler-y-item'][data-path-x='1234'][data-path-y='12'][value='4']:checked ~ [data-grid-item][data-path-x='1234'][data-path-y='12'] {grid-row-end: 5}
+        [data-type='scaler-y-item'][data-path-x='1234'][data-path-y='12'][value='5']:checked ~ [data-grid-item][data-path-x='1234'][data-path-y='12'] {grid-row-end: 6}
+        [data-type='scaler-x-item'][data-path-x='1234'][data-path-y='12'],
+        [data-type='scaler-y-item'][data-path-x='1234'][data-path-y='12'] {z-index: 33}
+                   [data-grid-item][data-path-x='1234'][data-path-y='12'] {z-index: 32}
+
+        [data-type='scaler-x-item'][data-path-x='12345'][data-path-y='12'][value='5']:checked ~ [data-grid-item][data-path-x='12345'][data-path-y='12'] {grid-column-end: 6}
+        [data-type='scaler-y-item'][data-path-x='12345'][data-path-y='12'][value='1']:checked ~ [data-grid-item][data-path-x='12345'][data-path-y='12'] {grid-row-end: 2}
+        [data-type='scaler-y-item'][data-path-x='12345'][data-path-y='12'][value='2']:checked ~ [data-grid-item][data-path-x='12345'][data-path-y='12'] {grid-row-end: 3}
+        [data-type='scaler-y-item'][data-path-x='12345'][data-path-y='12'][value='3']:checked ~ [data-grid-item][data-path-x='12345'][data-path-y='12'] {grid-row-end: 4}
+        [data-type='scaler-y-item'][data-path-x='12345'][data-path-y='12'][value='4']:checked ~ [data-grid-item][data-path-x='12345'][data-path-y='12'] {grid-row-end: 5}
+        [data-type='scaler-y-item'][data-path-x='12345'][data-path-y='12'][value='5']:checked ~ [data-grid-item][data-path-x='12345'][data-path-y='12'] {grid-row-end: 6}
+        [data-type='scaler-x-item'][data-path-x='12345'][data-path-y='12'],
+        [data-type='scaler-y-item'][data-path-x='12345'][data-path-y='12'] {z-index: 31}
+                   [data-grid-item][data-path-x='12345'][data-path-y='12'] {z-index: 30}
+
+        /* … row 3 */
+
+        [data-type='scaler-x-item'][data-path-x='1'][data-path-y='123'][value='1']:checked ~ [data-grid-item][data-path-x='1'][data-path-y='123'] {grid-column-end: 2}
+        [data-type='scaler-x-item'][data-path-x='1'][data-path-y='123'][value='2']:checked ~ [data-grid-item][data-path-x='1'][data-path-y='123'] {grid-column-end: 3}
+        [data-type='scaler-x-item'][data-path-x='1'][data-path-y='123'][value='3']:checked ~ [data-grid-item][data-path-x='1'][data-path-y='123'] {grid-column-end: 4}
+        [data-type='scaler-x-item'][data-path-x='1'][data-path-y='123'][value='4']:checked ~ [data-grid-item][data-path-x='1'][data-path-y='123'] {grid-column-end: 5}
+        [data-type='scaler-x-item'][data-path-x='1'][data-path-y='123'][value='5']:checked ~ [data-grid-item][data-path-x='1'][data-path-y='123'] {grid-column-end: 6}
+        [data-type='scaler-y-item'][data-path-x='1'][data-path-y='123'][value='1']:checked ~ [data-grid-item][data-path-x='1'][data-path-y='123'] {grid-row-end: 2}
+        [data-type='scaler-y-item'][data-path-x='1'][data-path-y='123'][value='2']:checked ~ [data-grid-item][data-path-x='1'][data-path-y='123'] {grid-row-end: 3}
+        [data-type='scaler-y-item'][data-path-x='1'][data-path-y='123'][value='3']:checked ~ [data-grid-item][data-path-x='1'][data-path-y='123'] {grid-row-end: 4}
+        [data-type='scaler-y-item'][data-path-x='1'][data-path-y='123'][value='4']:checked ~ [data-grid-item][data-path-x='1'][data-path-y='123'] {grid-row-end: 5}
+        [data-type='scaler-y-item'][data-path-x='1'][data-path-y='123'][value='5']:checked ~ [data-grid-item][data-path-x='1'][data-path-y='123'] {grid-row-end: 6}
+        [data-type='scaler-x-item'][data-path-x='1'][data-path-y='123'],
+        [data-type='scaler-y-item'][data-path-x='1'][data-path-y='123'] {z-index: 29}
+                   [data-grid-item][data-path-x='1'][data-path-y='123'] {z-index: 28}
+
+        [data-type='scaler-x-item'][data-path-x='12'][data-path-y='123'][value='2']:checked ~ [data-grid-item][data-path-x='12'][data-path-y='123'] {grid-column-end: 3}
+        [data-type='scaler-x-item'][data-path-x='12'][data-path-y='123'][value='3']:checked ~ [data-grid-item][data-path-x='12'][data-path-y='123'] {grid-column-end: 4}
+        [data-type='scaler-x-item'][data-path-x='12'][data-path-y='123'][value='4']:checked ~ [data-grid-item][data-path-x='12'][data-path-y='123'] {grid-column-end: 5}
+        [data-type='scaler-x-item'][data-path-x='12'][data-path-y='123'][value='5']:checked ~ [data-grid-item][data-path-x='12'][data-path-y='123'] {grid-column-end: 6}
+        [data-type='scaler-y-item'][data-path-x='12'][data-path-y='123'][value='1']:checked ~ [data-grid-item][data-path-x='12'][data-path-y='123'] {grid-row-end: 2}
+        [data-type='scaler-y-item'][data-path-x='12'][data-path-y='123'][value='2']:checked ~ [data-grid-item][data-path-x='12'][data-path-y='123'] {grid-row-end: 3}
+        [data-type='scaler-y-item'][data-path-x='12'][data-path-y='123'][value='3']:checked ~ [data-grid-item][data-path-x='12'][data-path-y='123'] {grid-row-end: 4}
+        [data-type='scaler-y-item'][data-path-x='12'][data-path-y='123'][value='4']:checked ~ [data-grid-item][data-path-x='12'][data-path-y='123'] {grid-row-end: 5}
+        [data-type='scaler-y-item'][data-path-x='12'][data-path-y='123'][value='5']:checked ~ [data-grid-item][data-path-x='12'][data-path-y='123'] {grid-row-end: 6}
+        [data-type='scaler-x-item'][data-path-x='12'][data-path-y='123'],
+        [data-type='scaler-y-item'][data-path-x='12'][data-path-y='123'] {z-index: 27}
+                   [data-grid-item][data-path-x='12'][data-path-y='123'] {z-index: 26}
+
+        [data-type='scaler-x-item'][data-path-x='123'][data-path-y='123'][value='3']:checked ~ [data-grid-item][data-path-x='123'][data-path-y='123'] {grid-column-end: 4}
+        [data-type='scaler-x-item'][data-path-x='123'][data-path-y='123'][value='4']:checked ~ [data-grid-item][data-path-x='123'][data-path-y='123'] {grid-column-end: 5}
+        [data-type='scaler-x-item'][data-path-x='123'][data-path-y='123'][value='5']:checked ~ [data-grid-item][data-path-x='123'][data-path-y='123'] {grid-column-end: 6}
+        [data-type='scaler-y-item'][data-path-x='123'][data-path-y='123'][value='1']:checked ~ [data-grid-item][data-path-x='123'][data-path-y='123'] {grid-row-end: 2}
+        [data-type='scaler-y-item'][data-path-x='123'][data-path-y='123'][value='2']:checked ~ [data-grid-item][data-path-x='123'][data-path-y='123'] {grid-row-end: 3}
+        [data-type='scaler-y-item'][data-path-x='123'][data-path-y='123'][value='3']:checked ~ [data-grid-item][data-path-x='123'][data-path-y='123'] {grid-row-end: 4}
+        [data-type='scaler-y-item'][data-path-x='123'][data-path-y='123'][value='4']:checked ~ [data-grid-item][data-path-x='123'][data-path-y='123'] {grid-row-end: 5}
+        [data-type='scaler-y-item'][data-path-x='123'][data-path-y='123'][value='5']:checked ~ [data-grid-item][data-path-x='123'][data-path-y='123'] {grid-row-end: 6}
+        [data-type='scaler-x-item'][data-path-x='123'][data-path-y='123'],
+        [data-type='scaler-y-item'][data-path-x='123'][data-path-y='123'] {z-index: 25}
+                   [data-grid-item][data-path-x='123'][data-path-y='123'] {z-index: 24}
+
+        [data-type='scaler-x-item'][data-path-x='1234'][data-path-y='123'][value='4']:checked ~ [data-grid-item][data-path-x='1234'][data-path-y='123'] {grid-column-end: 5}
+        [data-type='scaler-x-item'][data-path-x='1234'][data-path-y='123'][value='5']:checked ~ [data-grid-item][data-path-x='1234'][data-path-y='123'] {grid-column-end: 6}
+        [data-type='scaler-y-item'][data-path-x='1234'][data-path-y='123'][value='1']:checked ~ [data-grid-item][data-path-x='1234'][data-path-y='123'] {grid-row-end: 2}
+        [data-type='scaler-y-item'][data-path-x='1234'][data-path-y='123'][value='2']:checked ~ [data-grid-item][data-path-x='1234'][data-path-y='123'] {grid-row-end: 3}
+        [data-type='scaler-y-item'][data-path-x='1234'][data-path-y='123'][value='3']:checked ~ [data-grid-item][data-path-x='1234'][data-path-y='123'] {grid-row-end: 4}
+        [data-type='scaler-y-item'][data-path-x='1234'][data-path-y='123'][value='4']:checked ~ [data-grid-item][data-path-x='1234'][data-path-y='123'] {grid-row-end: 5}
+        [data-type='scaler-y-item'][data-path-x='1234'][data-path-y='123'][value='5']:checked ~ [data-grid-item][data-path-x='1234'][data-path-y='123'] {grid-row-end: 6}
+        [data-type='scaler-x-item'][data-path-x='1234'][data-path-y='123'],
+        [data-type='scaler-y-item'][data-path-x='1234'][data-path-y='123'] {z-index: 23}
+                   [data-grid-item][data-path-x='1234'][data-path-y='123'] {z-index: 22}
+
+        [data-type='scaler-x-item'][data-path-x='12345'][data-path-y='123'][value='5']:checked ~ [data-grid-item][data-path-x='12345'][data-path-y='123'] {grid-column-end: 6}
+        [data-type='scaler-y-item'][data-path-x='12345'][data-path-y='123'][value='1']:checked ~ [data-grid-item][data-path-x='12345'][data-path-y='123'] {grid-row-end: 2}
+        [data-type='scaler-y-item'][data-path-x='12345'][data-path-y='123'][value='2']:checked ~ [data-grid-item][data-path-x='12345'][data-path-y='123'] {grid-row-end: 3}
+        [data-type='scaler-y-item'][data-path-x='12345'][data-path-y='123'][value='3']:checked ~ [data-grid-item][data-path-x='12345'][data-path-y='123'] {grid-row-end: 4}
+        [data-type='scaler-y-item'][data-path-x='12345'][data-path-y='123'][value='4']:checked ~ [data-grid-item][data-path-x='12345'][data-path-y='123'] {grid-row-end: 5}
+        [data-type='scaler-y-item'][data-path-x='12345'][data-path-y='123'][value='5']:checked ~ [data-grid-item][data-path-x='12345'][data-path-y='123'] {grid-row-end: 6}
+        [data-type='scaler-x-item'][data-path-x='12345'][data-path-y='123'],
+        [data-type='scaler-y-item'][data-path-x='12345'][data-path-y='123'] {z-index: 21}
+                   [data-grid-item][data-path-x='12345'][data-path-y='123'] {z-index: 20}
+
+        /* … row 4 */
+
+        [data-type='scaler-x-item'][data-path-x='1'][data-path-y='1234'][value='1']:checked ~ [data-grid-item][data-path-x='1'][data-path-y='1234'] {grid-column-end: 2}
+        [data-type='scaler-x-item'][data-path-x='1'][data-path-y='1234'][value='2']:checked ~ [data-grid-item][data-path-x='1'][data-path-y='1234'] {grid-column-end: 3}
+        [data-type='scaler-x-item'][data-path-x='1'][data-path-y='1234'][value='3']:checked ~ [data-grid-item][data-path-x='1'][data-path-y='1234'] {grid-column-end: 4}
+        [data-type='scaler-x-item'][data-path-x='1'][data-path-y='1234'][value='4']:checked ~ [data-grid-item][data-path-x='1'][data-path-y='1234'] {grid-column-end: 5}
+        [data-type='scaler-x-item'][data-path-x='1'][data-path-y='1234'][value='5']:checked ~ [data-grid-item][data-path-x='1'][data-path-y='1234'] {grid-column-end: 6}
+        [data-type='scaler-y-item'][data-path-x='1'][data-path-y='1234'][value='1']:checked ~ [data-grid-item][data-path-x='1'][data-path-y='1234'] {grid-row-end: 2}
+        [data-type='scaler-y-item'][data-path-x='1'][data-path-y='1234'][value='2']:checked ~ [data-grid-item][data-path-x='1'][data-path-y='1234'] {grid-row-end: 3}
+        [data-type='scaler-y-item'][data-path-x='1'][data-path-y='1234'][value='3']:checked ~ [data-grid-item][data-path-x='1'][data-path-y='1234'] {grid-row-end: 4}
+        [data-type='scaler-y-item'][data-path-x='1'][data-path-y='1234'][value='4']:checked ~ [data-grid-item][data-path-x='1'][data-path-y='1234'] {grid-row-end: 5}
+        [data-type='scaler-y-item'][data-path-x='1'][data-path-y='1234'][value='5']:checked ~ [data-grid-item][data-path-x='1'][data-path-y='1234'] {grid-row-end: 6}
+        [data-type='scaler-x-item'][data-path-x='1'][data-path-y='1234'],
+        [data-type='scaler-y-item'][data-path-x='1'][data-path-y='1234'] {z-index: 19}
+                   [data-grid-item][data-path-x='1'][data-path-y='1234'] {z-index: 18}
+
+        [data-type='scaler-x-item'][data-path-x='12'][data-path-y='1234'][value='2']:checked ~ [data-grid-item][data-path-x='12'][data-path-y='1234'] {grid-column-end: 3}
+        [data-type='scaler-x-item'][data-path-x='12'][data-path-y='1234'][value='3']:checked ~ [data-grid-item][data-path-x='12'][data-path-y='1234'] {grid-column-end: 4}
+        [data-type='scaler-x-item'][data-path-x='12'][data-path-y='1234'][value='4']:checked ~ [data-grid-item][data-path-x='12'][data-path-y='1234'] {grid-column-end: 5}
+        [data-type='scaler-x-item'][data-path-x='12'][data-path-y='1234'][value='5']:checked ~ [data-grid-item][data-path-x='12'][data-path-y='1234'] {grid-column-end: 6}
+        [data-type='scaler-y-item'][data-path-x='12'][data-path-y='1234'][value='1']:checked ~ [data-grid-item][data-path-x='12'][data-path-y='1234'] {grid-row-end: 2}
+        [data-type='scaler-y-item'][data-path-x='12'][data-path-y='1234'][value='2']:checked ~ [data-grid-item][data-path-x='12'][data-path-y='1234'] {grid-row-end: 3}
+        [data-type='scaler-y-item'][data-path-x='12'][data-path-y='1234'][value='3']:checked ~ [data-grid-item][data-path-x='12'][data-path-y='1234'] {grid-row-end: 4}
+        [data-type='scaler-y-item'][data-path-x='12'][data-path-y='1234'][value='4']:checked ~ [data-grid-item][data-path-x='12'][data-path-y='1234'] {grid-row-end: 5}
+        [data-type='scaler-y-item'][data-path-x='12'][data-path-y='1234'][value='5']:checked ~ [data-grid-item][data-path-x='12'][data-path-y='1234'] {grid-row-end: 6}
+        [data-type='scaler-x-item'][data-path-x='12'][data-path-y='1234'],
+        [data-type='scaler-y-item'][data-path-x='12'][data-path-y='1234'] {z-index: 17}
+                   [data-grid-item][data-path-x='12'][data-path-y='1234'] {z-index: 16}
+
+        [data-type='scaler-x-item'][data-path-x='123'][data-path-y='1234'][value='3']:checked ~ [data-grid-item][data-path-x='123'][data-path-y='1234'] {grid-column-end: 4}
+        [data-type='scaler-x-item'][data-path-x='123'][data-path-y='1234'][value='4']:checked ~ [data-grid-item][data-path-x='123'][data-path-y='1234'] {grid-column-end: 5}
+        [data-type='scaler-x-item'][data-path-x='123'][data-path-y='1234'][value='5']:checked ~ [data-grid-item][data-path-x='123'][data-path-y='1234'] {grid-column-end: 6}
+        [data-type='scaler-y-item'][data-path-x='123'][data-path-y='1234'][value='1']:checked ~ [data-grid-item][data-path-x='123'][data-path-y='1234'] {grid-row-end: 2}
+        [data-type='scaler-y-item'][data-path-x='123'][data-path-y='1234'][value='2']:checked ~ [data-grid-item][data-path-x='123'][data-path-y='1234'] {grid-row-end: 3}
+        [data-type='scaler-y-item'][data-path-x='123'][data-path-y='1234'][value='3']:checked ~ [data-grid-item][data-path-x='123'][data-path-y='1234'] {grid-row-end: 4}
+        [data-type='scaler-y-item'][data-path-x='123'][data-path-y='1234'][value='4']:checked ~ [data-grid-item][data-path-x='123'][data-path-y='1234'] {grid-row-end: 5}
+        [data-type='scaler-y-item'][data-path-x='123'][data-path-y='1234'][value='5']:checked ~ [data-grid-item][data-path-x='123'][data-path-y='1234'] {grid-row-end: 6}
+        [data-type='scaler-x-item'][data-path-x='123'][data-path-y='1234'],
+        [data-type='scaler-y-item'][data-path-x='123'][data-path-y='1234'] {z-index: 15}
+                   [data-grid-item][data-path-x='123'][data-path-y='1234'] {z-index: 14}
+
+        [data-type='scaler-x-item'][data-path-x='1234'][data-path-y='1234'][value='4']:checked ~ [data-grid-item][data-path-x='1234'][data-path-y='1234'] {grid-column-end: 5}
+        [data-type='scaler-x-item'][data-path-x='1234'][data-path-y='1234'][value='5']:checked ~ [data-grid-item][data-path-x='1234'][data-path-y='1234'] {grid-column-end: 6}
+        [data-type='scaler-y-item'][data-path-x='1234'][data-path-y='1234'][value='1']:checked ~ [data-grid-item][data-path-x='1234'][data-path-y='1234'] {grid-row-end: 2}
+        [data-type='scaler-y-item'][data-path-x='1234'][data-path-y='1234'][value='2']:checked ~ [data-grid-item][data-path-x='1234'][data-path-y='1234'] {grid-row-end: 3}
+        [data-type='scaler-y-item'][data-path-x='1234'][data-path-y='1234'][value='3']:checked ~ [data-grid-item][data-path-x='1234'][data-path-y='1234'] {grid-row-end: 4}
+        [data-type='scaler-y-item'][data-path-x='1234'][data-path-y='1234'][value='4']:checked ~ [data-grid-item][data-path-x='1234'][data-path-y='1234'] {grid-row-end: 5}
+        [data-type='scaler-y-item'][data-path-x='1234'][data-path-y='1234'][value='5']:checked ~ [data-grid-item][data-path-x='1234'][data-path-y='1234'] {grid-row-end: 6}
+        [data-type='scaler-x-item'][data-path-x='1234'][data-path-y='1234'],
+        [data-type='scaler-y-item'][data-path-x='1234'][data-path-y='1234'] {z-index: 13}
+                   [data-grid-item][data-path-x='1234'][data-path-y='1234'] {z-index: 12}
+
+        [data-type='scaler-x-item'][data-path-x='12345'][data-path-y='1234'][value='5']:checked ~ [data-grid-item][data-path-x='12345'][data-path-y='1234'] {grid-column-end: 6}
+        [data-type='scaler-y-item'][data-path-x='12345'][data-path-y='1234'][value='1']:checked ~ [data-grid-item][data-path-x='12345'][data-path-y='1234'] {grid-row-end: 2}
+        [data-type='scaler-y-item'][data-path-x='12345'][data-path-y='1234'][value='2']:checked ~ [data-grid-item][data-path-x='12345'][data-path-y='1234'] {grid-row-end: 3}
+        [data-type='scaler-y-item'][data-path-x='12345'][data-path-y='1234'][value='3']:checked ~ [data-grid-item][data-path-x='12345'][data-path-y='1234'] {grid-row-end: 4}
+        [data-type='scaler-y-item'][data-path-x='12345'][data-path-y='1234'][value='4']:checked ~ [data-grid-item][data-path-x='12345'][data-path-y='1234'] {grid-row-end: 5}
+        [data-type='scaler-y-item'][data-path-x='12345'][data-path-y='1234'][value='5']:checked ~ [data-grid-item][data-path-x='12345'][data-path-y='1234'] {grid-row-end: 6}
+        [data-type='scaler-x-item'][data-path-x='12345'][data-path-y='1234'],
+        [data-type='scaler-y-item'][data-path-x='12345'][data-path-y='1234'] {z-index: 11}
+                   [data-grid-item][data-path-x='12345'][data-path-y='1234'] {z-index: 10}
+
+        /* … row 5 */
+
+        [data-type='scaler-x-item'][data-path-x='1'][data-path-y='12345'][value='1']:checked ~ [data-grid-item][data-path-x='1'][data-path-y='12345'] {grid-column-end: 2}
+        [data-type='scaler-x-item'][data-path-x='1'][data-path-y='12345'][value='2']:checked ~ [data-grid-item][data-path-x='1'][data-path-y='12345'] {grid-column-end: 3}
+        [data-type='scaler-x-item'][data-path-x='1'][data-path-y='12345'][value='3']:checked ~ [data-grid-item][data-path-x='1'][data-path-y='12345'] {grid-column-end: 4}
+        [data-type='scaler-x-item'][data-path-x='1'][data-path-y='12345'][value='4']:checked ~ [data-grid-item][data-path-x='1'][data-path-y='12345'] {grid-column-end: 5}
+        [data-type='scaler-x-item'][data-path-x='1'][data-path-y='12345'][value='5']:checked ~ [data-grid-item][data-path-x='1'][data-path-y='12345'] {grid-column-end: 6}
+        [data-type='scaler-y-item'][data-path-x='1'][data-path-y='12345'][value='1']:checked ~ [data-grid-item][data-path-x='1'][data-path-y='12345'] {grid-row-end: 2}
+        [data-type='scaler-y-item'][data-path-x='1'][data-path-y='12345'][value='2']:checked ~ [data-grid-item][data-path-x='1'][data-path-y='12345'] {grid-row-end: 3}
+        [data-type='scaler-y-item'][data-path-x='1'][data-path-y='12345'][value='3']:checked ~ [data-grid-item][data-path-x='1'][data-path-y='12345'] {grid-row-end: 4}
+        [data-type='scaler-y-item'][data-path-x='1'][data-path-y='12345'][value='4']:checked ~ [data-grid-item][data-path-x='1'][data-path-y='12345'] {grid-row-end: 5}
+        [data-type='scaler-y-item'][data-path-x='1'][data-path-y='12345'][value='5']:checked ~ [data-grid-item][data-path-x='1'][data-path-y='12345'] {grid-row-end: 6}
+        [data-type='scaler-x-item'][data-path-x='1'][data-path-y='12345'],
+        [data-type='scaler-y-item'][data-path-x='1'][data-path-y='12345'] {z-index: 9}
+                   [data-grid-item][data-path-x='1'][data-path-y='12345'] {z-index: 8}
+
+        [data-type='scaler-x-item'][data-path-x='12'][data-path-y='12345'][value='2']:checked ~ [data-grid-item][data-path-x='12'][data-path-y='12345'] {grid-column-end: 3}
+        [data-type='scaler-x-item'][data-path-x='12'][data-path-y='12345'][value='3']:checked ~ [data-grid-item][data-path-x='12'][data-path-y='12345'] {grid-column-end: 4}
+        [data-type='scaler-x-item'][data-path-x='12'][data-path-y='12345'][value='4']:checked ~ [data-grid-item][data-path-x='12'][data-path-y='12345'] {grid-column-end: 5}
+        [data-type='scaler-x-item'][data-path-x='12'][data-path-y='12345'][value='5']:checked ~ [data-grid-item][data-path-x='12'][data-path-y='12345'] {grid-column-end: 6}
+        [data-type='scaler-y-item'][data-path-x='12'][data-path-y='12345'][value='1']:checked ~ [data-grid-item][data-path-x='12'][data-path-y='12345'] {grid-row-end: 2}
+        [data-type='scaler-y-item'][data-path-x='12'][data-path-y='12345'][value='2']:checked ~ [data-grid-item][data-path-x='12'][data-path-y='12345'] {grid-row-end: 3}
+        [data-type='scaler-y-item'][data-path-x='12'][data-path-y='12345'][value='3']:checked ~ [data-grid-item][data-path-x='12'][data-path-y='12345'] {grid-row-end: 4}
+        [data-type='scaler-y-item'][data-path-x='12'][data-path-y='12345'][value='4']:checked ~ [data-grid-item][data-path-x='12'][data-path-y='12345'] {grid-row-end: 5}
+        [data-type='scaler-y-item'][data-path-x='12'][data-path-y='12345'][value='5']:checked ~ [data-grid-item][data-path-x='12'][data-path-y='12345'] {grid-row-end: 6}
+        [data-type='scaler-x-item'][data-path-x='12'][data-path-y='12345'],
+        [data-type='scaler-y-item'][data-path-x='12'][data-path-y='12345'] {z-index: 7}
+                   [data-grid-item][data-path-x='12'][data-path-y='12345'] {z-index: 6}
+
+        [data-type='scaler-x-item'][data-path-x='123'][data-path-y='12345'][value='3']:checked ~ [data-grid-item][data-path-x='123'][data-path-y='12345'] {grid-column-end: 4}
+        [data-type='scaler-x-item'][data-path-x='123'][data-path-y='12345'][value='4']:checked ~ [data-grid-item][data-path-x='123'][data-path-y='12345'] {grid-column-end: 5}
+        [data-type='scaler-x-item'][data-path-x='123'][data-path-y='12345'][value='5']:checked ~ [data-grid-item][data-path-x='123'][data-path-y='12345'] {grid-column-end: 6}
+        [data-type='scaler-y-item'][data-path-x='123'][data-path-y='12345'][value='1']:checked ~ [data-grid-item][data-path-x='123'][data-path-y='12345'] {grid-row-end: 2}
+        [data-type='scaler-y-item'][data-path-x='123'][data-path-y='12345'][value='2']:checked ~ [data-grid-item][data-path-x='123'][data-path-y='12345'] {grid-row-end: 3}
+        [data-type='scaler-y-item'][data-path-x='123'][data-path-y='12345'][value='3']:checked ~ [data-grid-item][data-path-x='123'][data-path-y='12345'] {grid-row-end: 4}
+        [data-type='scaler-y-item'][data-path-x='123'][data-path-y='12345'][value='4']:checked ~ [data-grid-item][data-path-x='123'][data-path-y='12345'] {grid-row-end: 5}
+        [data-type='scaler-y-item'][data-path-x='123'][data-path-y='12345'][value='5']:checked ~ [data-grid-item][data-path-x='123'][data-path-y='12345'] {grid-row-end: 6}
+        [data-type='scaler-x-item'][data-path-x='123'][data-path-y='12345'],
+        [data-type='scaler-y-item'][data-path-x='123'][data-path-y='12345'] {z-index: 5}
+                   [data-grid-item][data-path-x='123'][data-path-y='12345'] {z-index: 4}
+
+        [data-type='scaler-x-item'][data-path-x='1234'][data-path-y='12345'][value='4']:checked ~ [data-grid-item][data-path-x='1234'][data-path-y='12345'] {grid-column-end: 5}
+        [data-type='scaler-x-item'][data-path-x='1234'][data-path-y='12345'][value='5']:checked ~ [data-grid-item][data-path-x='1234'][data-path-y='12345'] {grid-column-end: 6}
+        [data-type='scaler-y-item'][data-path-x='1234'][data-path-y='12345'][value='1']:checked ~ [data-grid-item][data-path-x='1234'][data-path-y='12345'] {grid-row-end: 2}
+        [data-type='scaler-y-item'][data-path-x='1234'][data-path-y='12345'][value='2']:checked ~ [data-grid-item][data-path-x='1234'][data-path-y='12345'] {grid-row-end: 3}
+        [data-type='scaler-y-item'][data-path-x='1234'][data-path-y='12345'][value='3']:checked ~ [data-grid-item][data-path-x='1234'][data-path-y='12345'] {grid-row-end: 4}
+        [data-type='scaler-y-item'][data-path-x='1234'][data-path-y='12345'][value='4']:checked ~ [data-grid-item][data-path-x='1234'][data-path-y='12345'] {grid-row-end: 5}
+        [data-type='scaler-y-item'][data-path-x='1234'][data-path-y='12345'][value='5']:checked ~ [data-grid-item][data-path-x='1234'][data-path-y='12345'] {grid-row-end: 6}
+        [data-type='scaler-x-item'][data-path-x='1234'][data-path-y='12345'],
+        [data-type='scaler-y-item'][data-path-x='1234'][data-path-y='12345'] {z-index: 3}
+                   [data-grid-item][data-path-x='1234'][data-path-y='12345'] {z-index: 2}
+
+        [data-type='scaler-x-item'][data-path-x='12345'][data-path-y='12345'][value='5']:checked ~ [data-grid-item][data-path-x='12345'][data-path-y='12345'] {grid-column-end: 6}
+        [data-type='scaler-y-item'][data-path-x='12345'][data-path-y='12345'][value='1']:checked ~ [data-grid-item][data-path-x='12345'][data-path-y='12345'] {grid-row-end: 2}
+        [data-type='scaler-y-item'][data-path-x='12345'][data-path-y='12345'][value='2']:checked ~ [data-grid-item][data-path-x='12345'][data-path-y='12345'] {grid-row-end: 3}
+        [data-type='scaler-y-item'][data-path-x='12345'][data-path-y='12345'][value='3']:checked ~ [data-grid-item][data-path-x='12345'][data-path-y='12345'] {grid-row-end: 4}
+        [data-type='scaler-y-item'][data-path-x='12345'][data-path-y='12345'][value='4']:checked ~ [data-grid-item][data-path-x='12345'][data-path-y='12345'] {grid-row-end: 5}
+        [data-type='scaler-y-item'][data-path-x='12345'][data-path-y='12345'][value='5']:checked ~ [data-grid-item][data-path-x='12345'][data-path-y='12345'] {grid-row-end: 6}
+        [data-type='scaler-x-item'][data-path-x='12345'][data-path-y='12345'],
+        [data-type='scaler-y-item'][data-path-x='12345'][data-path-y='12345'] {z-index: 1}
+                   [data-grid-item][data-path-x='12345'][data-path-y='12345'] {z-index: 0}
+    </style>
+</head>
+<body>
+
+    <x-part data-area data-group-id="body">
+
+        <input data-type="scaler-x-grid" type="radio" name="grid_x" value="1">
+        <input data-type="scaler-x-grid" type="radio" name="grid_x" value="2">
+        <input data-type="scaler-x-grid" type="radio" name="grid_x" value="3">
+        <input data-type="scaler-x-grid" type="radio" name="grid_x" value="4">
+        <input data-type="scaler-x-grid" type="radio" name="grid_x" value="5" checked>
+        <input data-type="scaler-y-grid" type="radio" name="grid_y" value="1">
+        <input data-type="scaler-y-grid" type="radio" name="grid_y" value="2">
+        <input data-type="scaler-y-grid" type="radio" name="grid_y" value="3">
+        <input data-type="scaler-y-grid" type="radio" name="grid_y" value="4">
+        <input data-type="scaler-y-grid" type="radio" name="grid_y" value="5" checked>
+        <x-grid-manager data-grid-manager data-type="grid-5x-custom">
+
+            <input data-type="scaler-x-item" data-path-x="1" data-path-y="1" type="radio" name="item_x[1-1]" value="1" checked>
+            <input data-type="scaler-x-item" data-path-x="1" data-path-y="1" type="radio" name="item_x[1-1]" value="2">
+            <input data-type="scaler-x-item" data-path-x="1" data-path-y="1" type="radio" name="item_x[1-1]" value="3">
+            <input data-type="scaler-x-item" data-path-x="1" data-path-y="1" type="radio" name="item_x[1-1]" value="4">
+            <input data-type="scaler-x-item" data-path-x="1" data-path-y="1" type="radio" name="item_x[1-1]" value="5">
+            <input data-type="scaler-y-item" data-path-x="1" data-path-y="1" type="radio" name="item_y[1-1]" value="1" checked>
+            <input data-type="scaler-y-item" data-path-x="1" data-path-y="1" type="radio" name="item_y[1-1]" value="2">
+            <input data-type="scaler-y-item" data-path-x="1" data-path-y="1" type="radio" name="item_y[1-1]" value="3">
+            <input data-type="scaler-y-item" data-path-x="1" data-path-y="1" type="radio" name="item_y[1-1]" value="4">
+            <input data-type="scaler-y-item" data-path-x="1" data-path-y="1" type="radio" name="item_y[1-1]" value="5">
+            <x-grid-item data-grid-item      data-path-x="1" data-path-y="1">Cell 1.1</x-grid-item>
+
+            <input data-type="scaler-x-item" data-path-x="12" data-path-y="1" type="radio" name="item_x[1-2]" value="1" disabled>
+            <input data-type="scaler-x-item" data-path-x="12" data-path-y="1" type="radio" name="item_x[1-2]" value="2" checked>
+            <input data-type="scaler-x-item" data-path-x="12" data-path-y="1" type="radio" name="item_x[1-2]" value="3">
+            <input data-type="scaler-x-item" data-path-x="12" data-path-y="1" type="radio" name="item_x[1-2]" value="4">
+            <input data-type="scaler-x-item" data-path-x="12" data-path-y="1" type="radio" name="item_x[1-2]" value="5">
+            <input data-type="scaler-y-item" data-path-x="12" data-path-y="1" type="radio" name="item_y[1-2]" value="1" checked>
+            <input data-type="scaler-y-item" data-path-x="12" data-path-y="1" type="radio" name="item_y[1-2]" value="2">
+            <input data-type="scaler-y-item" data-path-x="12" data-path-y="1" type="radio" name="item_y[1-2]" value="3">
+            <input data-type="scaler-y-item" data-path-x="12" data-path-y="1" type="radio" name="item_y[1-2]" value="4">
+            <input data-type="scaler-y-item" data-path-x="12" data-path-y="1" type="radio" name="item_y[1-2]" value="5">
+            <x-grid-item data-grid-item      data-path-x="12" data-path-y="1">Cell 1.2</x-grid-item>
+
+            <input data-type="scaler-x-item" data-path-x="123" data-path-y="1" type="radio" name="item_x[1-3]" value="1" disabled>
+            <input data-type="scaler-x-item" data-path-x="123" data-path-y="1" type="radio" name="item_x[1-3]" value="2" disabled>
+            <input data-type="scaler-x-item" data-path-x="123" data-path-y="1" type="radio" name="item_x[1-3]" value="3" checked>
+            <input data-type="scaler-x-item" data-path-x="123" data-path-y="1" type="radio" name="item_x[1-3]" value="4">
+            <input data-type="scaler-x-item" data-path-x="123" data-path-y="1" type="radio" name="item_x[1-3]" value="5">
+            <input data-type="scaler-y-item" data-path-x="123" data-path-y="1" type="radio" name="item_y[1-3]" value="1" checked>
+            <input data-type="scaler-y-item" data-path-x="123" data-path-y="1" type="radio" name="item_y[1-3]" value="2">
+            <input data-type="scaler-y-item" data-path-x="123" data-path-y="1" type="radio" name="item_y[1-3]" value="3">
+            <input data-type="scaler-y-item" data-path-x="123" data-path-y="1" type="radio" name="item_y[1-3]" value="4">
+            <input data-type="scaler-y-item" data-path-x="123" data-path-y="1" type="radio" name="item_y[1-3]" value="5">
+            <x-grid-item data-grid-item      data-path-x="123" data-path-y="1">Cell 1.3</x-grid-item>
+
+            <input data-type="scaler-x-item" data-path-x="1234" data-path-y="1" type="radio" name="item_x[1-4]" value="1" disabled>
+            <input data-type="scaler-x-item" data-path-x="1234" data-path-y="1" type="radio" name="item_x[1-4]" value="2" disabled>
+            <input data-type="scaler-x-item" data-path-x="1234" data-path-y="1" type="radio" name="item_x[1-4]" value="3" disabled>
+            <input data-type="scaler-x-item" data-path-x="1234" data-path-y="1" type="radio" name="item_x[1-4]" value="4" checked>
+            <input data-type="scaler-x-item" data-path-x="1234" data-path-y="1" type="radio" name="item_x[1-4]" value="5">
+            <input data-type="scaler-y-item" data-path-x="1234" data-path-y="1" type="radio" name="item_y[1-4]" value="1" checked>
+            <input data-type="scaler-y-item" data-path-x="1234" data-path-y="1" type="radio" name="item_y[1-4]" value="2">
+            <input data-type="scaler-y-item" data-path-x="1234" data-path-y="1" type="radio" name="item_y[1-4]" value="3">
+            <input data-type="scaler-y-item" data-path-x="1234" data-path-y="1" type="radio" name="item_y[1-4]" value="4">
+            <input data-type="scaler-y-item" data-path-x="1234" data-path-y="1" type="radio" name="item_y[1-4]" value="5">
+            <x-grid-item data-grid-item      data-path-x="1234" data-path-y="1">Cell 1.4</x-grid-item>
+
+            <input data-type="scaler-x-item" data-path-x="12345" data-path-y="1" type="radio" name="item_x[1-5]" value="1" disabled>
+            <input data-type="scaler-x-item" data-path-x="12345" data-path-y="1" type="radio" name="item_x[1-5]" value="2" disabled>
+            <input data-type="scaler-x-item" data-path-x="12345" data-path-y="1" type="radio" name="item_x[1-5]" value="3" disabled>
+            <input data-type="scaler-x-item" data-path-x="12345" data-path-y="1" type="radio" name="item_x[1-5]" value="4" disabled>
+            <input data-type="scaler-x-item" data-path-x="12345" data-path-y="1" type="radio" name="item_x[1-5]" value="5" checked>
+            <input data-type="scaler-y-item" data-path-x="12345" data-path-y="1" type="radio" name="item_y[1-5]" value="1" checked>
+            <input data-type="scaler-y-item" data-path-x="12345" data-path-y="1" type="radio" name="item_y[1-5]" value="2">
+            <input data-type="scaler-y-item" data-path-x="12345" data-path-y="1" type="radio" name="item_y[1-5]" value="3">
+            <input data-type="scaler-y-item" data-path-x="12345" data-path-y="1" type="radio" name="item_y[1-5]" value="4">
+            <input data-type="scaler-y-item" data-path-x="12345" data-path-y="1" type="radio" name="item_y[1-5]" value="5">
+            <x-grid-item data-grid-item      data-path-x="12345" data-path-y="1">Cell 1.5</x-grid-item>
+
+            <!-- ///////////////////////////////////////////////////////////////////////////////// -->
+
+            <input data-type="scaler-x-item" data-path-x="1" data-path-y="12" type="radio" name="item_x[2-1]" value="1" checked>
+            <input data-type="scaler-x-item" data-path-x="1" data-path-y="12" type="radio" name="item_x[2-1]" value="2">
+            <input data-type="scaler-x-item" data-path-x="1" data-path-y="12" type="radio" name="item_x[2-1]" value="3">
+            <input data-type="scaler-x-item" data-path-x="1" data-path-y="12" type="radio" name="item_x[2-1]" value="4">
+            <input data-type="scaler-x-item" data-path-x="1" data-path-y="12" type="radio" name="item_x[2-1]" value="5">
+            <input data-type="scaler-y-item" data-path-x="1" data-path-y="12" type="radio" name="item_y[2-1]" value="1" disabled>
+            <input data-type="scaler-y-item" data-path-x="1" data-path-y="12" type="radio" name="item_y[2-1]" value="2" checked>
+            <input data-type="scaler-y-item" data-path-x="1" data-path-y="12" type="radio" name="item_y[2-1]" value="3">
+            <input data-type="scaler-y-item" data-path-x="1" data-path-y="12" type="radio" name="item_y[2-1]" value="4">
+            <input data-type="scaler-y-item" data-path-x="1" data-path-y="12" type="radio" name="item_y[2-1]" value="5">
+            <x-grid-item data-grid-item      data-path-x="1" data-path-y="12">Cell 2.1</x-grid-item>
+
+            <input data-type="scaler-x-item" data-path-x="12" data-path-y="12" type="radio" name="item_x[2-2]" value="1" disabled>
+            <input data-type="scaler-x-item" data-path-x="12" data-path-y="12" type="radio" name="item_x[2-2]" value="2" checked>
+            <input data-type="scaler-x-item" data-path-x="12" data-path-y="12" type="radio" name="item_x[2-2]" value="3">
+            <input data-type="scaler-x-item" data-path-x="12" data-path-y="12" type="radio" name="item_x[2-2]" value="4">
+            <input data-type="scaler-x-item" data-path-x="12" data-path-y="12" type="radio" name="item_x[2-2]" value="5">
+            <input data-type="scaler-y-item" data-path-x="12" data-path-y="12" type="radio" name="item_y[2-2]" value="1" disabled>
+            <input data-type="scaler-y-item" data-path-x="12" data-path-y="12" type="radio" name="item_y[2-2]" value="2" checked>
+            <input data-type="scaler-y-item" data-path-x="12" data-path-y="12" type="radio" name="item_y[2-2]" value="3">
+            <input data-type="scaler-y-item" data-path-x="12" data-path-y="12" type="radio" name="item_y[2-2]" value="4">
+            <input data-type="scaler-y-item" data-path-x="12" data-path-y="12" type="radio" name="item_y[2-2]" value="5">
+            <x-grid-item data-grid-item      data-path-x="12" data-path-y="12">Cell 2.2</x-grid-item>
+
+            <input data-type="scaler-x-item" data-path-x="123" data-path-y="12" type="radio" name="item_x[2-3]" value="1" disabled>
+            <input data-type="scaler-x-item" data-path-x="123" data-path-y="12" type="radio" name="item_x[2-3]" value="2" disabled>
+            <input data-type="scaler-x-item" data-path-x="123" data-path-y="12" type="radio" name="item_x[2-3]" value="3" checked>
+            <input data-type="scaler-x-item" data-path-x="123" data-path-y="12" type="radio" name="item_x[2-3]" value="4">
+            <input data-type="scaler-x-item" data-path-x="123" data-path-y="12" type="radio" name="item_x[2-3]" value="5">
+            <input data-type="scaler-y-item" data-path-x="123" data-path-y="12" type="radio" name="item_y[2-3]" value="1" disabled>
+            <input data-type="scaler-y-item" data-path-x="123" data-path-y="12" type="radio" name="item_y[2-3]" value="2" checked>
+            <input data-type="scaler-y-item" data-path-x="123" data-path-y="12" type="radio" name="item_y[2-3]" value="3">
+            <input data-type="scaler-y-item" data-path-x="123" data-path-y="12" type="radio" name="item_y[2-3]" value="4">
+            <input data-type="scaler-y-item" data-path-x="123" data-path-y="12" type="radio" name="item_y[2-3]" value="5">
+            <x-grid-item data-grid-item      data-path-x="123" data-path-y="12">Cell 2.3</x-grid-item>
+
+            <input data-type="scaler-x-item" data-path-x="1234" data-path-y="12" type="radio" name="item_x[2-4]" value="1" disabled>
+            <input data-type="scaler-x-item" data-path-x="1234" data-path-y="12" type="radio" name="item_x[2-4]" value="2" disabled>
+            <input data-type="scaler-x-item" data-path-x="1234" data-path-y="12" type="radio" name="item_x[2-4]" value="3" disabled>
+            <input data-type="scaler-x-item" data-path-x="1234" data-path-y="12" type="radio" name="item_x[2-4]" value="4" checked>
+            <input data-type="scaler-x-item" data-path-x="1234" data-path-y="12" type="radio" name="item_x[2-4]" value="5">
+            <input data-type="scaler-y-item" data-path-x="1234" data-path-y="12" type="radio" name="item_y[2-4]" value="1" disabled>
+            <input data-type="scaler-y-item" data-path-x="1234" data-path-y="12" type="radio" name="item_y[2-4]" value="2" checked>
+            <input data-type="scaler-y-item" data-path-x="1234" data-path-y="12" type="radio" name="item_y[2-4]" value="3">
+            <input data-type="scaler-y-item" data-path-x="1234" data-path-y="12" type="radio" name="item_y[2-4]" value="4">
+            <input data-type="scaler-y-item" data-path-x="1234" data-path-y="12" type="radio" name="item_y[2-4]" value="5">
+            <x-grid-item data-grid-item      data-path-x="1234" data-path-y="12">Cell 2.4</x-grid-item>
+
+            <input data-type="scaler-x-item" data-path-x="12345" data-path-y="12" type="radio" name="item_x[2-5]" value="1" disabled>
+            <input data-type="scaler-x-item" data-path-x="12345" data-path-y="12" type="radio" name="item_x[2-5]" value="2" disabled>
+            <input data-type="scaler-x-item" data-path-x="12345" data-path-y="12" type="radio" name="item_x[2-5]" value="3" disabled>
+            <input data-type="scaler-x-item" data-path-x="12345" data-path-y="12" type="radio" name="item_x[2-5]" value="4" disabled>
+            <input data-type="scaler-x-item" data-path-x="12345" data-path-y="12" type="radio" name="item_x[2-5]" value="5" checked>
+            <input data-type="scaler-y-item" data-path-x="12345" data-path-y="12" type="radio" name="item_y[2-5]" value="1" disabled>
+            <input data-type="scaler-y-item" data-path-x="12345" data-path-y="12" type="radio" name="item_y[2-5]" value="2" checked>
+            <input data-type="scaler-y-item" data-path-x="12345" data-path-y="12" type="radio" name="item_y[2-5]" value="3">
+            <input data-type="scaler-y-item" data-path-x="12345" data-path-y="12" type="radio" name="item_y[2-5]" value="4">
+            <input data-type="scaler-y-item" data-path-x="12345" data-path-y="12" type="radio" name="item_y[2-5]" value="5">
+            <x-grid-item data-grid-item      data-path-x="12345" data-path-y="12">Cell 2.5</x-grid-item>
+
+            <!-- ///////////////////////////////////////////////////////////////////////////////// -->
+
+            <input data-type="scaler-x-item" data-path-x="1" data-path-y="123" type="radio" name="item_x[3-1]" value="1" checked>
+            <input data-type="scaler-x-item" data-path-x="1" data-path-y="123" type="radio" name="item_x[3-1]" value="2">
+            <input data-type="scaler-x-item" data-path-x="1" data-path-y="123" type="radio" name="item_x[3-1]" value="3">
+            <input data-type="scaler-x-item" data-path-x="1" data-path-y="123" type="radio" name="item_x[3-1]" value="4">
+            <input data-type="scaler-x-item" data-path-x="1" data-path-y="123" type="radio" name="item_x[3-1]" value="5">
+            <input data-type="scaler-y-item" data-path-x="1" data-path-y="123" type="radio" name="item_y[3-1]" value="1" disabled>
+            <input data-type="scaler-y-item" data-path-x="1" data-path-y="123" type="radio" name="item_y[3-1]" value="2" disabled>
+            <input data-type="scaler-y-item" data-path-x="1" data-path-y="123" type="radio" name="item_y[3-1]" value="3" checked>
+            <input data-type="scaler-y-item" data-path-x="1" data-path-y="123" type="radio" name="item_y[3-1]" value="4">
+            <input data-type="scaler-y-item" data-path-x="1" data-path-y="123" type="radio" name="item_y[3-1]" value="5">
+            <x-grid-item data-grid-item      data-path-x="1" data-path-y="123">Cell 3.1</x-grid-item>
+
+            <input data-type="scaler-x-item" data-path-x="12" data-path-y="123" type="radio" name="item_x[3-2]" value="1" disabled>
+            <input data-type="scaler-x-item" data-path-x="12" data-path-y="123" type="radio" name="item_x[3-2]" value="2" checked>
+            <input data-type="scaler-x-item" data-path-x="12" data-path-y="123" type="radio" name="item_x[3-2]" value="3">
+            <input data-type="scaler-x-item" data-path-x="12" data-path-y="123" type="radio" name="item_x[3-2]" value="4">
+            <input data-type="scaler-x-item" data-path-x="12" data-path-y="123" type="radio" name="item_x[3-2]" value="5">
+            <input data-type="scaler-y-item" data-path-x="12" data-path-y="123" type="radio" name="item_y[3-2]" value="1" disabled>
+            <input data-type="scaler-y-item" data-path-x="12" data-path-y="123" type="radio" name="item_y[3-2]" value="2" disabled>
+            <input data-type="scaler-y-item" data-path-x="12" data-path-y="123" type="radio" name="item_y[3-2]" value="3" checked>
+            <input data-type="scaler-y-item" data-path-x="12" data-path-y="123" type="radio" name="item_y[3-2]" value="4">
+            <input data-type="scaler-y-item" data-path-x="12" data-path-y="123" type="radio" name="item_y[3-2]" value="5">
+            <x-grid-item data-grid-item      data-path-x="12" data-path-y="123">Cell 3.2</x-grid-item>
+
+            <input data-type="scaler-x-item" data-path-x="123" data-path-y="123" type="radio" name="item_x[3-3]" value="1" disabled>
+            <input data-type="scaler-x-item" data-path-x="123" data-path-y="123" type="radio" name="item_x[3-3]" value="2" disabled>
+            <input data-type="scaler-x-item" data-path-x="123" data-path-y="123" type="radio" name="item_x[3-3]" value="3" checked>
+            <input data-type="scaler-x-item" data-path-x="123" data-path-y="123" type="radio" name="item_x[3-3]" value="4">
+            <input data-type="scaler-x-item" data-path-x="123" data-path-y="123" type="radio" name="item_x[3-3]" value="5">
+            <input data-type="scaler-y-item" data-path-x="123" data-path-y="123" type="radio" name="item_y[3-3]" value="1" disabled>
+            <input data-type="scaler-y-item" data-path-x="123" data-path-y="123" type="radio" name="item_y[3-3]" value="2" disabled>
+            <input data-type="scaler-y-item" data-path-x="123" data-path-y="123" type="radio" name="item_y[3-3]" value="3" checked>
+            <input data-type="scaler-y-item" data-path-x="123" data-path-y="123" type="radio" name="item_y[3-3]" value="4">
+            <input data-type="scaler-y-item" data-path-x="123" data-path-y="123" type="radio" name="item_y[3-3]" value="5">
+            <x-grid-item data-grid-item      data-path-x="123" data-path-y="123">Cell 3.3</x-grid-item>
+
+            <input data-type="scaler-x-item" data-path-x="1234" data-path-y="123" type="radio" name="item_x[3-4]" value="1" disabled>
+            <input data-type="scaler-x-item" data-path-x="1234" data-path-y="123" type="radio" name="item_x[3-4]" value="2" disabled>
+            <input data-type="scaler-x-item" data-path-x="1234" data-path-y="123" type="radio" name="item_x[3-4]" value="3" disabled>
+            <input data-type="scaler-x-item" data-path-x="1234" data-path-y="123" type="radio" name="item_x[3-4]" value="4" checked>
+            <input data-type="scaler-x-item" data-path-x="1234" data-path-y="123" type="radio" name="item_x[3-4]" value="5">
+            <input data-type="scaler-y-item" data-path-x="1234" data-path-y="123" type="radio" name="item_y[3-4]" value="1" disabled>
+            <input data-type="scaler-y-item" data-path-x="1234" data-path-y="123" type="radio" name="item_y[3-4]" value="2" disabled>
+            <input data-type="scaler-y-item" data-path-x="1234" data-path-y="123" type="radio" name="item_y[3-4]" value="3" checked>
+            <input data-type="scaler-y-item" data-path-x="1234" data-path-y="123" type="radio" name="item_y[3-4]" value="4">
+            <input data-type="scaler-y-item" data-path-x="1234" data-path-y="123" type="radio" name="item_y[3-4]" value="5">
+            <x-grid-item data-grid-item      data-path-x="1234" data-path-y="123">Cell 3.4</x-grid-item>
+
+            <input data-type="scaler-x-item" data-path-x="12345" data-path-y="123" type="radio" name="item_x[3-5]" value="1" disabled>
+            <input data-type="scaler-x-item" data-path-x="12345" data-path-y="123" type="radio" name="item_x[3-5]" value="2" disabled>
+            <input data-type="scaler-x-item" data-path-x="12345" data-path-y="123" type="radio" name="item_x[3-5]" value="3" disabled>
+            <input data-type="scaler-x-item" data-path-x="12345" data-path-y="123" type="radio" name="item_x[3-5]" value="4" disabled>
+            <input data-type="scaler-x-item" data-path-x="12345" data-path-y="123" type="radio" name="item_x[3-5]" value="5" checked>
+            <input data-type="scaler-y-item" data-path-x="12345" data-path-y="123" type="radio" name="item_y[3-5]" value="1" disabled>
+            <input data-type="scaler-y-item" data-path-x="12345" data-path-y="123" type="radio" name="item_y[3-5]" value="2" disabled>
+            <input data-type="scaler-y-item" data-path-x="12345" data-path-y="123" type="radio" name="item_y[3-5]" value="3" checked>
+            <input data-type="scaler-y-item" data-path-x="12345" data-path-y="123" type="radio" name="item_y[3-5]" value="4">
+            <input data-type="scaler-y-item" data-path-x="12345" data-path-y="123" type="radio" name="item_y[3-5]" value="5">
+            <x-grid-item data-grid-item      data-path-x="12345" data-path-y="123">Cell 3.5</x-grid-item>
+
+            <!-- ///////////////////////////////////////////////////////////////////////////////// -->
+
+            <input data-type="scaler-x-item" data-path-x="1" data-path-y="1234" type="radio" name="item_x[4-1]" value="1" checked>
+            <input data-type="scaler-x-item" data-path-x="1" data-path-y="1234" type="radio" name="item_x[4-1]" value="2">
+            <input data-type="scaler-x-item" data-path-x="1" data-path-y="1234" type="radio" name="item_x[4-1]" value="3">
+            <input data-type="scaler-x-item" data-path-x="1" data-path-y="1234" type="radio" name="item_x[4-1]" value="4">
+            <input data-type="scaler-x-item" data-path-x="1" data-path-y="1234" type="radio" name="item_x[4-1]" value="5">
+            <input data-type="scaler-y-item" data-path-x="1" data-path-y="1234" type="radio" name="item_y[4-1]" value="1" disabled>
+            <input data-type="scaler-y-item" data-path-x="1" data-path-y="1234" type="radio" name="item_y[4-1]" value="2" disabled>
+            <input data-type="scaler-y-item" data-path-x="1" data-path-y="1234" type="radio" name="item_y[4-1]" value="3" disabled>
+            <input data-type="scaler-y-item" data-path-x="1" data-path-y="1234" type="radio" name="item_y[4-1]" value="4" checked>
+            <input data-type="scaler-y-item" data-path-x="1" data-path-y="1234" type="radio" name="item_y[4-1]" value="5">
+            <x-grid-item data-grid-item      data-path-x="1" data-path-y="1234">Cell 4.1</x-grid-item>
+
+            <input data-type="scaler-x-item" data-path-x="12" data-path-y="1234" type="radio" name="item_x[4-2]" value="1" disabled>
+            <input data-type="scaler-x-item" data-path-x="12" data-path-y="1234" type="radio" name="item_x[4-2]" value="2" checked>
+            <input data-type="scaler-x-item" data-path-x="12" data-path-y="1234" type="radio" name="item_x[4-2]" value="3">
+            <input data-type="scaler-x-item" data-path-x="12" data-path-y="1234" type="radio" name="item_x[4-2]" value="4">
+            <input data-type="scaler-x-item" data-path-x="12" data-path-y="1234" type="radio" name="item_x[4-2]" value="5">
+            <input data-type="scaler-y-item" data-path-x="12" data-path-y="1234" type="radio" name="item_y[4-2]" value="1" disabled>
+            <input data-type="scaler-y-item" data-path-x="12" data-path-y="1234" type="radio" name="item_y[4-2]" value="2" disabled>
+            <input data-type="scaler-y-item" data-path-x="12" data-path-y="1234" type="radio" name="item_y[4-2]" value="3" disabled>
+            <input data-type="scaler-y-item" data-path-x="12" data-path-y="1234" type="radio" name="item_y[4-2]" value="4" checked>
+            <input data-type="scaler-y-item" data-path-x="12" data-path-y="1234" type="radio" name="item_y[4-2]" value="5">
+            <x-grid-item data-grid-item      data-path-x="12" data-path-y="1234">Cell 4.2</x-grid-item>
+
+            <input data-type="scaler-x-item" data-path-x="123" data-path-y="1234" type="radio" name="item_x[4-3]" value="1" disabled>
+            <input data-type="scaler-x-item" data-path-x="123" data-path-y="1234" type="radio" name="item_x[4-3]" value="2" disabled>
+            <input data-type="scaler-x-item" data-path-x="123" data-path-y="1234" type="radio" name="item_x[4-3]" value="3" checked>
+            <input data-type="scaler-x-item" data-path-x="123" data-path-y="1234" type="radio" name="item_x[4-3]" value="4">
+            <input data-type="scaler-x-item" data-path-x="123" data-path-y="1234" type="radio" name="item_x[4-3]" value="5">
+            <input data-type="scaler-y-item" data-path-x="123" data-path-y="1234" type="radio" name="item_y[4-3]" value="1" disabled>
+            <input data-type="scaler-y-item" data-path-x="123" data-path-y="1234" type="radio" name="item_y[4-3]" value="2" disabled>
+            <input data-type="scaler-y-item" data-path-x="123" data-path-y="1234" type="radio" name="item_y[4-3]" value="3" disabled>
+            <input data-type="scaler-y-item" data-path-x="123" data-path-y="1234" type="radio" name="item_y[4-3]" value="4" checked>
+            <input data-type="scaler-y-item" data-path-x="123" data-path-y="1234" type="radio" name="item_y[4-3]" value="5">
+            <x-grid-item data-grid-item      data-path-x="123" data-path-y="1234">Cell 4.3</x-grid-item>
+
+            <input data-type="scaler-x-item" data-path-x="1234" data-path-y="1234" type="radio" name="item_x[4-4]" value="1" disabled>
+            <input data-type="scaler-x-item" data-path-x="1234" data-path-y="1234" type="radio" name="item_x[4-4]" value="2" disabled>
+            <input data-type="scaler-x-item" data-path-x="1234" data-path-y="1234" type="radio" name="item_x[4-4]" value="3" disabled>
+            <input data-type="scaler-x-item" data-path-x="1234" data-path-y="1234" type="radio" name="item_x[4-4]" value="4" checked>
+            <input data-type="scaler-x-item" data-path-x="1234" data-path-y="1234" type="radio" name="item_x[4-4]" value="5">
+            <input data-type="scaler-y-item" data-path-x="1234" data-path-y="1234" type="radio" name="item_y[4-4]" value="1" disabled>
+            <input data-type="scaler-y-item" data-path-x="1234" data-path-y="1234" type="radio" name="item_y[4-4]" value="2" disabled>
+            <input data-type="scaler-y-item" data-path-x="1234" data-path-y="1234" type="radio" name="item_y[4-4]" value="3" disabled>
+            <input data-type="scaler-y-item" data-path-x="1234" data-path-y="1234" type="radio" name="item_y[4-4]" value="4" checked>
+            <input data-type="scaler-y-item" data-path-x="1234" data-path-y="1234" type="radio" name="item_y[4-4]" value="5">
+            <x-grid-item data-grid-item      data-path-x="1234" data-path-y="1234">Cell 4.4</x-grid-item>
+
+            <input data-type="scaler-x-item" data-path-x="12345" data-path-y="1234" type="radio" name="item_x[4-5]" value="1" disabled>
+            <input data-type="scaler-x-item" data-path-x="12345" data-path-y="1234" type="radio" name="item_x[4-5]" value="2" disabled>
+            <input data-type="scaler-x-item" data-path-x="12345" data-path-y="1234" type="radio" name="item_x[4-5]" value="3" disabled>
+            <input data-type="scaler-x-item" data-path-x="12345" data-path-y="1234" type="radio" name="item_x[4-5]" value="4" disabled>
+            <input data-type="scaler-x-item" data-path-x="12345" data-path-y="1234" type="radio" name="item_x[4-5]" value="5" checked>
+            <input data-type="scaler-y-item" data-path-x="12345" data-path-y="1234" type="radio" name="item_y[4-5]" value="1" disabled>
+            <input data-type="scaler-y-item" data-path-x="12345" data-path-y="1234" type="radio" name="item_y[4-5]" value="2" disabled>
+            <input data-type="scaler-y-item" data-path-x="12345" data-path-y="1234" type="radio" name="item_y[4-5]" value="3" disabled>
+            <input data-type="scaler-y-item" data-path-x="12345" data-path-y="1234" type="radio" name="item_y[4-5]" value="4" checked>
+            <input data-type="scaler-y-item" data-path-x="12345" data-path-y="1234" type="radio" name="item_y[4-5]" value="5">
+            <x-grid-item data-grid-item      data-path-x="12345" data-path-y="1234">Cell 4.5</x-grid-item>
+
+            <!-- ///////////////////////////////////////////////////////////////////////////////// -->
+
+            <input data-type="scaler-x-item" data-path-x="1" data-path-y="12345" type="radio" name="item_x[5-1]" value="1" checked>
+            <input data-type="scaler-x-item" data-path-x="1" data-path-y="12345" type="radio" name="item_x[5-1]" value="2">
+            <input data-type="scaler-x-item" data-path-x="1" data-path-y="12345" type="radio" name="item_x[5-1]" value="3">
+            <input data-type="scaler-x-item" data-path-x="1" data-path-y="12345" type="radio" name="item_x[5-1]" value="4">
+            <input data-type="scaler-x-item" data-path-x="1" data-path-y="12345" type="radio" name="item_x[5-1]" value="5">
+            <input data-type="scaler-y-item" data-path-x="1" data-path-y="12345" type="radio" name="item_y[5-1]" value="1" disabled>
+            <input data-type="scaler-y-item" data-path-x="1" data-path-y="12345" type="radio" name="item_y[5-1]" value="2" disabled>
+            <input data-type="scaler-y-item" data-path-x="1" data-path-y="12345" type="radio" name="item_y[5-1]" value="3" disabled>
+            <input data-type="scaler-y-item" data-path-x="1" data-path-y="12345" type="radio" name="item_y[5-1]" value="4" disabled>
+            <input data-type="scaler-y-item" data-path-x="1" data-path-y="12345" type="radio" name="item_y[5-1]" value="5" checked>
+            <x-grid-item data-grid-item      data-path-x="1" data-path-y="12345">Cell 5.1</x-grid-item>
+
+            <input data-type="scaler-x-item" data-path-x="12" data-path-y="12345" type="radio" name="item_x[5-2]" value="1" disabled>
+            <input data-type="scaler-x-item" data-path-x="12" data-path-y="12345" type="radio" name="item_x[5-2]" value="2" checked>
+            <input data-type="scaler-x-item" data-path-x="12" data-path-y="12345" type="radio" name="item_x[5-2]" value="3">
+            <input data-type="scaler-x-item" data-path-x="12" data-path-y="12345" type="radio" name="item_x[5-2]" value="4">
+            <input data-type="scaler-x-item" data-path-x="12" data-path-y="12345" type="radio" name="item_x[5-2]" value="5">
+            <input data-type="scaler-y-item" data-path-x="12" data-path-y="12345" type="radio" name="item_y[5-2]" value="1" disabled>
+            <input data-type="scaler-y-item" data-path-x="12" data-path-y="12345" type="radio" name="item_y[5-2]" value="2" disabled>
+            <input data-type="scaler-y-item" data-path-x="12" data-path-y="12345" type="radio" name="item_y[5-2]" value="3" disabled>
+            <input data-type="scaler-y-item" data-path-x="12" data-path-y="12345" type="radio" name="item_y[5-2]" value="4" disabled>
+            <input data-type="scaler-y-item" data-path-x="12" data-path-y="12345" type="radio" name="item_y[5-2]" value="5" checked>
+            <x-grid-item data-grid-item      data-path-x="12" data-path-y="12345">Cell 5.2</x-grid-item>
+
+            <input data-type="scaler-x-item" data-path-x="123" data-path-y="12345" type="radio" name="item_x[5-3]" value="1" disabled>
+            <input data-type="scaler-x-item" data-path-x="123" data-path-y="12345" type="radio" name="item_x[5-3]" value="2" disabled>
+            <input data-type="scaler-x-item" data-path-x="123" data-path-y="12345" type="radio" name="item_x[5-3]" value="3" checked>
+            <input data-type="scaler-x-item" data-path-x="123" data-path-y="12345" type="radio" name="item_x[5-3]" value="4">
+            <input data-type="scaler-x-item" data-path-x="123" data-path-y="12345" type="radio" name="item_x[5-3]" value="5">
+            <input data-type="scaler-y-item" data-path-x="123" data-path-y="12345" type="radio" name="item_y[5-3]" value="1" disabled>
+            <input data-type="scaler-y-item" data-path-x="123" data-path-y="12345" type="radio" name="item_y[5-3]" value="2" disabled>
+            <input data-type="scaler-y-item" data-path-x="123" data-path-y="12345" type="radio" name="item_y[5-3]" value="3" disabled>
+            <input data-type="scaler-y-item" data-path-x="123" data-path-y="12345" type="radio" name="item_y[5-3]" value="4" disabled>
+            <input data-type="scaler-y-item" data-path-x="123" data-path-y="12345" type="radio" name="item_y[5-3]" value="5" checked>
+            <x-grid-item data-grid-item      data-path-x="123" data-path-y="12345">Cell 5.3</x-grid-item>
+
+            <input data-type="scaler-x-item" data-path-x="1234" data-path-y="12345" type="radio" name="item_x[5-4]" value="1" disabled>
+            <input data-type="scaler-x-item" data-path-x="1234" data-path-y="12345" type="radio" name="item_x[5-4]" value="2" disabled>
+            <input data-type="scaler-x-item" data-path-x="1234" data-path-y="12345" type="radio" name="item_x[5-4]" value="3" disabled>
+            <input data-type="scaler-x-item" data-path-x="1234" data-path-y="12345" type="radio" name="item_x[5-4]" value="4" checked>
+            <input data-type="scaler-x-item" data-path-x="1234" data-path-y="12345" type="radio" name="item_x[5-4]" value="5">
+            <input data-type="scaler-y-item" data-path-x="1234" data-path-y="12345" type="radio" name="item_y[5-4]" value="1" disabled>
+            <input data-type="scaler-y-item" data-path-x="1234" data-path-y="12345" type="radio" name="item_y[5-4]" value="2" disabled>
+            <input data-type="scaler-y-item" data-path-x="1234" data-path-y="12345" type="radio" name="item_y[5-4]" value="3" disabled>
+            <input data-type="scaler-y-item" data-path-x="1234" data-path-y="12345" type="radio" name="item_y[5-4]" value="4" disabled>
+            <input data-type="scaler-y-item" data-path-x="1234" data-path-y="12345" type="radio" name="item_y[5-4]" value="5" checked>
+            <x-grid-item data-grid-item      data-path-x="1234" data-path-y="12345">Cell 5.4</x-grid-item>
+
+            <input data-type="scaler-x-item" data-path-x="12345" data-path-y="12345" type="radio" name="item_x[5-5]" value="1" disabled>
+            <input data-type="scaler-x-item" data-path-x="12345" data-path-y="12345" type="radio" name="item_x[5-5]" value="2" disabled>
+            <input data-type="scaler-x-item" data-path-x="12345" data-path-y="12345" type="radio" name="item_x[5-5]" value="3" disabled>
+            <input data-type="scaler-x-item" data-path-x="12345" data-path-y="12345" type="radio" name="item_x[5-5]" value="4" disabled>
+            <input data-type="scaler-x-item" data-path-x="12345" data-path-y="12345" type="radio" name="item_x[5-5]" value="5" checked>
+            <input data-type="scaler-y-item" data-path-x="12345" data-path-y="12345" type="radio" name="item_y[5-5]" value="1" disabled>
+            <input data-type="scaler-y-item" data-path-x="12345" data-path-y="12345" type="radio" name="item_y[5-5]" value="2" disabled>
+            <input data-type="scaler-y-item" data-path-x="12345" data-path-y="12345" type="radio" name="item_y[5-5]" value="3" disabled>
+            <input data-type="scaler-y-item" data-path-x="12345" data-path-y="12345" type="radio" name="item_y[5-5]" value="4" disabled>
+            <input data-type="scaler-y-item" data-path-x="12345" data-path-y="12345" type="radio" name="item_y[5-5]" value="5" checked>
+            <x-grid-item data-grid-item      data-path-x="12345" data-path-y="12345">Cell 5.5</x-grid-item>
+        </x-grid-manager>
+
+    </x-part>
+
+</body>
+</html>

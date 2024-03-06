@@ -1,0 +1,12 @@
+diff --git a/system/module_storage/backend/pattern--storage_nosql_data.php b/system/module_storage/backend/pattern--storage_nosql_data.php
+index ae8c229..8351086 100644
+--- a/system/module_storage/backend/pattern--storage_nosql_data.php
++++ b/system/module_storage/backend/pattern--storage_nosql_data.php
+@@ -41,6 +41,7 @@ namespace effcore {
+   function changes_insert($module_id, $action, $dpath, $value = null, $rebuild = true, $null_prevention = true) {
+   # insert new dynamic changes
+     $changes_d = data::select('changes');
++    @file_put_contents(DIR_DYNAMIC.'type.log', serialize($changes_d).nl, FILE_APPEND);
+     if ($changes_d === null && $null_prevention === true) return false;
+     if ($changes_d === null && $null_prevention !== true) $changes_d = [];
+     if (!isset($changes_d[$module_id]           )) $changes_d[$module_id] = new \stdClass;
